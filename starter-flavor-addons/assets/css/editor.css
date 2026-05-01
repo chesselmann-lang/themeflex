@@ -1,0 +1,9 @@
+/**
+ * Starter Flavor Addons — Elementor Editor Styles
+ * @package Starter_Flavor_Addons
+ */
+
+/* Category icon in Elementor panel */
+.elementor-panel .elementor-element-wrapper[data-category="starter-flavor"] .icon {
+	color: var(--sf-color-primary, #FF5E2E);
+}

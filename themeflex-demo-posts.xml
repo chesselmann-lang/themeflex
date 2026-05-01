@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ThemeFlex Demo Content — Import via WP Admin > Tools > Import > WordPress -->
+<rss version="2.0"
+  xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:wp="http://wordpress.org/export/1.2/">
+<channel>
+  <title>ThemeFlex</title>
+  <link>https://themeflex.de</link>
+  <description>The Professional WordPress Theme for Elementor</description>
+  <pubDate>Tue, 22 Apr 2026 10:00:00 +0000</pubDate>
+  <language>en-US</language>
+  <wp:wxr_version>1.2</wp:wxr_version>
+  <wp:base_site_url>https://themeflex.de</wp:base_site_url>
+  <wp:base_blog_url>https://themeflex.de</wp:base_blog_url>
+
+  <!-- AUTHORS -->
+  <wp:author>
+    <wp:author_id>1</wp:author_id>
+    <wp:author_login><![CDATA[admin]]></wp:author_login>
+    <wp:author_email><![CDATA[christian@whatsdigital.de]]></wp:author_email>
+    <wp:author_display_name><![CDATA[ThemeFlex Team]]></wp:author_display_name>
+    <wp:author_first_name><![CDATA[ThemeFlex]]></wp:author_first_name>
+    <wp:author_last_name><![CDATA[Team]]></wp:author_last_name>
+  </wp:author>
+
+  <!-- CATEGORIES -->
+  <wp:category>
+    <wp:term_id>1</wp:term_id>
+    <wp:category_nicename><![CDATA[design]]></wp:category_nicename>
+    <wp:category_parent></wp:category_parent>
+    <wp:cat_name><![CDATA[Design]]></wp:cat_name>
+  </wp:category>
+  <wp:category>
+    <wp:term_id>2</wp:term_id>
+    <wp:category_nicename><![CDATA[company]]></wp:category_nicename>
+    <wp:category_parent></wp:category_parent>
+    <wp:cat_name><![CDATA[Company]]></wp:cat_name>
+  </wp:category>
+  <wp:category>
+    <wp:term_id>3</wp:term_id>
+    <wp:category_nicename><![CDATA[services]]></wp:category_nicename>
+    <wp:category_parent></wp:category_parent>
+    <wp:cat_name><![CDATA[Services]]></wp:cat_name>
+  </wp:category>
+  <wp:category>
+    <wp:term_id>4</wp:term_id>
+    <wp:category_nicename><![CDATA[development]]></wp:category_nicename>
+    <wp:category_parent></wp:category_parent>
+    <wp:cat_name><![CDATA[Development]]></wp:cat_name>
+  </wp:category>
+  <wp:category>
+    <wp:term_id>5</wp:term_id>
+    <wp:category_nicename><![CDATA[tutorial]]></wp:category_nicename>
+    <wp:category_parent></wp:category_parent>
+    <wp:cat_name><![CDATA[Tutorial]]></wp:cat_name>
+  </wp:category>
+  <wp:category>
+    <wp:term_id>6</wp:term_id>
+    <wp:category_nicename><![CDATA[seo]]></wp:category_nicename>
+    <wp:category_parent></wp:category_parent>
+    <wp:cat_name><![CDATA[SEO]]></wp:cat_name>
+  </wp:category>
+
+  <!-- POST 1: Speed Optimization -->
+  <item>
+    <title>Speed Optimization: How to Make Your WordPress Site Load in Under 1 Second</title>
+    <link>https://themeflex.de/speed-optimization-wordpress/</link>
+    <pubDate>Mon, 20 Apr 2026 09:00:00 +0000</pubDate>
+    <dc:creator><![CDATA[admin]]></dc:creator>
+    <category domain="category" nicename="development"><![CDATA[Development]]></category>
+    <wp:post_id>30</wp:post_id>
+    <wp:post_date><![CDATA[2026-04-20 09:00:00]]></wp:post_date>
+    <wp:post_date_gmt><![CDATA[2026-04-20 09:00:00]]></wp:post_date_gmt>
+    <wp:comment_status><![CDATA[open]]></wp:comment_status>
+    <wp:ping_status><![CDATA[closed]]></wp:ping_status>
+    <wp:post_name><![CDATA[speed-optimization-wordpress]]></wp:post_name>
+    <wp:status><![CDATA[publish]]></wp:status>
+    <wp:post_type><![CDATA[post]]></wp:post_type>
+    <content:encoded><![CDATA[
+<p>Page speed is no longer a "nice to have" — it's a competitive advantage. A one-second delay in load time leads to a 7% drop in conversions, 11% fewer page views, and a 16% decrease in customer satisfaction. For WordPress site owners, this represents real revenue left on the table.</p>
+
+<p>In this guide, we'll walk through the exact techniques we used to bring ThemeFlex demo sites from 3.8 seconds down to under 800 milliseconds on a standard shared hosting plan.</p>
+
+<h2>1. Choose a Performance-First Theme Architecture</h2>
+
+<p>The foundation of a fast WordPress site is the theme itself. ThemeFlex is built with performance as a first principle — not an afterthought. We ship zero jQuery dependencies, lazy-load all images by default, and generate critical CSS inline for above-the-fold content.</p>
+
+<p>Traditional themes often load 400–800KB of CSS and JavaScript on every page. ThemeFlex's core stylesheet weighs in at under 28KB (minified and gzip'd), and our JavaScript payload is split into per-page chunks so visitors only download what they actually need.</p>
+
+<h2>2. Enable WordPress Object Caching</h2>
+
+<p>WordPress makes dozens of database queries on every page load. Object caching stores the results of expensive queries in fast memory (Redis or Memcached), so repeat requests skip the database entirely.</p>
+
+<p>Install Redis Object Cache by Till Krüss and connect it to your hosting provider's Redis instance. A typical WordPress homepage that makes 47 database queries drops to 3–4 cached queries — a 90%+ reduction in database load.</p>
+
+<h2>3. Implement a Full-Page Caching Layer</h2>
+
+<p>For static or semi-static content, full-page caching serves pre-built HTML directly from disk — bypassing PHP and MySQL entirely. WP Rocket, W3 Total Cache, and LiteSpeed Cache all offer this capability.</p>
+
+<p>ThemeFlex is tested and optimized with all major caching plugins. Our theme outputs clean, standards-compliant HTML that caches efficiently without layout artifacts or JavaScript hydration issues.</p>
+
+<h2>4. Optimize Your Images Automatically</h2>
+
+<p>Images account for 60–70% of most web pages' total byte weight. Serving next-gen formats (WebP, AVIF) with proper sizing can cut that in half. ThemeFlex ships with built-in lazy loading and responsive srcset attributes on all theme-generated images.</p>
+
+<p>For your uploaded media, install ShortPixel or Imagify to automatically compress and convert images on upload. Set your compression to "Glossy" (visually lossless) for a balance of quality and size.</p>
+
+<h2>5. Minimize Render-Blocking Resources</h2>
+
+<p>Every script or stylesheet in your <code>&lt;head&gt;</code> that isn't needed for initial render blocks the browser from showing any content. ThemeFlex loads fonts via <code>font-display: swap</code>, defers all non-critical JavaScript, and uses resource hints (<code>preconnect</code>, <code>preload</code>) for critical assets.</p>
+
+<p>Run your site through Google PageSpeed Insights and address any "Eliminate render-blocking resources" warnings. The goal is to get your Largest Contentful Paint (LCP) under 2.5 seconds — the threshold for Google's "Good" rating.</p>
+
+<h2>6. Use a Content Delivery Network (CDN)</h2>
+
+<p>A CDN distributes your static assets (images, CSS, JS) across servers worldwide, so visitors load files from the nearest geographic location. Cloudflare's free plan provides excellent CDN coverage and adds an additional layer of DDoS protection.</p>
+
+<p>Enable Cloudflare's "Rocket Loader" for JavaScript optimization and "Auto Minify" for CSS/HTML. Combined with WordPress caching, this configuration consistently achieves 95+ scores on both mobile and desktop in PageSpeed Insights.</p>
+
+<h2>The Results</h2>
+
+<p>Following these steps on a typical ThemeFlex installation on shared hosting:</p>
+
+<ul>
+<li><strong>Time to First Byte (TTFB):</strong> 180ms → 42ms</li>
+<li><strong>Largest Contentful Paint (LCP):</strong> 3.8s → 0.9s</li>
+<li><strong>Total Blocking Time (TBT):</strong> 420ms → 0ms</li>
+<li><strong>Cumulative Layout Shift (CLS):</strong> 0.15 → 0.0</li>
+<li><strong>PageSpeed Score (Mobile):</strong> 52 → 97</li>
+</ul>
+
+<p>Speed is one of the most measurable improvements you can make to your WordPress site — and with ThemeFlex, you're starting from an optimized foundation. Apply these techniques and you'll see results within hours, not weeks.</p>
+    ]]></content:encoded>
+    <excerpt:encoded><![CDATA[A one-second delay in load time leads to a 7% drop in conversions. Learn the exact techniques we used to bring WordPress sites from 3.8 seconds down to under 800 milliseconds.]]></excerpt:encoded>
+  </item>
+
+  <!-- POST 2: Elementor Workflow -->
+  <item>
+    <title>From Concept to Launch: A Complete Elementor Workflow in 7 Steps</title>
+    <link>https://themeflex.de/elementor-workflow-7-steps/</link>
+    <pubDate>Fri, 17 Apr 2026 10:00:00 +0000</pubDate>
+    <dc:creator><![CDATA[admin]]></dc:creator>
+    <category domain="category" nicename="tutorial"><![CDATA[Tutorial]]></category>
+    <wp:post_id>31</wp:post_id>
+    <wp:post_date><![CDATA[2026-04-17 10:00:00]]></wp:post_date>
+    <wp:post_date_gmt><![CDATA[2026-04-17 10:00:00]]></wp:post_date_gmt>
+    <wp:comment_status><![CDATA[open]]></wp:comment_status>
+    <wp:ping_status><![CDATA[closed]]></wp:ping_status>
+    <wp:post_name><![CDATA[elementor-workflow-7-steps]]></wp:post_name>
+    <wp:status><![CDATA[publish]]></wp:status>
+    <wp:post_type><![CDATA[post]]></wp:post_type>
+    <content:encoded><![CDATA[
+<p>Building a professional website with Elementor doesn't have to be chaotic. The difference between agencies that deliver projects in 3 days versus 3 weeks often comes down to having a repeatable, documented workflow. Here's the exact 7-step process we use at ThemeFlex for every client project.</p>
+
+<h2>Step 1: Discovery and Content First</h2>
+
+<p>Never open Elementor before you have the content. This sounds obvious, but it's the mistake that causes the most redesign cycles. Request all copy, images, and brand assets from your client before touching the editor. Build a simple content document with page hierarchy, word counts, and image specifications.</p>
+
+<p>ThemeFlex's Demo Importer gives you a starting point with realistic placeholder content — headlines, paragraphs, and testimonials that are the right length for real-world use, not "Lorem ipsum" that breaks at 50 characters.</p>
+
+<h2>Step 2: Global Styles Before Any Pages</h2>
+
+<p>In Elementor, navigate to Site Settings before creating a single page. Define your:</p>
+<ul>
+<li>Primary and secondary color palette (typically 2–3 brand colors + neutrals)</li>
+<li>Typography scale (H1 through H6, body, and captions)</li>
+<li>Button styles</li>
+<li>Global spacing units</li>
+</ul>
+
+<p>ThemeFlex pre-populates these settings via the Theme Customizer, so you're starting from a professionally designed system rather than Elementor's defaults.</p>
+
+<h2>Step 3: Build the Header and Footer First</h2>
+
+<p>Your header and footer appear on every page. Build them with Elementor's Theme Builder before creating any page templates. Changes propagate automatically across the entire site — saving hours of repetitive editing later.</p>
+
+<p>ThemeFlex ships with six pre-built header layouts: default, transparent, centered, minimal, offcanvas, and a top-bar variant. Choose the one closest to your design and customize the colors and logo.</p>
+
+<h2>Step 4: Create a Page Template Library</h2>
+
+<p>Most sites share structural patterns: hero sections, feature grids, testimonial blocks, CTA sections. Build each pattern once, save it as an Elementor template (Global Block), and reuse it across pages. This is 10× faster than rebuilding from scratch and ensures visual consistency.</p>
+
+<h2>Step 5: Build Pages from Top to Bottom</h2>
+
+<p>With your template library ready, page building becomes assembly. Drag in your saved blocks, swap in the page-specific content, and make local adjustments. A typical 8-section landing page should take 45–90 minutes, not a full day.</p>
+
+<p>Use ThemeFlex's 51+ Elementor widgets for specialized components — carousels, countdown timers, progress bars, and portfolio grids — that aren't in Elementor's core widget set.</p>
+
+<h2>Step 6: Responsive Review on Real Devices</h2>
+
+<p>Never rely solely on Elementor's built-in device preview. Test on actual phones and tablets. Common issues include: text that's too small on mobile, touch targets under 44px, horizontal scroll caused by full-width sections, and images that don't crop correctly at different aspect ratios.</p>
+
+<p>ThemeFlex's responsive breakpoint system supports four breakpoints (desktop, tablet landscape, tablet portrait, mobile) with granular control over spacing, typography, and layout at each size.</p>
+
+<h2>Step 7: Performance Audit Before Launch</h2>
+
+<p>Before going live, run every page through Google PageSpeed Insights and fix any Critical issues. Common problems include unoptimized images (use WebP), render-blocking scripts (defer or async), and unused CSS from inactive widgets.</p>
+
+<p>ThemeFlex's Performance Pro module automatically dequeues scripts and styles that aren't needed on the current page — something vanilla Elementor doesn't do. This alone can reduce page weight by 30–40% on content pages.</p>
+
+<h2>Conclusion</h2>
+
+<p>A professional Elementor workflow is systematic, not reactive. By frontloading decisions about content, global styles, and shared components, you eliminate the majority of revision cycles and deliver better results in less time. The 7 steps above aren't just theory — they're the process behind every ThemeFlex demo site you see at themeflex.de.</p>
+    ]]></content:encoded>
+    <excerpt:encoded><![CDATA[The difference between agencies that deliver in 3 days versus 3 weeks comes down to workflow. Here's the exact 7-step process we use for every Elementor project.]]></excerpt:encoded>
+  </item>
+
+  <!-- POST 3: Typography Guide -->
+  <item>
+    <title>The Complete Guide to WordPress Typography in 2026</title>
+    <link>https://themeflex.de/wordpress-typography-guide-2026/</link>
+    <pubDate>Tue, 14 Apr 2026 11:00:00 +0000</pubDate>
+    <dc:creator><![CDATA[admin]]></dc:creator>
+    <category domain="category" nicename="design"><![CDATA[Design]]></category>
+    <wp:post_id>32</wp:post_id>
+    <wp:post_date><![CDATA[2026-04-14 11:00:00]]></wp:post_date>
+    <wp:post_date_gmt><![CDATA[2026-04-14 11:00:00]]></wp:post_date_gmt>
+    <wp:comment_status><![CDATA[open]]></wp:comment_status>
+    <wp:ping_status><![CDATA[closed]]></wp:ping_status>
+    <wp:post_name><![CDATA[wordpress-typography-guide-2026]]></wp:post_name>
+    <wp:status><![CDATA[publish]]></wp:status>
+    <wp:post_type><![CDATA[post]]></wp:post_type>
+    <content:encoded><![CDATA[
+<p>Typography is the invisible backbone of great web design. When it's right, visitors don't notice it — they just find the content easy to read and the brand instantly credible. When it's wrong, everything feels off, even if visitors can't articulate why.</p>
+
+<p>In 2026, web typography has matured significantly. Variable fonts, fluid type scales, and CSS custom properties have given designers unprecedented control. Here's how to use these tools effectively in WordPress.</p>
+
+<h2>The Type Scale: Start with Math, Not Taste</h2>
+
+<p>A harmonious type scale is built on a ratio. The most popular choices are the Major Third (1.25), Perfect Fourth (1.333), and Golden Ratio (1.618). Starting from a base font size of 16px and applying the Perfect Fourth ratio gives you:</p>
+
+<ul>
+<li>Body: 16px (1rem)</li>
+<li>Small/Caption: 12px (0.75rem)</li>
+<li>H4: 21px (1.333rem)</li>
+<li>H3: 28px (1.778rem)</li>
+<li>H2: 37px (2.369rem)</li>
+<li>H1: 50px (3.157rem)</li>
+<li>Display: 67px (4.209rem)</li>
+</ul>
+
+<p>ThemeFlex implements this scale as CSS custom properties (<code>--tf-text-sm</code>, <code>--tf-text-base</code>, <code>--tf-text-xl</code>, etc.) so Elementor widgets automatically inherit consistent sizing.</p>
+
+<h2>Fluid Typography with clamp()</h2>
+
+<p>Fixed font sizes create jarring jumps at breakpoints. Fluid typography, using CSS's <code>clamp()</code> function, scales smoothly between a minimum and maximum size based on viewport width:</p>
+
+<pre><code>h1 { font-size: clamp(2rem, 4vw, 3.5rem); }</code></pre>
+
+<p>This single line replaces three separate media queries and produces smoother results. ThemeFlex applies fluid sizing to all headings by default, ensuring hero text looks right on everything from a 320px phone to a 4K monitor.</p>
+
+<h2>Font Pairing: The Contrast Principle</h2>
+
+<p>Effective font pairing relies on contrast — not similarity. Pair a geometric sans-serif for headlines with a humanist serif for body text, or vice versa. Avoid pairing two fonts that are too similar (two geometric sans-serifs) or too different (a decorative display font with a heavy slab serif).</p>
+
+<p>ThemeFlex's default pairing is <strong>Inter Tight</strong> (headings) and <strong>Inter</strong> (body). Both share the same geometric DNA, creating cohesion, but the "Tight" variant's compressed tracking and heavier weight creates clear hierarchy. The system is fully configurable through the Customizer with live preview.</p>
+
+<h2>Line Length and Reading Comfort</h2>
+
+<p>Optimal line length for body text is 60–75 characters per line. Longer lines cause reader fatigue; shorter lines disrupt rhythm. In CSS, constrain content width with <code>max-width: 68ch</code> on your article body — the <code>ch</code> unit is relative to the width of the "0" character in the current font, making it a reliable measure regardless of font size changes.</p>
+
+<h2>Line Height and Spacing</h2>
+
+<p>Line height (leading) should be 1.5–1.7× for body text and 1.1–1.2× for large headings. As text gets larger, line height should decrease — display headings at 80pt need less leading than body text at 16pt. ThemeFlex's type system enforces this automatically, preventing the common mistake of applying a single line-height value across all text sizes.</p>
+
+<h2>Dark Mode Typography</h2>
+
+<p>Dark mode isn't simply inverting colors. Pure white (#FFFFFF) on pure black (#000000) creates halation — a blurry glowing effect that increases reading fatigue. ThemeFlex's dark mode uses near-white (#F1F5F9) on near-black (#06021D) with increased letter-spacing (0.01em) for body text, which compensates for the way light text appears slightly thicker on dark backgrounds.</p>
+
+<h2>Performance: Variable Fonts and Font Display</h2>
+
+<p>Variable fonts pack multiple weights and styles into a single file. Loading Inter as a variable font instead of six separate weight files reduces HTTP requests from 6 to 1 and total font weight from ~280KB to ~95KB. ThemeFlex loads Google Fonts with <code>font-display: swap</code> and a <code>preconnect</code> resource hint, minimizing layout shift while fonts load.</p>
+
+<p>Typography done right is invisible. Done wrong, it's the first thing everyone notices. Invest the time in your type system upfront, and it pays dividends across every page of your site.</p>
+    ]]></content:encoded>
+    <excerpt:encoded><![CDATA[Typography is the invisible backbone of great web design. Learn how fluid type scales, variable fonts, and proper font pairing create credible, readable WordPress sites in 2026.]]></excerpt:encoded>
+  </item>
+
+  <!-- POST 4: SEO Guide -->
+  <item>
+    <title>WordPress SEO in 2026: What Actually Moves the Needle</title>
+    <link>https://themeflex.de/wordpress-seo-2026/</link>
+    <pubDate>Sat, 11 Apr 2026 09:00:00 +0000</pubDate>
+    <dc:creator><![CDATA[admin]]></dc:creator>
+    <category domain="category" nicename="seo"><![CDATA[SEO]]></category>
+    <wp:post_id>33</wp:post_id>
+    <wp:post_date><![CDATA[2026-04-11 09:00:00]]></wp:post_date>
+    <wp:post_date_gmt><![CDATA[2026-04-11 09:00:00]]></wp:post_date_gmt>
+    <wp:comment_status><![CDATA[open]]></wp:comment_status>
+    <wp:ping_status><![CDATA[closed]]></wp:ping_status>
+    <wp:post_name><![CDATA[wordpress-seo-2026]]></wp:post_name>
+    <wp:status><![CDATA[publish]]></wp:status>
+    <wp:post_type><![CDATA[post]]></wp:post_type>
+    <content:encoded><![CDATA[
+<p>SEO has changed more in the past 18 months than in the previous decade. Google's AI Overviews now answer queries directly in search results, reducing click-through rates for informational content by 30–45%. Voice search accounts for 27% of all searches. And Core Web Vitals have become a confirmed ranking factor across all device types.</p>
+
+<p>For WordPress site owners, this means the playbook has changed. Here's what actually moves the needle in 2026 — and what you can stop worrying about.</p>
+
+<h2>Core Web Vitals: The Technical Floor</h2>
+
+<p>If your site fails Core Web Vitals, no amount of content quality will compensate. Google's three key metrics are:</p>
+
+<ul>
+<li><strong>Largest Contentful Paint (LCP):</strong> How quickly the main content loads. Target: under 2.5 seconds.</li>
+<li><strong>Interaction to Next Paint (INP):</strong> How quickly the page responds to user interaction. Target: under 200ms.</li>
+<li><strong>Cumulative Layout Shift (CLS):</strong> How much content moves around during loading. Target: under 0.1.</li>
+</ul>
+
+<p>ThemeFlex scores 95+ on PageSpeed Insights out of the box on both mobile and desktop. Our theme doesn't load webfonts from external CDNs (which add DNS lookup latency), doesn't ship render-blocking scripts, and uses explicit width/height attributes on all images to prevent layout shift.</p>
+
+<h2>E-E-A-T: Experience, Expertise, Authority, Trust</h2>
+
+<p>Google's Quality Rater Guidelines emphasize E-E-A-T signals. For WordPress site owners, this translates to:</p>
+
+<ul>
+<li>Author pages with real credentials and photos</li>
+<li>Content that demonstrates first-hand experience (not just summarized research)</li>
+<li>External citations from authoritative sources</li>
+<li>HTTPS, clear privacy policy, and contact information</li>
+<li>Consistent publishing history and content freshness</li>
+</ul>
+
+<p>ThemeFlex includes a full author bio component on single posts, structured data markup (schema.org Article and Person types), and built-in breadcrumb navigation — all E-E-A-T signals that many themes leave unimplemented.</p>
+
+<h2>Topical Authority Over Individual Keywords</h2>
+
+<p>Ranking for single keywords is increasingly difficult. What Google rewards is comprehensive topical coverage — a "content cluster" strategy where a pillar page covers a broad topic and supporting articles cover specific subtopics in depth.</p>
+
+<p>For a ThemeFlex demo site targeting WordPress agencies, this means: one comprehensive "WordPress Agency Services" pillar page, supported by articles on project management, client onboarding, pricing models, and case studies. Internal linking between cluster pieces signals topical authority to Google's algorithms.</p>
+
+<h2>Structured Data: The Competitive Edge</h2>
+
+<p>Schema.org markup helps Google understand your content and can unlock rich results (star ratings, FAQ dropdowns, How-To steps) that dramatically increase click-through rates. ThemeFlex automatically outputs Article, BreadcrumbList, and WebSite schema on appropriate pages.</p>
+
+<p>For local businesses, add LocalBusiness schema with your NAP (name, address, phone) and opening hours. For e-commerce, Product and Review schema unlock enhanced product listings. These additions take 30 minutes to implement and provide a measurable CTR boost.</p>
+
+<h2>What to Stop Worrying About</h2>
+
+<p>Keyword density (the idea that your keyword should appear X% of times in your content) has been irrelevant for over a decade. Meta keywords are completely ignored by all major search engines. Exact-match anchor text in internal links provides minimal value and can look manipulative. Stop obsessing over these and focus on content quality and technical excellence instead.</p>
+
+<h2>The Bottom Line</h2>
+
+<p>In 2026, SEO success comes from combining technical excellence (Core Web Vitals, structured data, clean HTML semantics) with genuine content depth that demonstrates real expertise. ThemeFlex handles the technical foundation automatically — so you can focus on creating content worth ranking for.</p>
+    ]]></content:encoded>
+    <excerpt:encoded><![CDATA[Google's AI Overviews, Core Web Vitals, and E-E-A-T signals have changed the SEO playbook. Here's what actually moves the needle for WordPress sites in 2026 — and what you can stop worrying about.]]></excerpt:encoded>
+  </item>
+
+  <!-- POST 5: Pricing Your Services -->
+  <item>
+    <title>How to Price WordPress Projects Without Underselling Yourself</title>
+    <link>https://themeflex.de/pricing-wordpress-projects/</link>
+    <pubDate>Wed, 08 Apr 2026 10:00:00 +0000</pubDate>
+    <dc:creator><![CDATA[admin]]></dc:creator>
+    <category domain="category" nicename="company"><![CDATA[Company]]></category>
+    <wp:post_id>34</wp:post_id>
+    <wp:post_date><![CDATA[2026-04-08 10:00:00]]></wp:post_date>
+    <wp:post_date_gmt><![CDATA[2026-04-08 10:00:00]]></wp:post_date_gmt>
+    <wp:comment_status><![CDATA[open]]></wp:comment_status>
+    <wp:ping_status><![CDATA[closed]]></wp:ping_status>
+    <wp:post_name><![CDATA[pricing-wordpress-projects]]></wp:post_name>
+    <wp:status><![CDATA[publish]]></wp:status>
+    <wp:post_type><![CDATA[post]]></wp:post_type>
+    <content:encoded><![CDATA[
+<p>Pricing is the skill most WordPress freelancers and agencies struggle with most. Too low, and you attract clients who don't value your work, exhaust yourself on unprofitable projects, and have nothing left for business development. Too high (before you've built the portfolio to justify it), and you lose deals you could have won. This guide is about finding the number that's right for your experience level — and raising it systematically.</p>
+
+<h2>Start with Your Target Effective Hourly Rate</h2>
+
+<p>Don't start with what competitors charge. Start with what you need to earn. If your annual income target is €60,000, and you have 1,200 billable hours per year (25 hours/week × 48 weeks), your minimum effective hourly rate is €50. But that's your floor — not your ceiling.</p>
+
+<p>Add 40% overhead for taxes, software subscriptions, professional development, and non-billable administrative time. Your actual hourly rate needs to be at least €70–80 before you're genuinely profitable.</p>
+
+<h2>Value-Based vs. Hourly vs. Fixed-Price Pricing</h2>
+
+<p><strong>Hourly billing</strong> is the most common starting point and the first model you should move away from. It rewards working slowly and creates adversarial relationships where clients question every hour. It caps your income at your available hours.</p>
+
+<p><strong>Fixed-price project billing</strong> transfers time risk to you but allows you to be rewarded for efficiency. A site that takes 20 hours with your ThemeFlex workflow earns the same as one that would have taken 40 hours with a slower process.</p>
+
+<p><strong>Value-based pricing</strong> ties your fee to the client's outcome, not your time. If a new e-commerce site is projected to generate €200,000 in its first year, charging €15,000 (7.5% of projected revenue) is excellent value for the client and highly profitable for you.</p>
+
+<h2>What a Typical WordPress Project Costs (2026 Market Rates)</h2>
+
+<p>To calibrate your pricing, here are market rates for professional WordPress work in the DACH region:</p>
+
+<ul>
+<li><strong>Simple brochure site (5–8 pages, template-based):</strong> €2,500–€6,000</li>
+<li><strong>Custom business site with Elementor (10–20 pages):</strong> €6,000–€15,000</li>
+<li><strong>WooCommerce store (up to 200 products):</strong> €8,000–€25,000</li>
+<li><strong>Complex membership or LMS site:</strong> €15,000–€50,000</li>
+<li><strong>Monthly retainer (maintenance, content, SEO):</strong> €500–€2,500/month</li>
+</ul>
+
+<p>If your current prices are significantly below these ranges, you're likely undercharging — even as a newer freelancer.</p>
+
+<h2>The ThemeFlex Multiplier</h2>
+
+<p>Building with ThemeFlex compresses your production time by 40–60% compared to building from scratch. A site that would take 60 hours to build with a generic theme takes 25–35 hours with ThemeFlex's pre-built sections, demo importer, and 51+ Elementor widgets.</p>
+
+<p>This efficiency doesn't mean you should charge less — it means your effective hourly rate is higher, or you can take on more projects per month, or both. Price the site at market value for the outcome, not for your (reduced) production time.</p>
+
+<h2>Building a Retainer Business</h2>
+
+<p>Project revenue is lumpy and stressful to forecast. Retainer revenue is predictable and compounds over time. Offer every project client a post-launch maintenance retainer that includes: WordPress core and plugin updates, security monitoring, monthly performance reports, and a set number of content update hours.</p>
+
+<p>At €800/month per client, just 10 retainer clients generate €8,000/month in predictable base revenue — enough to cover your costs and salary, with project revenue as upside. ThemeFlex's clean, well-documented codebase makes maintenance fast, maximizing your retainer profitability.</p>
+    ]]></content:encoded>
+    <excerpt:encoded><![CDATA[Too low and you attract bad clients. Too high before the portfolio supports it, and you lose winnable deals. Here's how to find the right price for your WordPress projects — and raise it systematically.]]></excerpt:encoded>
+  </item>
+
+  <!-- POST 6: Elementor vs Gutenberg -->
+  <item>
+    <title>Elementor vs. Gutenberg in 2026: Which Page Builder Should You Choose?</title>
+    <link>https://themeflex.de/elementor-vs-gutenberg-2026/</link>
+    <pubDate>Sun, 05 Apr 2026 10:00:00 +0000</pubDate>
+    <dc:creator><![CDATA[admin]]></dc:creator>
+    <category domain="category" nicename="services"><![CDATA[Services]]></category>
+    <wp:post_id>35</wp:post_id>
+    <wp:post_date><![CDATA[2026-04-05 10:00:00]]></wp:post_date>
+    <wp:post_date_gmt><![CDATA[2026-04-05 10:00:00]]></wp:post_date_gmt>
+    <wp:comment_status><![CDATA[open]]></wp:comment_status>
+    <wp:ping_status><![CDATA[closed]]></wp:ping_status>
+    <wp:post_name><![CDATA[elementor-vs-gutenberg-2026]]></wp:post_name>
+    <wp:status><![CDATA[publish]]></wp:status>
+    <wp:post_type><![CDATA[post]]></wp:post_type>
+    <content:encoded><![CDATA[
+<p>The page builder debate has evolved significantly since Gutenberg launched in WordPress 5.0. In 2026, both Elementor and Gutenberg have matured into powerful tools with distinct strengths. This isn't a "one is better" article — it's a framework for choosing the right tool for each project type.</p>
+
+<h2>The State of Both Tools in 2026</h2>
+
+<p>Gutenberg (now officially the "WordPress Block Editor") has shipped Full Site Editing (FSE) support, a block theme ecosystem, and powerful Synced Patterns (formerly "reusable blocks"). Its performance profile is excellent — no additional JavaScript payload beyond WordPress core.</p>
+
+<p>Elementor has responded by shipping its own AI-powered design assistant, an AI code widget, and a redesigned widget panel. Elementor Pro's Theme Builder now covers every page type including WooCommerce product pages. The tool remains the clear choice for visual-first, rapid design iteration.</p>
+
+<h2>When Gutenberg Wins</h2>
+
+<p><strong>Performance-critical sites:</strong> Elementor adds 150–300KB of JavaScript to every page. For sites where Core Web Vitals are a primary concern (news sites, e-commerce with thin margins), Gutenberg's near-zero overhead is meaningful.</p>
+
+<p><strong>Content-heavy sites:</strong> Gutenberg's editorial experience is superior for content creators who aren't web designers. The distraction-free editor, keyboard shortcuts, and slash command interface make writing faster than working inside Elementor.</p>
+
+<p><strong>Block themes and FSE:</strong> If you want to build or sell block themes, Gutenberg is the only choice. ThemeFlex ships a `theme.json` file that works with both Elementor and Gutenberg, giving you flexibility to support both ecosystems.</p>
+
+<h2>When Elementor Wins</h2>
+
+<p><strong>Client-facing design projects:</strong> Elementor's visual feedback loop is unmatched for design iteration with clients. The live preview, widget library, and drag-and-drop interface let non-technical clients participate meaningfully in the design process.</p>
+
+<p><strong>Complex page layouts:</strong> Multi-column layouts, overlapping elements, animations on scroll, and sticky sections are significantly easier in Elementor. Gutenberg's grid support has improved, but Elementor remains more capable for complex visual compositions.</p>
+
+<p><strong>Marketing and landing pages:</strong> Conversion-optimized pages with countdown timers, progress bars, popups, and A/B testing integrations are Elementor's home territory. The ecosystem of complementary widgets (including ThemeFlex's custom widget library) doesn't have a Gutenberg equivalent.</p>
+
+<h2>The Hybrid Approach</h2>
+
+<p>Many professional WordPress developers use both: Elementor for the front-end design and marketing pages, Gutenberg for the blog/editorial interface. ThemeFlex is built to support this hybrid model — the Elementor widgets and Theme Builder templates work alongside clean Gutenberg block styling, so your content editors and your design team can both work in their preferred tool.</p>
+
+<h2>Our Recommendation</h2>
+
+<p>For agencies building client sites: <strong>Elementor Pro + ThemeFlex</strong>. The design flexibility and client-facing experience justify the performance overhead, and our performance optimizations minimize the gap.</p>
+
+<p>For content-driven sites (blogs, news, documentation): <strong>Gutenberg + ThemeFlex's block styles</strong>. You'll get better editorial experience and superior performance metrics.</p>
+
+<p>The good news: switching between both with ThemeFlex doesn't require a redesign. The theme's global styles apply consistently regardless of which editor created the content.</p>
+    ]]></content:encoded>
+    <excerpt:encoded><![CDATA[Gutenberg has matured and Elementor has added AI features. In 2026, which page builder should you choose? The answer depends on your project type — here's the framework.]]></excerpt:encoded>
+  </item>
+
+</channel>
+</rss>

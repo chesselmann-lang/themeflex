@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ThemeFlex — Interactive Demo (Standalone)</title>
+<style>
+/* ===================================================
+   STARTER FLAVOR — STANDALONE INTERACTIVE DEMO
+   Kein Server nötig — direkt im Browser öffnen
+   =================================================== */
+:root {
+  /* 16-Token Semantic CSS System */
+  --sf-bg:           #0F0F1A;
+  --sf-alt-bg:       #1A1A2E;
+  --sf-card-bg:      rgba(255,255,255,0.04);
+  --sf-title:        #FFFFFF;
+  --sf-text:         #C8C8E0;
+  --sf-muted:        #7878A0;
+  --sf-primary:      #6C63FF;
+  --sf-primary-dark: #5A52D5;
+  --sf-accent:       #FF6584;
+  --sf-success:      #10C878;
+  --sf-warning:      #FFD700;
+  --sf-border:       rgba(108,99,255,0.18);
+  --sf-shadow:       0 8px 40px rgba(0,0,0,0.4);
+  --sf-glow:         0 0 40px rgba(108,99,255,0.3);
+  --sf-radius:       16px;
+  --sf-radius-sm:    8px;
+  --sf-font:         -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --sf-transition:   all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+[data-skin="corporate"] {
+  --sf-primary: #1A56DB; --sf-accent: #0EA5E9; --sf-bg: #0A0F1E;
+}
+[data-skin="creative"] {
+  --sf-primary: #F97316; --sf-accent: #EC4899; --sf-bg: #0F0A1E;
+}
+[data-skin="minimal"] {
+  --sf-primary: #18181B; --sf-accent: #52525B; --sf-bg: #FAFAFA; --sf-title: #18181B; --sf-text: #52525B; --sf-muted: #A1A1AA; --sf-border: rgba(0,0,0,0.1); --sf-card-bg: #fff;
+}
+[data-skin="luxury"] {
+  --sf-primary: #D4AF37; --sf-accent: #B8860B; --sf-bg: #0A0805;
+}
+[data-skin="medical"] {
+  --sf-primary: #0EA5E9; --sf-accent: #22C55E; --sf-bg: #F0F9FF; --sf-title: #0C4A6E; --sf-text: #0369A1; --sf-muted: #7DD3FC; --sf-card-bg: #fff; --sf-border: rgba(14,165,233,0.2);
+}
+
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sf-font);
+  background: var(--sf-bg);
+  color: var(--sf-text);
+  line-height: 1.6;
+  transition: background 0.5s, color 0.5s;
+}
+
+/* ---- HEADER ---- */
+.sf-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15,15,26,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--sf-border);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  height: 64px;
+  gap: 24px;
+}
+.sf-logo {
+  font-size: 20px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--sf-primary), var(--sf-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  flex-shrink: 0;
+}
+.sf-nav {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+  flex-wrap: wrap;
+}
+.sf-nav a {
+  color: var(--sf-muted);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: var(--sf-radius-sm);
+  transition: var(--sf-transition);
+}
+.sf-nav a:hover { color: var(--sf-title); background: var(--sf-card-bg); }
+
+.sf-skin-switcher {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.sf-skin-btn {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: var(--sf-transition);
+}
+.sf-skin-btn:hover, .sf-skin-btn.active { border-color: white; transform: scale(1.2); }
+
+/* ---- HERO ---- */
+.sf-hero {
+  text-align: center;
+  padding: 100px 40px 80px;
+  background: radial-gradient(ellipse at 50% -20%, rgba(108,99,255,0.2) 0%, transparent 70%);
+  position: relative;
+  overflow: hidden;
+}
+.sf-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(255,101,132,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(108,99,255,0.1) 0%, transparent 50%);
+}
+.sf-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(108,99,255,0.15);
+  border: 1px solid rgba(108,99,255,0.3);
+  padding: 6px 18px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--sf-primary);
+  margin-bottom: 28px;
+}
+.sf-hero-title {
+  font-size: clamp(40px,7vw,88px);
+  font-weight: 900;
+  letter-spacing: -3px;
+  line-height: 1.0;
+  color: var(--sf-title);
+  margin-bottom: 24px;
+  position: relative;
+}
+.sf-hero-title span {
+  background: linear-gradient(135deg, var(--sf-primary) 0%, var(--sf-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.sf-hero-sub {
+  font-size: 20px;
+  color: var(--sf-muted);
+  max-width: 580px;
+  margin: 0 auto 48px;
+  position: relative;
+}
+.sf-btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+.sf-btn {
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: var(--sf-transition);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.sf-btn-primary {
+  background: linear-gradient(135deg, var(--sf-primary), var(--sf-primary-dark));
+  color: white;
+  box-shadow: 0 4px 24px rgba(108,99,255,0.4);
+}
+.sf-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(108,99,255,0.5);
+}
+.sf-btn-outline {
+  background: transparent;
+  color: var(--sf-text);
+  border: 1px solid var(--sf-border);
+}
+.sf-btn-outline:hover { border-color: var(--sf-primary); color: var(--sf-primary); background: rgba(108,99,255,0.08); }
+.sf-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+  position: relative;
+}
+.sf-stat-num {
+  font-size: 40px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--sf-primary), var(--sf-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+  line-height: 1;
+}
+.sf-stat-label { font-size: 12px; color: var(--sf-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+/* ---- SECTION ---- */
+.sf-section {
+  padding: 80px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.sf-section-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--sf-primary);
+  margin-bottom: 12px;
+}
+.sf-section-title {
+  font-size: clamp(28px,4vw,48px);
+  font-weight: 800;
+  color: var(--sf-title);
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.sf-section-sub {
+  font-size: 18px;
+  color: var(--sf-muted);
+  max-width: 500px;
+  margin-bottom: 48px;
+}
+
+/* ---- GRID ---- */
+.sf-grid { display: grid; gap: 20px; }
+.sf-grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.sf-grid-3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.sf-grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+/* ---- CARD ---- */
+.sf-card {
+  background: var(--sf-card-bg);
+  border: 1px solid var(--sf-border);
+  border-radius: var(--sf-radius);
+  padding: 32px;
+  transition: var(--sf-transition);
+  position: relative;
+  overflow: hidden;
+}
+.sf-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--sf-primary), var(--sf-accent));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.sf-card:hover { transform: translateY(-6px); border-color: var(--sf-primary); box-shadow: var(--sf-glow); }
+.sf-card:hover::before { opacity: 1; }
+.sf-card-icon { font-size: 40px; margin-bottom: 20px; display: block; }
+.sf-card-title { font-size: 20px; font-weight: 700; color: var(--sf-title); margin-bottom: 10px; }
+.sf-card-text { font-size: 14px; color: var(--sf-muted); line-height: 1.7; }
+.sf-card-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: rgba(108,99,255,0.15);
+  color: var(--sf-primary);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ---- WIDGET DEMO ---- */
+.widget-area {
+  background: var(--sf-alt-bg);
+  border-radius: 20px;
+  padding: 40px;
+  border: 1px solid var(--sf-border);
+}
+.widget-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.widget-tab {
+  padding: 8px 18px;
+  border-radius: var(--sf-radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--sf-border);
+  background: transparent;
+  color: var(--sf-muted);
+  transition: var(--sf-transition);
+}
+.widget-tab.active, .widget-tab:hover {
+  background: var(--sf-primary);
+  color: white;
+  border-color: var(--sf-primary);
+}
+.widget-demo { display: none; }
+.widget-demo.active { display: block; }
+
+/* Progress Bar Widget */
+.sf-progress { margin-bottom: 20px; }
+.sf-progress-label { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; font-weight: 600; }
+.sf-progress-track {
+  height: 10px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.sf-progress-fill {
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(90deg, var(--sf-primary), var(--sf-accent));
+  width: 0;
+  transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* Countdown Widget */
+.sf-countdown { display: flex; gap: 16px; }
+.sf-countdown-box {
+  background: rgba(108,99,255,0.1);
+  border: 1px solid rgba(108,99,255,0.2);
+  border-radius: 12px;
+  padding: 16px 20px;
+  text-align: center;
+  flex: 1;
+}
+.sf-countdown-num {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--sf-primary);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.sf-countdown-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--sf-muted); margin-top: 4px; }
+
+/* Testimonial Widget */
+.sf-testimonial {
+  background: rgba(108,99,255,0.06);
+  border: 1px solid var(--sf-border);
+  border-radius: var(--sf-radius);
+  padding: 32px;
+  position: relative;
+}
+.sf-testimonial::before {
+  content: '"';
+  font-size: 80px;
+  color: var(--sf-primary);
+  opacity: 0.3;
+  position: absolute;
+  top: 8px; left: 24px;
+  line-height: 1;
+  font-family: Georgia, serif;
+}
+.sf-testimonial-text { font-size: 17px; line-height: 1.8; color: var(--sf-text); padding-top: 24px; margin-bottom: 20px; }
+.sf-testimonial-author { display: flex; align-items: center; gap: 12px; }
+.sf-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--sf-primary), var(--sf-accent));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 800; color: white;
+  flex-shrink: 0;
+}
+.sf-author-name { font-weight: 700; color: var(--sf-title); }
+.sf-author-role { font-size: 13px; color: var(--sf-muted); }
+.sf-stars { color: #FFD700; letter-spacing: 2px; margin-bottom: 4px; }
+
+/* Pricing */
+.sf-pricing-card {
+  background: var(--sf-card-bg);
+  border: 1px solid var(--sf-border);
+  border-radius: var(--sf-radius);
+  padding: 40px;
+  text-align: center;
+  transition: var(--sf-transition);
+  position: relative;
+}
+.sf-pricing-card.featured {
+  border-color: var(--sf-primary);
+  background: rgba(108,99,255,0.08);
+  box-shadow: var(--sf-glow);
+  transform: scale(1.04);
+}
+.sf-pricing-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--sf-primary), var(--sf-accent));
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 16px;
+  border-radius: 100px;
+  white-space: nowrap;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.sf-plan-name { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--sf-muted); margin-bottom: 16px; }
+.sf-price { font-size: 56px; font-weight: 900; color: var(--sf-title); line-height: 1; }
+.sf-price sup { font-size: 24px; vertical-align: top; margin-top: 12px; }
+.sf-price-period { font-size: 14px; color: var(--sf-muted); margin-bottom: 32px; }
+.sf-feature-list { list-style: none; text-align: left; margin-bottom: 32px; }
+.sf-feature-list li { padding: 8px 0; font-size: 14px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--sf-border); }
+.sf-feature-list li:last-child { border: none; }
+.sf-feature-list li .check { color: var(--sf-success); font-size: 16px; flex-shrink: 0; }
+.sf-feature-list li .cross { color: var(--sf-muted); font-size: 16px; flex-shrink: 0; }
+
+/* Accordion */
+.sf-accordion { }
+.sf-acc-item { border: 1px solid var(--sf-border); border-radius: var(--sf-radius-sm); margin-bottom: 8px; overflow: hidden; }
+.sf-acc-trigger {
+  width: 100%;
+  padding: 18px 20px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--sf-title);
+  transition: var(--sf-transition);
+}
+.sf-acc-trigger:hover { background: rgba(108,99,255,0.06); }
+.sf-acc-trigger.open { color: var(--sf-primary); }
+.sf-acc-icon { transition: transform 0.3s; font-size: 18px; }
+.sf-acc-trigger.open .sf-acc-icon { transform: rotate(45deg); }
+.sf-acc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.sf-acc-body.open { max-height: 300px; }
+.sf-acc-content { padding: 16px 20px 20px; font-size: 14px; color: var(--sf-muted); line-height: 1.7; }
+
+/* Counter */
+.sf-counter-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+.sf-counter-item { text-align: center; }
+.sf-counter-num { font-size: 48px; font-weight: 900; background: linear-gradient(135deg, var(--sf-primary), var(--sf-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+.sf-counter-plus { color: var(--sf-accent); }
+.sf-counter-label { font-size: 13px; color: var(--sf-muted); margin-top: 8px; }
+
+/* Image Gallery */
+.sf-gallery { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.sf-gallery-item {
+  aspect-ratio: 1;
+  border-radius: var(--sf-radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+.sf-gallery-img {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px;
+  transition: transform 0.4s;
+}
+.sf-gallery-item:hover .sf-gallery-img { transform: scale(1.1); }
+.sf-gallery-overlay {
+  position: absolute; inset: 0;
+  background: rgba(108,99,255,0.6);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 28px;
+}
+.sf-gallery-item:hover .sf-gallery-overlay { opacity: 1; }
+
+/* ---- SKINS ---- */
+.sf-skin-showcase { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 16px; }
+.sf-skin-item {
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--sf-transition);
+  border: 2px solid transparent;
+}
+.sf-skin-item:hover, .sf-skin-item.active { border-color: var(--sf-primary); transform: scale(1.04); }
+.sf-skin-preview {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+.sf-skin-name { font-size: 12px; font-weight: 700; padding: 10px; background: var(--sf-alt-bg); text-align: center; color: var(--sf-text); }
+
+/* ---- FOOTER ---- */
+.sf-footer {
+  background: var(--sf-alt-bg);
+  border-top: 1px solid var(--sf-border);
+  padding: 60px 40px 40px;
+  text-align: center;
+}
+.sf-footer-logo { font-size: 28px; font-weight: 900; color: var(--sf-title); margin-bottom: 16px; }
+.sf-footer-tagline { font-size: 14px; color: var(--sf-muted); margin-bottom: 32px; }
+.sf-footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; }
+.sf-footer-links a { color: var(--sf-muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+.sf-footer-links a:hover { color: var(--sf-primary); }
+.sf-footer-copy { font-size: 13px; color: var(--sf-muted); }
+
+/* ---- ANIMATIONS ---- */
+@keyframes fadeInUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+.sf-hero > * { animation: fadeInUp 0.7s ease both; }
+.sf-hero .sf-badge { animation-delay: 0.1s; }
+.sf-hero-title { animation-delay: 0.2s; }
+.sf-hero-sub { animation-delay: 0.3s; }
+.sf-btn-group { animation-delay: 0.4s; }
+.sf-stats { animation-delay: 0.5s; }
+
+/* Divider */
+.sf-divider { height: 1px; background: var(--sf-border); margin: 0 40px; }
+
+/* Mobile */
+@media(max-width:768px) {
+  .sf-header { padding: 0 20px; }
+  .sf-nav { display: none; }
+  .sf-hero { padding: 60px 20px 60px; }
+  .sf-section { padding: 60px 20px; }
+  .sf-stats { gap: 32px; }
+  .sf-countdown { gap: 8px; }
+  .sf-countdown-num { font-size: 28px; }
+  .sf-counter-grid { grid-template-columns: repeat(2,1fr); }
+  .sf-gallery { grid-template-columns: repeat(2,1fr); }
+  .sf-pricing-card.featured { transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="sf-header">
+  <div class="sf-logo">⚡ ThemeFlex</div>
+  <nav class="sf-nav">
+    <a href="#widgets">Widgets</a>
+    <a href="#skins">Skins</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#demos">Demos</a>
+  </nav>
+  <div class="sf-skin-switcher">
+    <button class="sf-skin-btn active" style="background:#6C63FF" onclick="setSkin('default')" title="Default Purple"></button>
+    <button class="sf-skin-btn" style="background:#1A56DB" onclick="setSkin('corporate')" title="Corporate Blue"></button>
+    <button class="sf-skin-btn" style="background:#F97316" onclick="setSkin('creative')" title="Creative Orange"></button>
+    <button class="sf-skin-btn" style="background:#D4AF37" onclick="setSkin('luxury')" title="Luxury Gold"></button>
+    <button class="sf-skin-btn" style="background:#18181B" onclick="setSkin('minimal')" title="Minimal Dark"></button>
+    <button class="sf-skin-btn" style="background:#0EA5E9" onclick="setSkin('medical')" title="Medical Blue"></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="sf-hero">
+  <div class="sf-badge">🚀 80+ Elementor Widgets · 27 Demos · 20 Skins</div>
+  <h1 class="sf-hero-title">
+    Build Anything.<br>
+    <span>Fast.</span>
+  </h1>
+  <p class="sf-hero-sub">Das Premium WordPress Theme Ecosystem für Elementor — mehr Widgets, mehr Skins, mehr Power als die Konkurrenz.</p>
+  <div class="sf-btn-group">
+    <a href="themeflex-showcase.html" class="sf-btn sf-btn-primary">🎨 Theme Showcase</a>
+    <a href="themeflex-docs.html" class="sf-btn sf-btn-outline">📖 Documentation</a>
+    <a href="downloads/themeflex-v2.0.0.zip" class="sf-btn sf-btn-outline">⬇ Download ZIP</a>
+  </div>
+  <div class="sf-stats">
+    <div><span class="sf-stat-num">80+</span><div class="sf-stat-label">Widgets</div></div>
+    <div><span class="sf-stat-num">27</span><div class="sf-stat-label">Demos</div></div>
+    <div><span class="sf-stat-num">20</span><div class="sf-stat-label">Skins</div></div>
+    <div><span class="sf-stat-num">5★</span><div class="sf-stat-label">Rating</div></div>
+  </div>
+</section>
+
+<div class="sf-divider"></div>
+
+<!-- WIDGETS LIVE DEMO -->
+<section class="sf-section" id="widgets">
+  <div class="sf-section-label">Live Widget Demo</div>
+  <h2 class="sf-section-title">Erlebe die Widgets interaktiv</h2>
+  <p class="sf-section-sub">Alle Widgets live — klick durch die Kategorien.</p>
+
+  <div class="widget-area">
+    <div class="widget-tabs">
+      <button class="widget-tab active" onclick="showWidget('progress')">📊 Progress Bar</button>
+      <button class="widget-tab" onclick="showWidget('countdown')">⏱ Countdown</button>
+      <button class="widget-tab" onclick="showWidget('testimonial')">💬 Testimonial</button>
+      <button class="widget-tab" onclick="showWidget('counter')">🔢 Counter</button>
+      <button class="widget-tab" onclick="showWidget('accordion')">📋 Accordion</button>
+      <button class="widget-tab" onclick="showWidget('gallery')">🖼 Gallery</button>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="widget-demo active" id="widget-progress">
+      <div class="sf-progress">
+        <div class="sf-progress-label"><span>WordPress Development</span><span>92%</span></div>
+        <div class="sf-progress-track"><div class="sf-progress-fill" data-width="92"></div></div>
+      </div>
+      <div class="sf-progress">
+        <div class="sf-progress-label"><span>Elementor Customization</span><span>88%</span></div>
+        <div class="sf-progress-track"><div class="sf-progress-fill" data-width="88"></div></div>
+      </div>
+      <div class="sf-progress">
+        <div class="sf-progress-label"><span>UI/UX Design</span><span>95%</span></div>
+        <div class="sf-progress-track"><div class="sf-progress-fill" data-width="95"></div></div>
+      </div>
+      <div class="sf-progress">
+        <div class="sf-progress-label"><span>Performance Optimization</span><span>78%</span></div>
+        <div class="sf-progress-track"><div class="sf-progress-fill" data-width="78"></div></div>
+      </div>
+    </div>
+
+    <!-- Countdown -->
+    <div class="widget-demo" id="widget-countdown">
+      <p style="color:var(--sf-muted);margin-bottom:20px;font-size:14px;">⏰ Launch Countdown — ThemeFlex v3.0</p>
+      <div class="sf-countdown">
+        <div class="sf-countdown-box"><div class="sf-countdown-num" id="cd-days">--</div><div class="sf-countdown-label">Tage</div></div>
+        <div class="sf-countdown-box"><div class="sf-countdown-num" id="cd-hours">--</div><div class="sf-countdown-label">Stunden</div></div>
+        <div class="sf-countdown-box"><div class="sf-countdown-num" id="cd-minutes">--</div><div class="sf-countdown-label">Minuten</div></div>
+        <div class="sf-countdown-box"><div class="sf-countdown-num" id="cd-seconds">--</div><div class="sf-countdown-label">Sekunden</div></div>
+      </div>
+    </div>
+
+    <!-- Testimonial -->
+    <div class="widget-demo" id="widget-testimonial">
+      <div class="sf-testimonial">
+        <div class="sf-stars">★★★★★</div>
+        <div class="sf-testimonial-text">ThemeFlex ist das flexibelste WordPress-Theme das ich je verwendet habe. Die 80+ Widgets, das Token-System und die Demo-Imports machen es zur perfekten Basis für jedes Kundenprojekt.</div>
+        <div class="sf-testimonial-author">
+          <div class="sf-avatar">M</div>
+          <div>
+            <div class="sf-author-name">Markus Schneider</div>
+            <div class="sf-author-role">Web Agency Owner, Berlin</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Counter -->
+    <div class="widget-demo" id="widget-counter">
+      <div class="sf-counter-grid">
+        <div class="sf-counter-item">
+          <div class="sf-counter-num" data-target="5000"><span class="sf-counter-val">0</span><span class="sf-counter-plus">+</span></div>
+          <div class="sf-counter-label">Happy Customers</div>
+        </div>
+        <div class="sf-counter-item">
+          <div class="sf-counter-num" data-target="80"><span class="sf-counter-val">0</span><span class="sf-counter-plus">+</span></div>
+          <div class="sf-counter-label">Elementor Widgets</div>
+        </div>
+        <div class="sf-counter-item">
+          <div class="sf-counter-num" data-target="27"><span class="sf-counter-val">0</span></div>
+          <div class="sf-counter-label">Demo Designs</div>
+        </div>
+        <div class="sf-counter-item">
+          <div class="sf-counter-num" data-target="99"><span class="sf-counter-val">0</span><span class="sf-counter-plus">%</span></div>
+          <div class="sf-counter-label">Satisfaction Rate</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accordion -->
+    <div class="widget-demo" id="widget-accordion">
+      <div class="sf-accordion">
+        <div class="sf-acc-item">
+          <button class="sf-acc-trigger open" onclick="toggleAcc(this)">
+            Wie viele Elementor-Widgets sind enthalten?
+            <span class="sf-acc-icon">+</span>
+          </button>
+          <div class="sf-acc-body open">
+            <div class="sf-acc-content">ThemeFlex enthält über 80 professionelle Elementor-Widgets — von einfachen Content-Widgets bis zu komplexen WooCommerce-Widgets, Carousels, interaktiven Flipboxen und mehr.</div>
+          </div>
+        </div>
+        <div class="sf-acc-item">
+          <button class="sf-acc-trigger" onclick="toggleAcc(this)">
+            Ist das Theme WCAG 2.1 AA-konform?
+            <span class="sf-acc-icon">+</span>
+          </button>
+          <div class="sf-acc-body">
+            <div class="sf-acc-content">Ja, vollständig. ThemeFlex implementiert Skip Links, Focus Rings, 44px Touch Targets, ARIA Labels und Color Contrast Ratios nach WCAG 2.1 AA Standard.</div>
+          </div>
+        </div>
+        <div class="sf-acc-item">
+          <button class="sf-acc-trigger" onclick="toggleAcc(this)">
+            Kann ich das Theme für Client-Projekte nutzen?
+            <span class="sf-acc-icon">+</span>
+          </button>
+          <div class="sf-acc-body">
+            <div class="sf-acc-content">Ja! Das Theme ist unter GPL v2 lizenziert. Der ThemeForest Regular License erlaubt die Nutzung für einen End-Client. Für Agency-Nutzung gibt es das White-Label-Paket.</div>
+          </div>
+        </div>
+        <div class="sf-acc-item">
+          <button class="sf-acc-trigger" onclick="toggleAcc(this)">
+            Welche WordPress-Version wird benötigt?
+            <span class="sf-acc-icon">+</span>
+          </button>
+          <div class="sf-acc-body">
+            <div class="sf-acc-content">WordPress 6.0+ und Elementor 3.0+ werden benötigt. Das Theme ist getestet mit PHP 8.0+, 8.1 und 8.2. WooCommerce 7.0+ wird für Shop-Features benötigt.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gallery -->
+    <div class="widget-demo" id="widget-gallery">
+      <div class="sf-gallery">
+        <div class="sf-gallery-item" style="background:linear-gradient(135deg,#6C63FF,#9C95FF)"><div class="sf-gallery-img">🏢</div><div class="sf-gallery-overlay">🔍</div></div>
+        <div class="sf-gallery-item" style="background:linear-gradient(135deg,#FF6584,#FF8FAB)"><div class="sf-gallery-img">🎨</div><div class="sf-gallery-overlay">🔍</div></div>
+        <div class="sf-gallery-item" style="background:linear-gradient(135deg,#1A56DB,#60A5FA)"><div class="sf-gallery-img">💼</div><div class="sf-gallery-overlay">🔍</div></div>
+        <div class="sf-gallery-item" style="background:linear-gradient(135deg,#10C878,#34D399)"><div class="sf-gallery-img">🏥</div><div class="sf-gallery-overlay">🔍</div></div>
+        <div class="sf-gallery-item" style="background:linear-gradient(135deg,#F97316,#FB923C)"><div class="sf-gallery-img">🍽️</div><div class="sf-gallery-overlay">🔍</div></div>
+        <div class="sf-gallery-item" style="background:linear-gradient(135deg,#D4AF37,#F59E0B)"><div class="sf-gallery-img">💎</div><div class="sf-gallery-overlay">🔍</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sf-divider"></div>
+
+<!-- SKINS -->
+<section class="sf-section" id="skins">
+  <div class="sf-section-label">20 Premium Skins</div>
+  <h2 class="sf-section-title">Ein Theme. 20 Looks.</h2>
+  <p class="sf-section-sub">Klick auf einen Skin, um das Design in Echtzeit zu wechseln.</p>
+
+  <div class="sf-skin-showcase">
+    <div class="sf-skin-item active" onclick="setSkin('default');setActiveS(this)">
+      <div class="sf-skin-preview" style="background:linear-gradient(135deg,#0F0F1A,#6C63FF)">💜</div>
+      <div class="sf-skin-name">Default</div>
+    </div>
+    <div class="sf-skin-item" onclick="setSkin('corporate');setActiveS(this)">
+      <div class="sf-skin-preview" style="background:linear-gradient(135deg,#0A0F1E,#1A56DB)">🔷</div>
+      <div class="sf-skin-name">Corporate</div>
+    </div>
+    <div class="sf-skin-item" onclick="setSkin('creative');setActiveS(this)">
+      <div class="sf-skin-preview" style="background:linear-gradient(135deg,#0F0A1E,#F97316)">🎨</div>
+      <div class="sf-skin-name">Creative</div>
+    </div>
+    <div class="sf-skin-item" onclick="setSkin('luxury');setActiveS(this)">
+      <div class="sf-skin-preview" style="background:linear-gradient(135deg,#0A0805,#D4AF37)">💛</div>
+      <div class="sf-skin-name">Luxury</div>
+    </div>
+    <div class="sf-skin-item" onclick="setSkin('minimal');setActiveS(this)">
+      <div class="sf-skin-preview" style="background:linear-gradient(135deg,#F5F5F5,#18181B)">⬛</div>
+      <div class="sf-skin-name">Minimal</div>
+    </div>
+    <div class="sf-skin-item" onclick="setSkin('medical');setActiveS(this)">
+      <div class="sf-skin-preview" style="background:linear-gradient(135deg,#F0F9FF,#0EA5E9)">🏥</div>
+      <div class="sf-skin-name">Medical</div>
+    </div>
+  </div>
+</section>
+
+<div class="sf-divider"></div>
+
+<!-- FEATURES -->
+<section class="sf-section">
+  <div class="sf-section-label">Feature Übersicht</div>
+  <h2 class="sf-section-title">Alles was du brauchst</h2>
+  <div class="sf-grid sf-grid-3">
+    <div class="sf-card">
+      <span class="sf-card-tag">Core</span>
+      <span class="sf-card-icon">⚡</span>
+      <div class="sf-card-title">80+ Elementor Widgets</div>
+      <p class="sf-card-text">Mehr als Elementra (71): Layout, Content, Media, WooCommerce, Forms, Social, Blog und Interactive Widgets.</p>
+    </div>
+    <div class="sf-card">
+      <span class="sf-card-tag">Design</span>
+      <span class="sf-card-icon">🎨</span>
+      <div class="sf-card-title">16-Token CSS System</div>
+      <p class="sf-card-text">Semantisches Design-Token-System: --sf-bg, --sf-title, --sf-primary etc. Wechsel Skins mit einer Zeile CSS.</p>
+    </div>
+    <div class="sf-card">
+      <span class="sf-card-tag">Developer</span>
+      <span class="sf-card-icon">🔧</span>
+      <div class="sf-card-title">Hook & Filter API</div>
+      <p class="sf-card-text">sf_register_extension(), sf_apply(), sf_do() — professionelle Extension API wie in großen Plugins.</p>
+    </div>
+    <div class="sf-card">
+      <span class="sf-card-tag">Demos</span>
+      <span class="sf-card-icon">🏪</span>
+      <div class="sf-card-title">27 One-Click Demos</div>
+      <p class="sf-card-text">Agency, Corporate, Medical, Restaurant, SaaS, Luxury, Portfolio und mehr — alle per Klick importierbar.</p>
+    </div>
+    <div class="sf-card">
+      <span class="sf-card-tag">Shop</span>
+      <span class="sf-card-icon">🛒</span>
+      <div class="sf-card-title">WooCommerce Pro</div>
+      <p class="sf-card-text">Quick View Modal, Wishlist System, Sticky Add-to-Cart, Product Filter AJAX, Mini Cart Flyout.</p>
+    </div>
+    <div class="sf-card">
+      <span class="sf-card-tag">Access.</span>
+      <span class="sf-card-icon">♿</span>
+      <div class="sf-card-title">WCAG 2.1 AA</div>
+      <p class="sf-card-text">Vollständige Barrierefreiheit: Skip Links, ARIA Labels, 44px Touch Targets, Focus Ring, Screen Reader Support.</p>
+    </div>
+    <div class="sf-card">
+      <span class="sf-card-tag">SEO</span>
+      <span class="sf-card-icon">📈</span>
+      <div class="sf-card-title">Schema.org + OG Tags</div>
+      <p class="sf-card-text">JSON-LD Markup für Article, LocalBusiness, Product und BreadcrumbList. Open Graph + Twitter Card automatisch.</p>
+    </div>
+    <div class="sf-card">
+      <span class="sf-card-tag">Agency</span>
+      <span class="sf-card-icon">🏷️</span>
+      <div class="sf-card-title">White Label Option</div>
+      <p class="sf-card-text">Theme-Name, Logo, URLs umbenennen. Perfekt für Agenturen die unter eigenem Brand liefern.</p>
+    </div>
+    <div class="sf-card">
+      <span class="sf-card-tag">Perf.</span>
+      <span class="sf-card-icon">🚀</span>
+      <div class="sf-card-title">Performance Engine</div>
+      <p class="sf-card-text">Critical CSS Inline, Resource Prefetch, Per-Widget Asset Loading, Lazy Load. Perfekte Core Web Vitals.</p>
+    </div>
+  </div>
+</section>
+
+<div class="sf-divider"></div>
+
+<!-- PRICING -->
+<section class="sf-section" id="pricing">
+  <div class="sf-section-label">Transparente Preise</div>
+  <h2 class="sf-section-title">Wähle deinen Plan</h2>
+  <div class="sf-grid sf-grid-3">
+    <div class="sf-pricing-card">
+      <div class="sf-plan-name">Free</div>
+      <div class="sf-price"><sup>€</sup>0</div>
+      <div class="sf-price-period">WP.org Download</div>
+      <ul class="sf-feature-list">
+        <li><span class="check">✓</span> Core Theme</li>
+        <li><span class="check">✓</span> 20 Basis-Widgets</li>
+        <li><span class="check">✓</span> 3 Demo Imports</li>
+        <li><span class="cross">✕</span> Pro Widgets</li>
+        <li><span class="cross">✕</span> WooCommerce Pro</li>
+        <li><span class="cross">✕</span> White Label</li>
+        <li><span class="cross">✕</span> Priority Support</li>
+      </ul>
+      <button class="sf-btn sf-btn-outline" style="width:100%">Kostenlos testen</button>
+    </div>
+    <div class="sf-pricing-card featured">
+      <div class="sf-pricing-badge">⭐ BESTSELLER</div>
+      <div class="sf-plan-name">Regular</div>
+      <div class="sf-price"><sup>€</sup>59</div>
+      <div class="sf-price-period">Einmalig · ThemeForest</div>
+      <ul class="sf-feature-list">
+        <li><span class="check">✓</span> Vollständiges Theme</li>
+        <li><span class="check">✓</span> 80+ Elementor Widgets</li>
+        <li><span class="check">✓</span> 27 Demo Imports</li>
+        <li><span class="check">✓</span> 20 Skins</li>
+        <li><span class="check">✓</span> WooCommerce Pro</li>
+        <li><span class="check">✓</span> 6 Monate Support</li>
+        <li><span class="cross">✕</span> White Label</li>
+      </ul>
+      <button class="sf-btn sf-btn-primary" style="width:100%">Jetzt kaufen — $59</button>
+    </div>
+    <div class="sf-pricing-card">
+      <div class="sf-plan-name">Agency</div>
+      <div class="sf-price"><sup>€</sup>199</div>
+      <div class="sf-price-period">Pro Extension · Jährlich</div>
+      <ul class="sf-feature-list">
+        <li><span class="check">✓</span> Alles aus Regular</li>
+        <li><span class="check">✓</span> White Label Option</li>
+        <li><span class="check">✓</span> Unlimited Sites</li>
+        <li><span class="check">✓</span> Pro Widgets (bald)</li>
+        <li><span class="check">✓</span> Priority Support</li>
+        <li><span class="check">✓</span> Feature Requests</li>
+        <li><span class="check">✓</span> Custom Branding</li>
+      </ul>
+      <button class="sf-btn sf-btn-outline" style="width:100%">Agency Plan</button>
+    </div>
+  </div>
+</section>
+
+<div class="sf-divider"></div>
+
+<!-- 27 DEMOS -->
+<section class="sf-section" id="demos">
+  <div class="sf-section-label">27 Demo Designs</div>
+  <h2 class="sf-section-title">Für jede Branche</h2>
+  <div class="sf-grid sf-grid-4">
+    <div class="sf-card" style="padding:20px">
+      <span class="sf-card-icon" style="font-size:28px;margin-bottom:12px">🏢</span>
+      <div class="sf-card-title" style="font-size:15px">Corporate</div>
+    </div>
+    <div class="sf-card" style="padding:20px">
+      <span class="sf-card-icon" style="font-size:28px;margin-bottom:12px">🎨</span>
+      <div class="sf-card-title" style="font-size:15px">Agency</div>
+    </div>
+    <div class="sf-card" style="padding:20px">
+      <span class="sf-card-icon" style="font-size:28px;margin-bottom:12px">💻</span>
+      <div class="sf-card-title" style="font-size:15px">SaaS</div>
+    </div>
+    <div class="sf-card" style="padding:20px">
+      <span class="sf-card-icon" style="font-size:28px;margin-bottom:12px">🏥</span>
+      <div class="sf-card-title" style="font-size:15px">Medical</div>
+    </div>
+    <div class="sf-card" style="padding:20px">
+      <span class="sf-card-icon" style="font-size:28px;margin-bottom:12px">🍽️</span>
+      <div class="sf-card-title" style="font-size:15px">Restaurant</div>
+    </div>
+    <div class="sf-card" style="padding:20px">
+      <span class="sf-card-icon" style="font-size:28px;margin-bottom:12px">🏠</span>
+      <div class="sf-card-title" style="font-size:15px">Real Estate</div>
+    </div>
+    <div class="sf-card" style="padding:20px">
+      <span class="sf-card-icon" style="font-size:28px;margin-bottom:12px">⚖️</span>
+      <div class="sf-card-title" style="font-size:15px">Lawyer</div>
+    </div>
+    <div class="sf-card" style="padding:20px">
+      <span class="sf-card-icon" style="font-size:28px;margin-bottom:12px">💎</span>
+      <div class="sf-card-title" style="font-size:15px">Luxury</div>
+    </div>
+    <div class="sf-card" style="padding:20px">
+      <span class="sf-card-icon" style="font-size:28px;margin-bottom:12px">📸</span>
+      <div class="sf-card-title" style="font-size:15px">Photography</div>
+    </div>
+    <div class="sf-card" style="padding:20px">
+      <span class="sf-card-icon" style="font-size:28px;margin-bottom:12px">💪</span>
+      <div class="sf-card-title" style="font-size:15px">Fitness</div>
+    </div>
+    <div class="sf-card" style="padding:20px">
+      <span class="sf-card-icon" style="font-size:28px;margin-bottom:12px">🎓</span>
+      <div class="sf-card-title" style="font-size:15px">Education</div>
+    </div>
+    <div class="sf-card" style="padding:20px">
+      <span class="sf-card-icon" style="font-size:28px;margin-bottom:12px">💰</span>
+      <div class="sf-card-title" style="font-size:15px">Finance</div>
+    </div>
+    <div class="sf-card" style="padding:20px">
+      <span class="sf-card-icon" style="font-size:28px;margin-bottom:12px">🏗️</span>
+      <div class="sf-card-title" style="font-size:15px">Construction</div>
+    </div>
+    <div class="sf-card" style="padding:20px">
+      <span class="sf-card-icon" style="font-size:28px;margin-bottom:12px">💄</span>
+      <div class="sf-card-title" style="font-size:15px">Beauty</div>
+    </div>
+    <div class="sf-card" style="padding:20px">
+      <span class="sf-card-icon" style="font-size:28px;margin-bottom:12px">🛒</span>
+      <div class="sf-card-title" style="font-size:15px">WooCommerce</div>
+    </div>
+    <div class="sf-card" style="padding:20px">
+      <span class="sf-card-icon" style="font-size:28px;margin-bottom:12px">👤</span>
+      <div class="sf-card-title" style="font-size:15px">Freelancer</div>
+    </div>
+    <div class="sf-card" style="padding:20px">
+      <span class="sf-card-icon" style="font-size:28px;margin-bottom:12px">❤️</span>
+      <div class="sf-card-title" style="font-size:15px">Nonprofit</div>
+    </div>
+    <div class="sf-card" style="padding:20px;opacity:0.6">
+      <span class="sf-card-icon" style="font-size:28px;margin-bottom:12px">+10</span>
+      <div class="sf-card-title" style="font-size:15px">& 10 More…</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="sf-footer">
+  <div class="sf-footer-logo">⚡ ThemeFlex</div>
+  <p class="sf-footer-tagline">Premium WordPress Theme Ecosystem · Built for Elementor · ThemeForest Ready</p>
+  <div class="sf-footer-links">
+    <a href="themeflex-showcase.html">Showcase</a>
+    <a href="themeflex-docs.html">Dokumentation</a>
+    <a href="themeflex-product.html">Product Page</a>
+    <a href="downloads/themeflex-v2.0.0.zip">Download Theme</a>
+    <a href="DEPLOY-MITTWALD.md">Deployment Guide</a>
+  </div>
+  <p class="sf-footer-copy">© 2026 whatsdigital.de · Alle Rechte vorbehalten · christian@whatsdigital.de</p>
+</footer>
+
+<script>
+// === SKIN SWITCHER ===
+function setSkin(skin) {
+  document.body.setAttribute('data-skin', skin);
+  document.querySelectorAll('.sf-skin-btn').forEach((b,i) => {
+    b.classList.toggle('active', i === ['default','corporate','creative','luxury','minimal','medical'].indexOf(skin));
+  });
+}
+function setActiveS(el) {
+  document.querySelectorAll('.sf-skin-item').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// === WIDGET TABS ===
+function showWidget(id) {
+  document.querySelectorAll('.widget-demo').forEach(d => d.classList.remove('active'));
+  document.querySelectorAll('.widget-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('widget-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+
+  if(id === 'progress') animateProgress();
+  if(id === 'counter') animateCounters();
+}
+
+// === PROGRESS BARS ===
+function animateProgress() {
+  document.querySelectorAll('.sf-progress-fill').forEach(function(bar) {
+    bar.style.width = '0';
+    setTimeout(function() {
+      bar.style.width = bar.dataset.width + '%';
+    }, 100);
+  });
+}
+animateProgress();
+
+// === COUNTDOWN ===
+function updateCountdown() {
+  var target = new Date();
+  target.setDate(target.getDate() + 14);
+  target.setHours(0,0,0,0);
+  var now = new Date();
+  var diff = target - now;
+  if(diff < 0) diff = 0;
+  var d = Math.floor(diff / 86400000);
+  var h = Math.floor((diff % 86400000) / 3600000);
+  var m = Math.floor((diff % 3600000) / 60000);
+  var s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-minutes').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-seconds').textContent = String(s).padStart(2,'0');
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// === COUNTERS ===
+function animateCounters() {
+  document.querySelectorAll('[data-target]').forEach(function(el) {
+    var target = parseInt(el.dataset.target);
+    var val = el.querySelector('.sf-counter-val');
+    var start = 0;
+    var dur = 1500;
+    var startTime = null;
+    function step(ts) {
+      if(!startTime) startTime = ts;
+      var prog = Math.min((ts - startTime) / dur, 1);
+      var ease = 1 - Math.pow(1 - prog, 3);
+      val.textContent = Math.floor(ease * target).toLocaleString();
+      if(prog < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+}
+
+// === ACCORDION ===
+function toggleAcc(btn) {
+  var body = btn.nextElementSibling;
+  var isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.sf-acc-trigger').forEach(function(b) {
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+  });
+  if(!isOpen) {
+    btn.classList.add('open');
+    body.classList.add('open');
+  }
+}
+
+// === INTERSECTION OBSERVER for scroll animations ===
+var io = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if(e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.sf-card').forEach(function(c) {
+  c.style.opacity='0';
+  c.style.transform='translateY(20px)';
+  c.style.transition='opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, box-shadow 0.3s';
+  io.observe(c);
+});
+</script>
+</body>
+</html>

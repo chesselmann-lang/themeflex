@@ -1,0 +1,36 @@
+{
+  "slug": "ecommerce",
+  "name": "E-Commerce Store",
+  "category": "E-Commerce",
+  "description": "Full WooCommerce store with product grids, cart, and checkout styling.",
+  "preview_url": "https://demo.starterflavor.com/ecommerce",
+  "homepage_slug": "home",
+  "blog_slug": "blog",
+  "required_plugins": [
+    "woocommerce"
+  ],
+  "color": "#E74C3C",
+  "version": "1.0.0",
+  "is_new": false,
+  "is_pro": false,
+  "nav_menus": {
+    "primary": "Main Menu",
+    "footer": "Footer Menu"
+  },
+  "pages": [
+    "Home",
+    "About",
+    "Services",
+    "Blog",
+    "Contact"
+  ],
+  "widgets": true,
+  "elementor_templates": true,
+  "author": "Starter Flavor",
+  "tags": [
+    "e-commerce",
+    "elementor",
+    "responsive",
+    "starter-flavor"
+  ]
+}

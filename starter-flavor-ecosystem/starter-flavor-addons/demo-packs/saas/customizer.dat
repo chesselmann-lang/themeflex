@@ -1,0 +1,12 @@
+{
+  "sf_primary_color": "#2980B9",
+  "sf_secondary_color": "#ffffff",
+  "sf_body_font": "Inter",
+  "sf_heading_font": "Inter",
+  "sf_hero_title": "SaaS / Tech Startup",
+  "sf_hero_subtitle": "Modern SaaS landing page with pricing tables, feature grids, and app screenshots",
+  "sf_hero_cta1_text": "Get Started",
+  "sf_hero_cta1_url": "#contact",
+  "sf_hero_bg_color": "#2980B9",
+  "sf_footer_copyright": "\u00a9 2025 SaaS / Tech Startup. All rights reserved."
+}

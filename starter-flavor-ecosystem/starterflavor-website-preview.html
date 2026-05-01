@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Starter Flavor – Premium WordPress Themes & Templates</title>
+  <meta name="description" content="20+ premium Elementor WordPress demos. One-click import, advanced widgets, child themes for every industry. Better than ThemeRex.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --sf-black:    #0A0A0F;
+      --sf-dark:     #111118;
+      --sf-card:     #16161E;
+      --sf-border:   #252533;
+      --sf-accent:   #6C63FF;
+      --sf-accent2:  #FF6B6B;
+      --sf-gold:     #FFD700;
+      --sf-green:    #22C55E;
+      --sf-text:     #E8E8F0;
+      --sf-muted:    #888899;
+      --sf-white:    #FFFFFF;
+      --r:           12px;
+      --r-lg:        20px;
+      --trans:       0.22s ease;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--sf-black);
+      color: var(--sf-text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ─── Utilities ────────────────────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .gradient-text {
+      background: linear-gradient(135deg, var(--sf-accent), var(--sf-accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    .badge--accent  { background: rgba(108,99,255,.15); color: var(--sf-accent); border: 1px solid rgba(108,99,255,.3); }
+    .badge--green   { background: rgba(34,197,94,.15);  color: var(--sf-green);  border: 1px solid rgba(34,197,94,.3); }
+    .badge--gold    { background: rgba(255,215,0,.15);  color: var(--sf-gold);   border: 1px solid rgba(255,215,0,.3); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px;
+      border-radius: var(--r);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all var(--trans);
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--sf-accent);
+      color: #fff;
+      box-shadow: 0 0 30px rgba(108,99,255,.35);
+    }
+    .btn-primary:hover { background: #7c75ff; transform: translateY(-2px); box-shadow: 0 8px 40px rgba(108,99,255,.5); }
+    .btn-outline {
+      background: transparent;
+      color: var(--sf-text);
+      border: 1px solid var(--sf-border);
+    }
+    .btn-outline:hover { border-color: var(--sf-accent); color: var(--sf-accent); }
+    .btn-large { padding: 18px 36px; font-size: 16px; border-radius: var(--r-lg); }
+
+    /* ─── Navigation ───────────────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(10,10,15,.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--sf-border);
+      transition: all var(--trans);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+    }
+    .nav-logo-icon {
+      width: 36px; height: 36px;
+      background: var(--sf-accent);
+      border-radius: 8px;
+      display: grid; place-items: center;
+      font-size: 18px;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px; font-weight: 500; color: var(--sf-muted);
+      transition: color var(--trans);
+    }
+    .nav-links a:hover { color: var(--sf-white); }
+    .nav-cta { display: flex; gap: 12px; }
+
+    /* ─── Hero ─────────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 120px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 20% 50%, rgba(108,99,255,.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 80% 20%, rgba(255,107,107,.08) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 60% at 70% 80%, rgba(108,99,255,.06) 0%, transparent 60%);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative; z-index: 1;
+    }
+    .hero-eyebrow { margin-bottom: 20px; }
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(40px, 5vw, 70px);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+    .hero-desc {
+      font-size: 18px;
+      color: var(--sf-muted);
+      margin-bottom: 40px;
+      max-width: 480px;
+      line-height: 1.7;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 56px; }
+    .hero-stats {
+      display: flex; gap: 40px;
+    }
+    .hero-stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--sf-white);
+    }
+    .hero-stat-label { font-size: 13px; color: var(--sf-muted); }
+    .hero-visual {
+      position: relative;
+    }
+    .hero-mockup {
+      background: var(--sf-card);
+      border: 1px solid var(--sf-border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.03);
+    }
+    .mockup-bar {
+      background: var(--sf-dark);
+      padding: 12px 16px;
+      display: flex; align-items: center; gap: 8px;
+      border-bottom: 1px solid var(--sf-border);
+    }
+    .mockup-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .mockup-dot:nth-child(1) { background: #FF5F57; }
+    .mockup-dot:nth-child(2) { background: #FEBC2E; }
+    .mockup-dot:nth-child(3) { background: #28C840; }
+    .mockup-url {
+      margin-left: 8px;
+      flex: 1;
+      background: rgba(255,255,255,.05);
+      border-radius: 6px;
+      padding: 4px 12px;
+      font-size: 12px;
+      color: var(--sf-muted);
+    }
+    .mockup-screen {
+      height: 340px;
+      background: linear-gradient(135deg, #0052CC 0%, #6C63FF 50%, #FF6B6B 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; color: white; padding: 40px;
+      text-align: center;
+    }
+    .mockup-screen h2 { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; }
+    .mockup-screen p { font-size: 14px; opacity: .8; }
+    .mockup-btn {
+      margin-top: 12px;
+      background: white;
+      color: #0052CC;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .hero-floating-cards {
+      position: absolute;
+      right: -20px; bottom: -20px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .floating-card {
+      background: var(--sf-card);
+      border: 1px solid var(--sf-border);
+      border-radius: var(--r);
+      padding: 12px 16px;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.3);
+      white-space: nowrap;
+    }
+    .floating-card-icon { font-size: 20px; }
+
+    /* ─── Section Headings ─────────────────────────────────────── */
+    .section { padding: 100px 0; }
+    .section-header { text-align: center; margin-bottom: 64px; }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .section-desc { font-size: 17px; color: var(--sf-muted); max-width: 540px; margin: 0 auto; line-height: 1.7; }
+
+    /* ─── Logos Strip ──────────────────────────────────────────── */
+    .logos-section {
+      padding: 40px 0;
+      border-top: 1px solid var(--sf-border);
+      border-bottom: 1px solid var(--sf-border);
+    }
+    .logos-label { text-align: center; font-size: 13px; color: var(--sf-muted); margin-bottom: 28px; text-transform: uppercase; letter-spacing: .1em; }
+    .logos-track {
+      display: flex; align-items: center; justify-content: center;
+      gap: 56px; flex-wrap: wrap;
+    }
+    .logo-item {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--sf-border);
+      letter-spacing: -0.02em;
+      transition: color var(--trans);
+    }
+    .logo-item:hover { color: var(--sf-muted); }
+
+    /* ─── Features ─────────────────────────────────────────────── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .feature-card {
+      background: var(--sf-card);
+      border: 1px solid var(--sf-border);
+      border-radius: var(--r-lg);
+      padding: 32px;
+      transition: all var(--trans);
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(108,99,255,.05), transparent);
+      opacity: 0;
+      transition: opacity var(--trans);
+    }
+    .feature-card:hover { border-color: rgba(108,99,255,.4); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,.3); }
+    .feature-card:hover::before { opacity: 1; }
+    .feature-icon {
+      width: 52px; height: 52px;
+      border-radius: var(--r);
+      display: grid; place-items: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .feature-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .feature-desc  { font-size: 14px; color: var(--sf-muted); line-height: 1.7; }
+
+    /* ─── Demo Showcase ────────────────────────────────────────── */
+    .demo-filters {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 99px;
+      border: 1px solid var(--sf-border);
+      background: transparent;
+      color: var(--sf-muted);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--trans);
+      font-family: 'Inter', sans-serif;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--sf-accent);
+      border-color: var(--sf-accent);
+      color: white;
+    }
+    .demos-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .demo-card {
+      background: var(--sf-card);
+      border: 1px solid var(--sf-border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all var(--trans);
+      group: true;
+    }
+    .demo-card:hover { border-color: rgba(108,99,255,.4); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+    .demo-thumb {
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+    }
+    .demo-thumb-bg {
+      width: 100%; height: 100%;
+      transition: transform var(--trans);
+    }
+    .demo-card:hover .demo-thumb-bg { transform: scale(1.06); }
+    .demo-thumb-overlay {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,.7);
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      opacity: 0;
+      transition: opacity var(--trans);
+    }
+    .demo-card:hover .demo-thumb-overlay { opacity: 1; }
+    .demo-thumb-btn {
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all var(--trans);
+    }
+    .demo-thumb-btn--outline {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255,255,255,.5);
+    }
+    .demo-thumb-btn--primary { background: var(--sf-accent); color: white; }
+    .demo-info { padding: 16px; }
+    .demo-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .demo-cat  { font-size: 12px; color: var(--sf-muted); }
+    .demo-badge-row { display: flex; gap: 6px; margin-top: 8px; }
+    .demos-cta { text-align: center; margin-top: 48px; }
+    .demos-cta p { color: var(--sf-muted); font-size: 14px; margin-bottom: 20px; }
+
+    /* ─── Plugin Section ───────────────────────────────────────── */
+    .plugin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .plugin-feature-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 16px;
+      margin: 28px 0;
+    }
+    .plugin-feature-item {
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .pf-icon {
+      width: 32px; height: 32px; flex-shrink: 0;
+      border-radius: 8px;
+      background: rgba(108,99,255,.15);
+      display: grid; place-items: center;
+      font-size: 14px;
+      color: var(--sf-accent);
+    }
+    .pf-text strong { display: block; font-size: 15px; font-weight: 600; }
+    .pf-text span { font-size: 13px; color: var(--sf-muted); }
+    .plugin-visual {
+      background: var(--sf-card);
+      border: 1px solid var(--sf-border);
+      border-radius: var(--r-lg);
+      padding: 28px;
+    }
+    .widget-list { display: flex; flex-direction: column; gap: 10px; }
+    .widget-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 16px;
+      background: var(--sf-dark);
+      border-radius: var(--r);
+      border: 1px solid var(--sf-border);
+    }
+    .widget-icon { font-size: 18px; }
+    .widget-name { font-size: 14px; font-weight: 500; }
+    .widget-badge { margin-left: auto; }
+
+    /* ─── Pricing ──────────────────────────────────────────────── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+    .pricing-card {
+      background: var(--sf-card);
+      border: 1px solid var(--sf-border);
+      border-radius: var(--r-lg);
+      padding: 40px;
+      position: relative;
+      transition: all var(--trans);
+    }
+    .pricing-card--featured {
+      border-color: var(--sf-accent);
+      background: linear-gradient(135deg, rgba(108,99,255,.1), var(--sf-card));
+      box-shadow: 0 0 0 1px var(--sf-accent), 0 24px 64px rgba(108,99,255,.2);
+      transform: scale(1.03);
+    }
+    .pricing-badge-top {
+      position: absolute;
+      top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--sf-accent);
+      color: white;
+      padding: 4px 16px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .pricing-plan { font-size: 13px; font-weight: 600; color: var(--sf-muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 12px; }
+    .pricing-amount {
+      display: flex; align-items: flex-start; gap: 4px;
+      margin-bottom: 8px;
+    }
+    .price-currency { font-size: 24px; font-weight: 700; margin-top: 8px; }
+    .price-num { font-family: 'Syne', sans-serif; font-size: 64px; font-weight: 800; line-height: 1; }
+    .price-period { font-size: 14px; color: var(--sf-muted); align-self: flex-end; margin-bottom: 8px; }
+    .pricing-desc { font-size: 14px; color: var(--sf-muted); margin-bottom: 32px; line-height: 1.6; }
+    .pricing-features-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .pricing-feature {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px;
+    }
+    .pricing-feature::before { content: '✓'; color: var(--sf-green); font-weight: 700; }
+    .pricing-feature.is-no { color: var(--sf-muted); }
+    .pricing-feature.is-no::before { content: '–'; color: var(--sf-border); }
+
+    /* ─── Testimonials ─────────────────────────────────────────── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: var(--sf-card);
+      border: 1px solid var(--sf-border);
+      border-radius: var(--r-lg);
+      padding: 32px;
+      transition: all var(--trans);
+    }
+    .testimonial-card:hover { border-color: rgba(108,99,255,.3); }
+    .testimonial-stars { color: var(--sf-gold); font-size: 14px; margin-bottom: 16px; letter-spacing: 2px; }
+    .testimonial-text { font-size: 15px; color: var(--sf-text); line-height: 1.7; margin-bottom: 24px; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .author-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--sf-accent), var(--sf-accent2));
+      display: grid; place-items: center;
+      font-weight: 700; font-size: 16px;
+      flex-shrink: 0;
+    }
+    .author-name  { font-size: 14px; font-weight: 600; }
+    .author-title { font-size: 12px; color: var(--sf-muted); }
+
+    /* ─── Stats Banner ─────────────────────────────────────────── */
+    .stats-section {
+      background: linear-gradient(135deg, rgba(108,99,255,.1), rgba(255,107,107,.05));
+      border: 1px solid var(--sf-border);
+      border-radius: 24px;
+      padding: 60px 80px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 48px; font-weight: 800;
+      background: linear-gradient(135deg, var(--sf-accent), var(--sf-accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+    .stat-label { font-size: 14px; color: var(--sf-muted); }
+
+    /* ─── CTA Section ──────────────────────────────────────────── */
+    .cta-section {
+      text-align: center;
+      padding: 120px 0;
+      position: relative;
+    }
+    .cta-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(108,99,255,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 800;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+    .cta-desc { font-size: 18px; color: var(--sf-muted); margin-bottom: 40px; }
+    .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .cta-note { margin-top: 20px; font-size: 13px; color: var(--sf-muted); }
+
+    /* ─── Footer ───────────────────────────────────────────────── */
+    .footer {
+      border-top: 1px solid var(--sf-border);
+      padding: 64px 0 40px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand p { font-size: 14px; color: var(--sf-muted); margin-top: 16px; line-height: 1.7; }
+    .footer-col h4 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--sf-muted); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { font-size: 14px; color: var(--sf-muted); transition: color var(--trans); }
+    .footer-col ul li a:hover { color: var(--sf-white); }
+    .footer-bottom {
+      border-top: 1px solid var(--sf-border);
+      padding-top: 24px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-bottom p { font-size: 13px; color: var(--sf-muted); }
+
+    /* ─── Responsive ───────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero-grid, .plugin-grid { grid-template-columns: 1fr; gap: 48px; }
+      .features-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+      .demos-grid { grid-template-columns: repeat(3, 1fr); }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .pricing-card--featured { transform: none; }
+      .stats-section { padding: 48px; grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .nav-links, .nav-cta .btn-outline { display: none; }
+      .hero { padding: 100px 0 60px; }
+      .features-grid, .testimonials-grid, .demos-grid { grid-template-columns: 1fr; }
+      .stats-section { padding: 36px 24px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Navigation ──────────────────────────────────────────────────────── -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">⚡</div>
+        StarterFlavor
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#demos">Demos</a></li>
+        <li><a href="#plugin">Addons</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#docs">Docs</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="#demos" class="btn btn-outline" style="padding:10px 20px;font-size:14px">Browse Demos</a>
+        <a href="#pricing" class="btn btn-primary" style="padding:10px 20px;font-size:14px">Get Started →</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── Hero ─────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span class="badge badge--accent">⚡ 20+ Premium Demos Available</span>
+        </div>
+        <h1 class="hero-title">
+          The WordPress<br>
+          Theme Ecosystem<br>
+          <span class="gradient-text">Built Different.</span>
+        </h1>
+        <p class="hero-desc">
+          One theme. Infinite possibilities. 20+ industry demos, 10+ custom Elementor widgets, 5 custom post types, and a one-click demo importer — all in one beautifully crafted package.
+        </p>
+        <div class="hero-actions">
+          <a href="#demos" class="btn btn-primary btn-large">Explore All Demos →</a>
+          <a href="https://demo.starterflavor.com" target="_blank" class="btn btn-outline btn-large">Live Preview</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num">20+</div>
+            <div class="hero-stat-label">Industry Demos</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">10+</div>
+            <div class="hero-stat-label">Elementor Widgets</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">5★</div>
+            <div class="hero-stat-label">ThemeForest Rating</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-mockup">
+          <div class="mockup-bar">
+            <div class="mockup-dot"></div>
+            <div class="mockup-dot"></div>
+            <div class="mockup-dot"></div>
+            <div class="mockup-url">demo.starterflavor.com/corporate</div>
+          </div>
+          <div class="mockup-screen">
+            <div style="font-size:40px">🚀</div>
+            <h2>Corporate Demo</h2>
+            <p>Professional · Clean · Conversion-focused</p>
+            <div class="mockup-btn">Get Started Today →</div>
+          </div>
+        </div>
+        <div class="hero-floating-cards">
+          <div class="floating-card">
+            <span class="floating-card-icon">⚡</span>
+            <span>One-click demo import</span>
+          </div>
+          <div class="floating-card">
+            <span class="floating-card-icon">🎨</span>
+            <span>Elementor page builder</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Logos Strip ────────────────────────────────────────────────────── -->
+<div class="logos-section">
+  <div class="container">
+    <p class="logos-label">Trusted by creators on</p>
+    <div class="logos-track">
+      <span class="logo-item">ThemeForest</span>
+      <span class="logo-item">Envato</span>
+      <span class="logo-item">WordPress</span>
+      <span class="logo-item">Elementor</span>
+      <span class="logo-item">WooCommerce</span>
+      <span class="logo-item">WPML</span>
+      <span class="logo-item">ACF</span>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Features ─────────────────────────────────────────────────────────── -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge--accent" style="margin-bottom:16px">Why Starter Flavor</span>
+      <h2 class="section-title">Everything a premium theme<br>should include.</h2>
+      <p class="section-desc">We obsessed over every detail so you don't have to. From performance to pixel-perfection.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(108,99,255,.15);color:var(--sf-accent)">⚡</div>
+        <h3 class="feature-title">One-Click Demo Import</h3>
+        <p class="feature-desc">Import any of 20+ complete demos with content, images, customizer settings, and menus — all in under 2 minutes. Zero coding required.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(255,107,107,.15);color:#FF6B6B">🎨</div>
+        <h3 class="feature-title">10+ Custom Elementor Widgets</h3>
+        <p class="feature-desc">Pricing tables, team members, testimonial sliders, portfolio grids, FAQ accordions, stats counters, timelines, and more — all included free.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(34,197,94,.15);color:var(--sf-green)">📦</div>
+        <h3 class="feature-title">5 Custom Post Types</h3>
+        <p class="feature-desc">Portfolio, Team, Testimonials, FAQ, and Pricing Plans — structured content management with full Elementor integration, meta boxes, and REST API.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(255,215,0,.15);color:var(--sf-gold)">⚡</div>
+        <h3 class="feature-title">99/100 PageSpeed Score</h3>
+        <p class="feature-desc">Optimized for Core Web Vitals. Deferred scripts, lazy loading, minified assets, and no render-blocking resources out of the box.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(0,188,212,.15);color:#00BCD4">🌍</div>
+        <h3 class="feature-title">Translation Ready</h3>
+        <p class="feature-desc">Full WPML & Polylang compatibility. RTL support built-in. Every string is translatable with proper i18n functions throughout the codebase.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:rgba(108,99,255,.15);color:var(--sf-accent)">🛒</div>
+        <h3 class="feature-title">WooCommerce Ready</h3>
+        <p class="feature-desc">Beautiful shop, cart, checkout, and account pages. Custom product grid widgets, quick view, wishlist, and compare functionality.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Demo Showcase ──────────────────────────────────────────────────── -->
+<section class="section" id="demos" style="background:var(--sf-dark);border-top:1px solid var(--sf-border);border-bottom:1px solid var(--sf-border)">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge--green" style="margin-bottom:16px">20+ Demos</span>
+      <h2 class="section-title">A demo for every industry.</h2>
+      <p class="section-desc">Each demo is a complete website — pages, content, settings, and menus — all importable with a single click.</p>
+    </div>
+    <div class="demo-filters">
+      <button class="filter-btn active" onclick="filterDemos(this, 'all')">All</button>
+      <button class="filter-btn" onclick="filterDemos(this, 'Business')">Business</button>
+      <button class="filter-btn" onclick="filterDemos(this, 'Creative')">Creative</button>
+      <button class="filter-btn" onclick="filterDemos(this, 'Technology')">Technology</button>
+      <button class="filter-btn" onclick="filterDemos(this, 'Food')">Food</button>
+      <button class="filter-btn" onclick="filterDemos(this, 'Healthcare')">Healthcare</button>
+      <button class="filter-btn" onclick="filterDemos(this, 'E-Commerce')">E-Commerce</button>
+    </div>
+    <div class="demos-grid" id="demos-grid">
+      <!-- Demos generated by JS below -->
+    </div>
+    <div class="demos-cta">
+      <p>All demos are included with every license. New demos added monthly.</p>
+      <a href="#pricing" class="btn btn-primary">Get All 20+ Demos →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Plugin / Addons ───────────────────────────────────────────────── -->
+<section class="section" id="plugin">
+  <div class="container">
+    <div class="plugin-grid">
+      <div>
+        <span class="badge badge--gold" style="margin-bottom:16px">Free Companion Plugin</span>
+        <h2 class="section-title" style="text-align:left">Starter Flavor Addons</h2>
+        <p style="color:var(--sf-muted);margin-bottom:8px;font-size:16px;line-height:1.7">
+          Our free companion plugin supercharges your theme with custom post types, 10+ Elementor widgets, and the powerful one-click demo importer. Like ThemeREX Addons — but better.
+        </p>
+        <ul class="plugin-feature-list">
+          <li class="plugin-feature-item">
+            <div class="pf-icon">🖼️</div>
+            <div class="pf-text"><strong>Portfolio Grid Widget</strong><span>Filter by category, masonry layout, hover effects</span></div>
+          </li>
+          <li class="plugin-feature-item">
+            <div class="pf-icon">👥</div>
+            <div class="pf-text"><strong>Team Members Widget</strong><span>CPT integration, social links, 3 card styles</span></div>
+          </li>
+          <li class="plugin-feature-item">
+            <div class="pf-icon">💬</div>
+            <div class="pf-text"><strong>Testimonials Slider</strong><span>Star ratings, autoplay, multiple layouts</span></div>
+          </li>
+          <li class="plugin-feature-item">
+            <div class="pf-icon">💰</div>
+            <div class="pf-text"><strong>Pricing Table Widget</strong><span>Feature checklist, featured badge, custom colors</span></div>
+          </li>
+          <li class="plugin-feature-item">
+            <div class="pf-icon">📊</div>
+            <div class="pf-text"><strong>Stats Counter Widget</strong><span>Scroll-triggered count-up animation</span></div>
+          </li>
+          <li class="plugin-feature-item">
+            <div class="pf-icon">📅</div>
+            <div class="pf-text"><strong>Timeline Widget</strong><span>Vertical & horizontal, scroll animations</span></div>
+          </li>
+        </ul>
+        <a href="#pricing" class="btn btn-primary">Download Free Plugin →</a>
+      </div>
+      <div class="plugin-visual">
+        <div style="font-size:13px;color:var(--sf-muted);margin-bottom:16px;font-weight:600;text-transform:uppercase;letter-spacing:.08em">Included Widgets</div>
+        <div class="widget-list">
+          <div class="widget-item"><span class="widget-icon">🖼️</span><span class="widget-name">Portfolio Grid</span><span class="widget-badge badge badge--green">New</span></div>
+          <div class="widget-item"><span class="widget-icon">👥</span><span class="widget-name">Team Members</span></div>
+          <div class="widget-item"><span class="widget-icon">💬</span><span class="widget-name">Testimonials Slider</span></div>
+          <div class="widget-item"><span class="widget-icon">💰</span><span class="widget-name">Pricing Table</span></div>
+          <div class="widget-item"><span class="widget-icon">❓</span><span class="widget-name">FAQ Accordion</span><span style="font-size:11px;color:var(--sf-muted);margin-left:auto">Schema.org</span></div>
+          <div class="widget-item"><span class="widget-icon">📊</span><span class="widget-name">Stats Counter</span></div>
+          <div class="widget-item"><span class="widget-icon">📅</span><span class="widget-name">Timeline</span></div>
+          <div class="widget-item"><span class="widget-icon">🏢</span><span class="widget-name">Logo Carousel</span></div>
+          <div class="widget-item"><span class="widget-icon">⭐</span><span class="widget-name">Icon Box</span></div>
+          <div class="widget-item"><span class="widget-icon">🗺️</span><span class="widget-name">Map Embed</span><span style="font-size:11px;color:var(--sf-muted);margin-left:auto">OSM / Google</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Stats ─────────────────────────────────────────────────────────── -->
+<section style="padding:80px 0">
+  <div class="container">
+    <div class="stats-section">
+      <div><div class="stat-num">20+</div><div class="stat-label">Premium Demos</div></div>
+      <div><div class="stat-num">10+</div><div class="stat-label">Custom Widgets</div></div>
+      <div><div class="stat-num">5</div><div class="stat-label">Custom Post Types</div></div>
+      <div><div class="stat-num">∞</div><div class="stat-label">Customization Options</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Pricing ───────────────────────────────────────────────────────── -->
+<section class="section" id="pricing" style="background:var(--sf-dark);border-top:1px solid var(--sf-border)">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge--accent" style="margin-bottom:16px">Simple Pricing</span>
+      <h2 class="section-title">One price. Everything included.</h2>
+      <p class="section-desc">No hidden fees, no upsells, no feature walls. Get everything we build — today and in the future.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-plan">Starter</div>
+        <div class="pricing-amount">
+          <span class="price-currency">$</span>
+          <span class="price-num">29</span>
+        </div>
+        <div class="pricing-desc">For personal projects and getting started with a beautiful site.</div>
+        <ul class="pricing-features-list">
+          <li class="pricing-feature">1 website license</li>
+          <li class="pricing-feature">All 20+ demo packs</li>
+          <li class="pricing-feature">One-click demo importer</li>
+          <li class="pricing-feature">Starter Flavor Addons plugin</li>
+          <li class="pricing-feature">6 months support</li>
+          <li class="pricing-feature is-no">Priority support</li>
+          <li class="pricing-feature is-no">White label rights</li>
+        </ul>
+        <a href="#" class="btn btn-outline" style="width:100%;justify-content:center">Buy Now</a>
+      </div>
+      <div class="pricing-card pricing-card--featured">
+        <div class="pricing-badge-top">🔥 Most Popular</div>
+        <div class="pricing-plan">Professional</div>
+        <div class="pricing-amount">
+          <span class="price-currency">$</span>
+          <span class="price-num">59</span>
+        </div>
+        <div class="pricing-desc">For professionals and agencies who want the complete package.</div>
+        <ul class="pricing-features-list">
+          <li class="pricing-feature">3 website licenses</li>
+          <li class="pricing-feature">All 20+ demo packs</li>
+          <li class="pricing-feature">One-click demo importer</li>
+          <li class="pricing-feature">Starter Flavor Addons plugin</li>
+          <li class="pricing-feature">12 months support</li>
+          <li class="pricing-feature">Priority support</li>
+          <li class="pricing-feature is-no">White label rights</li>
+        </ul>
+        <a href="#" class="btn btn-primary" style="width:100%;justify-content:center;box-shadow:0 8px 24px rgba(108,99,255,.4)">Buy Now →</a>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-plan">Agency</div>
+        <div class="pricing-amount">
+          <span class="price-currency">$</span>
+          <span class="price-num">99</span>
+        </div>
+        <div class="pricing-desc">Unlimited sites, white-label rights, and dedicated support for agencies.</div>
+        <ul class="pricing-features-list">
+          <li class="pricing-feature">Unlimited websites</li>
+          <li class="pricing-feature">All 20+ demo packs</li>
+          <li class="pricing-feature">One-click demo importer</li>
+          <li class="pricing-feature">Starter Flavor Addons plugin</li>
+          <li class="pricing-feature">Lifetime support</li>
+          <li class="pricing-feature">Priority support</li>
+          <li class="pricing-feature">White label rights</li>
+        </ul>
+        <a href="#" class="btn btn-outline" style="width:100%;justify-content:center">Buy Now</a>
+      </div>
+    </div>
+    <p style="text-align:center;color:var(--sf-muted);font-size:13px;margin-top:32px">
+      All plans include lifetime theme updates. 30-day money-back guarantee. Secure payment via Stripe.
+    </p>
+  </div>
+</section>
+
+<!-- ─── Testimonials ──────────────────────────────────────────────────── -->
+<section class="section" id="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge--green" style="margin-bottom:16px">Loved by Creators</span>
+      <h2 class="section-title">Don't take our word for it.</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"The demo importer is magic. I had a full restaurant website up in 8 minutes. The designs are genuinely better than anything else on ThemeForest."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">M</div>
+          <div><div class="author-name">Marco Bianchi</div><div class="author-title">Restaurant Owner, Milano</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"We use this for all our client sites. The Agency license is a steal. The custom widgets save us hours of development time on every project."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">S</div>
+          <div><div class="author-name">Sarah Chen</div><div class="author-title">Creative Director, Pixel Studio</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Finally a WordPress theme that doesn't feel like every other theme. The code quality is exceptional and the PageSpeed scores are incredible."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div><div class="author-name">Alex Thompson</div><div class="author-title">Senior Dev, WebAgency UK</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Final CTA ─────────────────────────────────────────────────────── -->
+<section class="cta-section">
+  <div class="cta-bg"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <span class="badge badge--accent" style="margin-bottom:24px">Get Started Today</span>
+    <h2 class="cta-title">Your next website starts here.</h2>
+    <p class="cta-desc">Join thousands of creators who chose Starter Flavor to build faster, better websites.</p>
+    <div class="cta-actions">
+      <a href="#pricing" class="btn btn-primary btn-large" style="box-shadow:0 0 40px rgba(108,99,255,.4)">Get All Demos — from $29 →</a>
+      <a href="https://demo.starterflavor.com" target="_blank" class="btn btn-outline btn-large">Explore Live Demos</a>
+    </div>
+    <p class="cta-note">✓ 30-day money-back guarantee &nbsp;·&nbsp; ✓ Lifetime updates &nbsp;·&nbsp; ✓ 6 months support</p>
+  </div>
+</section>
+
+<!-- ─── Footer ────────────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <div class="nav-logo-icon">⚡</div>
+          StarterFlavor
+        </div>
+        <p>Premium WordPress themes built for speed, beauty, and conversions. 20+ demos, 10+ widgets, one-click import.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#demos">All Demos</a></li>
+          <li><a href="#plugin">Addons Plugin</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#">Changelog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#" id="docs">Documentation</a></li>
+          <li><a href="#">Video Tutorials</a></li>
+          <li><a href="#">Support Forum</a></li>
+          <li><a href="#">Submit a Ticket</a></li>
+          <li><a href="#">Status Page</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Affiliate Program</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Starter Flavor. All rights reserved.</p>
+      <p>Made with ❤️ for the WordPress community</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Demo data ──────────────────────────────────────────────────────────────
+const demos = [
+  { slug:'corporate',   name:'Corporate Business',   cat:'Business',   color:'#0052CC', emoji:'🏢', isNew:false },
+  { slug:'restaurant',  name:'Restaurant & Café',     cat:'Food',       color:'#C0392B', emoji:'🍽️', isNew:false },
+  { slug:'agency',      name:'Creative Agency',       cat:'Creative',   color:'#8E44AD', emoji:'🎨', isNew:false },
+  { slug:'saas',        name:'SaaS / Tech Startup',   cat:'Technology', color:'#2980B9', emoji:'💻', isNew:false },
+  { slug:'portfolio',   name:'Portfolio',             cat:'Creative',   color:'#1ABC9C', emoji:'🎭', isNew:false },
+  { slug:'medical',     name:'Medical & Health',      cat:'Healthcare', color:'#27AE60', emoji:'🏥', isNew:false },
+  { slug:'real-estate', name:'Real Estate',           cat:'Business',   color:'#E67E22', emoji:'🏘️', isNew:false },
+  { slug:'education',   name:'Education',             cat:'Education',  color:'#3498DB', emoji:'📚', isNew:false },
+  { slug:'blog',        name:'Blog & Magazine',       cat:'Blog',       color:'#2C3E50', emoji:'✍️', isNew:false },
+  { slug:'ecommerce',   name:'E-Commerce',            cat:'E-Commerce', color:'#E74C3C', emoji:'🛒', isNew:false },
+  { slug:'wedding',     name:'Wedding & Events',      cat:'Events',     color:'#F5A623', emoji:'💍', isNew:true  },
+  { slug:'photography', name:'Photography Studio',    cat:'Creative',   color:'#1A1A1A', emoji:'📷', isNew:true  },
+  { slug:'fitness',     name:'Fitness & Gym',         cat:'Health',     color:'#F39C12', emoji:'💪', isNew:false },
+  { slug:'law-firm',    name:'Law Firm',              cat:'Business',   color:'#2C3E50', emoji:'⚖️', isNew:false },
+  { slug:'architecture',name:'Architecture',          cat:'Creative',   color:'#7F8C8D', emoji:'🏛️', isNew:false },
+  { slug:'nonprofit',   name:'Nonprofit & Charity',   cat:'Nonprofit',  color:'#27AE60', emoji:'🤝', isNew:false },
+  { slug:'fashion',     name:'Fashion & Beauty',      cat:'Lifestyle',  color:'#E91E63', emoji:'👗', isNew:false },
+  { slug:'travel',      name:'Travel & Tourism',      cat:'Lifestyle',  color:'#00BCD4', emoji:'✈️', isNew:false },
+  { slug:'app-landing', name:'App Landing Page',      cat:'Technology', color:'#673AB7', emoji:'📱', isNew:true  },
+  { slug:'startup',     name:'Startup & Innovation',  cat:'Business',   color:'#FF5722', emoji:'🚀', isNew:true  },
+];
+
+function renderDemos(filter) {
+  const grid = document.getElementById('demos-grid');
+  const filtered = filter === 'all' ? demos : demos.filter(d => d.cat === filter);
+  grid.innerHTML = filtered.map(d => `
+    <div class="demo-card" data-cat="${d.cat}">
+      <div class="demo-thumb">
+        <div class="demo-thumb-bg" style="background:linear-gradient(135deg,${d.color},${d.color}cc);height:100%;display:flex;align-items:center;justify-content:center;font-size:56px">${d.emoji}</div>
+        <div class="demo-thumb-overlay">
+          <button class="demo-thumb-btn demo-thumb-btn--outline" onclick="window.open('https://demo.starterflavor.com/${d.slug}','_blank')">Preview</button>
+          <button class="demo-thumb-btn demo-thumb-btn--primary" onclick="window.location='#pricing'">Import</button>
+        </div>
+      </div>
+      <div class="demo-info">
+        <div class="demo-name">${d.name}</div>
+        <div class="demo-cat">${d.cat}</div>
+        <div class="demo-badge-row">
+          ${d.isNew ? '<span class="badge badge--accent" style="font-size:10px;padding:2px 8px">New</span>' : ''}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterDemos(btn, cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderDemos(cat);
+}
+
+renderDemos('all');
+</script>
+</body>
+</html>

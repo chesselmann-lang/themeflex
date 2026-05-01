@@ -1,0 +1,58 @@
+/*
+Theme Name:   Starter Flavor – Minimal
+Template:     starter-flavor
+Description:  A clean, typographic, white-space-first child theme. Maximum content, minimum distraction.
+Version:      1.0.0
+Author:       Starter Flavor
+Author URI:   https://starterflavor.com
+Text Domain:  sf-minimal
+*/
+
+/* ── Minimal Child Theme Overrides ── */
+:root {
+  --sf-color-primary:    #111111;
+  --sf-color-secondary:  #555555;
+  --sf-color-accent:     #111111;
+  --sf-color-background: #FFFFFF;
+  --sf-color-surface:    #F8F8F8;
+  --sf-color-border:     #E5E5E5;
+  --sf-color-text:       #111111;
+  --sf-color-muted:      #777777;
+
+  --sf-font-body:    'Inter', -apple-system, sans-serif;
+  --sf-font-heading: 'Playfair Display', Georgia, serif;
+
+  --sf-border-radius:    4px;
+  --sf-shadow-sm:        none;
+  --sf-shadow-md:        0 1px 3px rgba(0,0,0,.08);
+  --sf-shadow-lg:        0 4px 12px rgba(0,0,0,.1);
+}
+
+/* Typography-first: generous whitespace */
+body { font-size: 17px; letter-spacing: .01em; }
+h1, h2, h3, h4 { font-weight: 700; letter-spacing: -.02em; }
+p { line-height: 1.8; }
+
+/* Nav – clean underline style */
+.sf-nav-menu a { font-weight: 500; }
+.sf-nav-menu a::after { content: ''; display: block; height: 1px; background: currentColor; transform: scaleX(0); transition: transform .2s; }
+.sf-nav-menu a:hover::after { transform: scaleX(1); }
+.sf-nav-menu .sf-nav-cta { display: none; }  /* No CTA button in minimal */
+
+/* Hero – split layout */
+.sf-hero { text-align: left; max-width: 680px; }
+.sf-hero-title { font-size: clamp(36px, 5vw, 72px); font-family: var(--sf-font-heading); }
+.sf-hero-subtitle { font-size: 19px; max-width: 500px; }
+.sf-hero-buttons { gap: 12px; }
+
+/* Buttons – pill outline */
+.sf-btn { border-radius: 0; font-weight: 500; }
+.sf-btn-primary { background: var(--sf-color-text); color: #fff; border: none; }
+.sf-btn-secondary { background: transparent; border: 1px solid var(--sf-color-text); color: var(--sf-color-text); }
+
+/* Cards – flat, no shadow */
+.sf-card { box-shadow: none; border: 1px solid var(--sf-color-border); }
+.sf-card:hover { box-shadow: none; transform: none; border-color: var(--sf-color-text); }
+
+/* Footer */
+.sf-footer { border-top: 1px solid var(--sf-color-border); background: var(--sf-color-background); }

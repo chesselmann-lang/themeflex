@@ -1,0 +1,2 @@
+Node works! cwd=C:\WINDOWS\system32
+ZIP=true

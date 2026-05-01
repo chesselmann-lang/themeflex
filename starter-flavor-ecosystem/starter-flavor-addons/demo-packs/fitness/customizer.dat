@@ -1,0 +1,12 @@
+{
+  "sf_primary_color": "#F39C12",
+  "sf_secondary_color": "#ffffff",
+  "sf_body_font": "Inter",
+  "sf_heading_font": "Inter",
+  "sf_hero_title": "Fitness & Gym",
+  "sf_hero_subtitle": "High-energy fitness theme with class schedules, trainer profiles, and pricing.",
+  "sf_hero_cta1_text": "Get Started",
+  "sf_hero_cta1_url": "#contact",
+  "sf_hero_bg_color": "#F39C12",
+  "sf_footer_copyright": "\u00a9 2025 Fitness & Gym. All rights reserved."
+}

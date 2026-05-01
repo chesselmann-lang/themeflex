@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ThemeFlex — The Most Powerful WordPress Theme Ecosystem</title>
+<meta name="description" content="80+ Elementor widgets, 20 professional skins, 15 one-click demos. Build anything — faster and better than ever before." />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Inter+Tight:wght@500;700;800;900&display=swap" rel="stylesheet" />
+
+<style>
+/* ─── RESET & BASE ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter',sans-serif;background:#06021D;color:#b8bcc4;overflow-x:hidden}
+
+/* ─── TOKENS ─── */
+:root{
+  --p:#FF5E2E;--pd:#ED4C1C;--pl:#FF8A60;
+  --accent:#00D4FF;
+  --bg:#06021D;--bg2:#0f0b2e;--bg3:#1a1f29;
+  --border:rgba(255,255,255,0.08);
+  --title:#FFFEFE;--text:#b8bcc4;--meta:#6b7280;
+  --grad:linear-gradient(135deg,#FF5E2E 0%,#ED4C1C 100%);
+  --grad-blue:linear-gradient(135deg,#7c3aed 0%,#00D4FF 100%);
+  --r:12px;--max:1290px;
+}
+
+/* ─── UTILITIES ─── */
+.container{max-width:var(--max);margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none;transition:all .25s ease;cursor:pointer;border:none}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 4px 24px rgba(255,94,46,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 36px rgba(255,94,46,.45)}
+.btn-ghost{background:rgba(255,255,255,.06);color:var(--title);border:1px solid var(--border)}
+.btn-ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2)}
+.tag{display:inline-block;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;background:rgba(255,94,46,.12);color:var(--p);border:1px solid rgba(255,94,46,.2)}
+.gradient-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gradient-text-blue{background:var(--grad-blue);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.section-title{font-family:'Inter Tight',sans-serif;font-size:clamp(32px,5vw,52px);font-weight:800;color:var(--title);line-height:1.1;letter-spacing:-.5px}
+.section-sub{font-size:18px;color:var(--text);line-height:1.7;max-width:600px;margin:0 auto}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 24px;backdrop-filter:blur(20px);border-bottom:1px solid var(--border);background:rgba(6,2,29,.85)}
+.nav-inner{max-width:var(--max);margin:0 auto;height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav-logo{font-family:'Inter Tight',sans-serif;font-size:20px;font-weight:800;color:var(--title);text-decoration:none;display:flex;align-items:center;gap:10px}
+.nav-logo-dot{width:10px;height:10px;border-radius:50%;background:var(--grad)}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{color:var(--text);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--title)}
+.nav-cta{display:flex;align-items:center;gap:12px}
+
+/* ─── HERO ─── */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.25}
+.hero-orb-1{width:600px;height:600px;background:radial-gradient(circle,#FF5E2E,transparent);top:-100px;right:-200px}
+.hero-orb-2{width:500px;height:500px;background:radial-gradient(circle,#7c3aed,transparent);bottom:-100px;left:-150px}
+.hero-orb-3{width:300px;height:300px;background:radial-gradient(circle,#00D4FF,transparent);top:40%;left:45%}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.hero-eyebrow-line{width:32px;height:2px;background:var(--grad)}
+.hero-eyebrow-text{font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--p)}
+.hero h1{font-family:'Inter Tight',sans-serif;font-size:clamp(40px,6vw,72px);font-weight:900;color:var(--title);line-height:1.05;letter-spacing:-.5px;margin-bottom:24px}
+.hero-sub{font-size:18px;color:var(--text);line-height:1.7;margin-bottom:40px;max-width:480px}
+.hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.hero-social-proof{display:flex;align-items:center;gap:12px;margin-top:32px;padding-top:32px;border-top:1px solid var(--border)}
+.hero-avatars{display:flex}
+.hero-avatars img,.hero-avatar-placeholder{width:32px;height:32px;border-radius:50%;border:2px solid var(--bg);margin-left:-8px;object-fit:cover}
+.hero-avatar-placeholder{background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff}
+.hero-proof-text{font-size:13px;color:var(--meta)}
+.hero-proof-text strong{color:var(--title)}
+
+/* Hero mockup */
+.hero-mockup{position:relative}
+.mockup-window{background:var(--bg3);border-radius:16px;border:1px solid var(--border);overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.6)}
+.mockup-topbar{height:40px;background:rgba(255,255,255,.04);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 16px;gap:6px}
+.mockup-dot{width:10px;height:10px;border-radius:50%}
+.mockup-screen{height:380px;background:linear-gradient(180deg,#0f0b2e 0%,#1a1f29 100%);position:relative;overflow:hidden}
+.mockup-hero-sim{padding:40px 32px}
+.mockup-tag-sim{display:inline-block;padding:3px 10px;border-radius:20px;background:rgba(255,94,46,.15);color:var(--p);font-size:10px;font-weight:700;margin-bottom:12px}
+.mockup-h1-sim{font-family:'Inter Tight',sans-serif;font-size:28px;font-weight:900;color:var(--title);line-height:1.1;margin-bottom:12px}
+.mockup-p-sim{font-size:12px;color:var(--text);line-height:1.6;margin-bottom:20px;max-width:260px}
+.mockup-btns-sim{display:flex;gap:8px}
+.mockup-btn-sim{padding:8px 16px;border-radius:6px;font-size:11px;font-weight:700}
+.mockup-btn-sim.p{background:var(--grad);color:#fff}
+.mockup-btn-sim.g{background:rgba(255,255,255,.08);color:var(--title);border:1px solid var(--border)}
+.mockup-cards-sim{display:flex;gap:10px;margin-top:24px}
+.mockup-card-sim{flex:1;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:12px;font-size:10px}
+.mockup-card-icon{width:24px;height:24px;border-radius:6px;background:var(--grad);margin-bottom:8px}
+.mockup-card-t{color:var(--title);font-weight:700;margin-bottom:3px}
+.mockup-card-p{color:var(--text)}
+.mockup-skin-pills{position:absolute;bottom:16px;right:16px;display:flex;gap:6px}
+.skin-pill{width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.2);cursor:pointer;transition:transform .2s}
+.skin-pill:hover{transform:scale(1.2)}
+
+/* ─── STATS BAR ─── */
+.stats-bar{background:rgba(255,255,255,.03);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0}
+.stats-inner{display:grid;grid-template-columns:repeat(4,1fr);max-width:var(--max);margin:0 auto}
+.stat-item{padding:32px 24px;text-align:center;border-right:1px solid var(--border);position:relative}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:'Inter Tight',sans-serif;font-size:48px;font-weight:900;line-height:1;margin-bottom:6px}
+.stat-label{font-size:13px;color:var(--meta);font-weight:500}
+
+/* ─── DEMOS ─── */
+.demos-section{padding:120px 0;background:var(--bg)}
+.demos-header{text-align:center;margin-bottom:56px}
+.demos-header .section-title{margin-bottom:16px}
+.demo-filters{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:48px}
+.filter-btn{padding:8px 20px;border-radius:20px;font-size:13px;font-weight:600;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;transition:all .2s}
+.filter-btn:hover,.filter-btn.active{background:var(--p);border-color:var(--p);color:#fff}
+.demos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px}
+.demo-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:all .3s ease;cursor:pointer}
+.demo-card:hover{transform:translateY(-6px);border-color:rgba(255,94,46,.3);box-shadow:0 24px 64px rgba(0,0,0,.4)}
+.demo-card-img{height:200px;position:relative;overflow:hidden}
+.demo-card-img-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;position:relative}
+.demo-card-overlay{position:absolute;inset:0;background:rgba(6,2,29,.7);display:flex;align-items:center;justify-content:center;gap:12px;opacity:0;transition:opacity .3s}
+.demo-card:hover .demo-card-overlay{opacity:1}
+.demo-card-info{padding:20px}
+.demo-card-name{font-weight:700;color:var(--title);font-size:16px;margin-bottom:6px}
+.demo-card-meta{font-size:13px;color:var(--meta);display:flex;align-items:center;gap:12px}
+.demo-skin-dots{display:flex;gap:4px}
+.demo-skin-dot{width:10px;height:10px;border-radius:50%}
+
+/* ─── WIDGETS ─── */
+.widgets-section{padding:120px 0;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
+.widgets-header{text-align:center;margin-bottom:56px}
+.widget-cats{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:48px}
+.widgets-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.widget-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--r);padding:20px 16px;transition:all .25s;display:flex;align-items:center;gap:12px}
+.widget-card:hover{background:rgba(255,94,46,.06);border-color:rgba(255,94,46,.25);transform:translateX(3px)}
+.widget-icon{width:36px;height:36px;border-radius:8px;background:rgba(255,94,46,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.widget-card:hover .widget-icon{background:var(--grad)}
+.widget-name{font-size:13px;font-weight:600;color:var(--title);line-height:1.3}
+.widget-new{display:inline-block;margin-top:3px;padding:1px 6px;border-radius:4px;font-size:9px;font-weight:700;background:var(--grad);color:#fff;text-transform:uppercase}
+
+/* ─── SKINS ─── */
+.skins-section{padding:120px 0;background:var(--bg2);overflow:hidden}
+.skins-header{text-align:center;margin-bottom:64px}
+.skin-showcase{display:flex;gap:16px;overflow-x:auto;padding-bottom:16px;scrollbar-width:none}
+.skin-showcase::-webkit-scrollbar{display:none}
+.skin-card{flex-shrink:0;width:240px;background:var(--bg3);border:2px solid var(--border);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:all .25s}
+.skin-card:hover,.skin-card.active{border-color:var(--p);transform:translateY(-4px);box-shadow:0 16px 48px rgba(255,94,46,.2)}
+.skin-preview{height:140px;position:relative;overflow:hidden}
+.skin-preview-bar{height:100%;display:flex;flex-direction:column;padding:16px}
+.skin-preview-nav{height:4px;border-radius:2px;margin-bottom:10px;width:100%}
+.skin-preview-h{height:12px;border-radius:4px;margin-bottom:6px;width:70%}
+.skin-preview-p{height:6px;border-radius:3px;margin-bottom:4px;width:90%;opacity:.5}
+.skin-preview-p2{height:6px;border-radius:3px;width:60%;opacity:.4}
+.skin-preview-btn{height:24px;border-radius:4px;width:80px;margin-top:12px}
+.skin-info{padding:14px 16px;border-top:1px solid var(--border)}
+.skin-info-name{font-weight:700;color:var(--title);font-size:13px;margin-bottom:6px}
+.skin-color-row{display:flex;gap:4px}
+.skin-color-dot{width:12px;height:12px;border-radius:50%}
+
+/* ─── FEATURES ─── */
+.features-section{padding:120px 0;background:var(--bg)}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:64px}
+.feature-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--r);padding:32px;transition:all .3s;position:relative;overflow:hidden}
+.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);transform:scaleX(0);transition:transform .3s;transform-origin:left}
+.feature-card:hover::before{transform:scaleX(1)}
+.feature-card:hover{border-color:rgba(255,94,46,.2);transform:translateY(-4px)}
+.feature-icon{width:52px;height:52px;border-radius:12px;background:rgba(255,94,46,.1);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px}
+.feature-title{font-family:'Inter Tight',sans-serif;font-size:18px;font-weight:700;color:var(--title);margin-bottom:10px}
+.feature-desc{font-size:14px;color:var(--text);line-height:1.7}
+
+/* ─── COMPARISON ─── */
+.comparison-section{padding:120px 0;background:var(--bg2)}
+.comparison-table{width:100%;border-collapse:collapse;margin-top:56px;background:var(--bg3);border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}
+.comparison-table th{padding:20px 24px;font-size:13px;font-weight:700;text-align:center;border-bottom:1px solid var(--border)}
+.comparison-table th:first-child{text-align:left}
+.comparison-table th.highlight{background:rgba(255,94,46,.08);color:var(--p)}
+.comparison-table td{padding:16px 24px;font-size:14px;border-bottom:1px solid rgba(255,255,255,.04);text-align:center;color:var(--text)}
+.comparison-table td:first-child{text-align:left;color:var(--title);font-weight:500}
+.comparison-table td.highlight{background:rgba(255,94,46,.04)}
+.comparison-table tr:last-child td{border-bottom:none}
+.check{color:#10b981;font-size:18px}
+.cross{color:#6b7280;font-size:16px}
+.val{color:var(--p);font-weight:700}
+
+/* ─── CTA ─── */
+.cta-section{padding:120px 0;background:var(--bg);text-align:center;position:relative;overflow:hidden}
+.cta-orb{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(255,94,46,.12),transparent);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.cta-section .section-title{font-size:clamp(40px,6vw,64px);margin-bottom:20px}
+.cta-section .section-sub{margin-bottom:40px}
+.cta-actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.cta-note{margin-top:24px;font-size:13px;color:var(--meta)}
+
+/* ─── FOOTER ─── */
+footer{background:rgba(0,0,0,.5);border-top:1px solid var(--border);padding:48px 0}
+.footer-inner{max-width:var(--max);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-copy{font-size:13px;color:var(--meta)}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:13px;color:var(--meta);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--title)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;text-align:center}
+  .hero-sub{margin:0 auto 40px}
+  .hero-actions{justify-content:center}
+  .hero-social-proof{justify-content:center}
+  .hero-mockup{display:none}
+  .features-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .stat-item:nth-child(2){border-right:none}
+  .stat-item:nth-child(3){border-right:1px solid var(--border)}
+  .features-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .comparison-table{font-size:12px}
+  .comparison-table th,.comparison-table td{padding:12px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <div class="nav-logo-dot"></div>
+      ThemeFlex
+    </a>
+    <ul class="nav-links">
+      <li><a href="#demos">Demos</a></li>
+      <li><a href="#widgets">Widgets</a></li>
+      <li><a href="#skins">Skins</a></li>
+      <li><a href="#features">Features</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#demos" class="btn btn-ghost" style="padding:10px 20px;font-size:14px;">See Demos</a>
+      <a href="https://themeforest.net" class="btn btn-primary" style="padding:10px 20px;font-size:14px;" target="_blank">
+        Buy — $59
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+  </div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-line"></div>
+          <span class="hero-eyebrow-text">The #1 Elementor Theme on ThemeForest</span>
+        </div>
+        <h1>Build<br/><span class="gradient-text">anything.</span><br/>Fast.</h1>
+        <p class="hero-sub">80+ Elementor widgets, 20 professional skins, 15 one-click demos. The most complete WordPress theme ecosystem — period.</p>
+        <div class="hero-actions">
+          <a href="#demos" class="btn btn-primary">Browse All Demos</a>
+          <a href="#widgets" class="btn btn-ghost">View 66+ Widgets</a>
+        </div>
+        <div class="hero-social-proof">
+          <div class="hero-avatars">
+            <div class="hero-avatar-placeholder">M</div>
+            <div class="hero-avatar-placeholder" style="background:var(--grad-blue)">S</div>
+            <div class="hero-avatar-placeholder" style="background:linear-gradient(135deg,#10b981,#059669)">A</div>
+            <div class="hero-avatar-placeholder" style="background:linear-gradient(135deg,#f59e0b,#d97706)">K</div>
+          </div>
+          <div class="hero-proof-text">Trusted by <strong>50,000+ developers</strong> worldwide</div>
+        </div>
+      </div>
+      <div class="hero-mockup">
+        <div class="mockup-window">
+          <div class="mockup-topbar">
+            <div class="mockup-dot" style="background:#ff5f57"></div>
+            <div class="mockup-dot" style="background:#ffbd2e"></div>
+            <div class="mockup-dot" style="background:#28ca41"></div>
+          </div>
+          <div class="mockup-screen">
+            <div class="mockup-hero-sim">
+              <div class="mockup-tag-sim">🚀 New in v2.0</div>
+              <div class="mockup-h1-sim">Build<br/><span class="gradient-text">Faster</span> Than<br/>Ever Before</div>
+              <div class="mockup-p-sim">The complete WordPress theme with everything you need to launch a stunning website today.</div>
+              <div class="mockup-btns-sim">
+                <div class="mockup-btn-sim p">Get Started</div>
+                <div class="mockup-btn-sim g">See Demos</div>
+              </div>
+              <div class="mockup-cards-sim">
+                <div class="mockup-card-sim">
+                  <div class="mockup-card-icon"></div>
+                  <div class="mockup-card-t">66+ Widgets</div>
+                  <div class="mockup-card-p">All Elementor</div>
+                </div>
+                <div class="mockup-card-sim">
+                  <div class="mockup-card-icon" style="background:var(--grad-blue)"></div>
+                  <div class="mockup-card-t">20 Skins</div>
+                  <div class="mockup-card-p">One click</div>
+                </div>
+                <div class="mockup-card-sim">
+                  <div class="mockup-card-icon" style="background:linear-gradient(135deg,#10b981,#059669)"></div>
+                  <div class="mockup-card-t">15 Demos</div>
+                  <div class="mockup-card-p">Import ready</div>
+                </div>
+              </div>
+            </div>
+            <div class="mockup-skin-pills">
+              <div class="skin-pill" style="background:#FF5E2E" title="Default"></div>
+              <div class="skin-pill" style="background:#0066FF" title="Agency"></div>
+              <div class="skin-pill" style="background:#10B981" title="Creative"></div>
+              <div class="skin-pill" style="background:#7c3aed" title="SaaS"></div>
+              <div class="skin-pill" style="background:#c9a84c" title="Real Estate"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num gradient-text">66+</div>
+      <div class="stat-label">Elementor Widgets</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num gradient-text-blue">20</div>
+      <div class="stat-label">Professional Skins</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" style="color:#10b981">15</div>
+      <div class="stat-label">One-Click Demos</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" style="color:#f59e0b">50K+</div>
+      <div class="stat-label">Happy Customers</div>
+    </div>
+  </div>
+</div>
+
+<!-- DEMOS -->
+<section class="demos-section" id="demos">
+  <div class="container">
+    <div class="demos-header">
+      <div class="tag" style="margin-bottom:16px">15+ One-Click Demos</div>
+      <h2 class="section-title">Your next website starts here</h2>
+      <p class="section-sub" style="margin-top:16px">Pick a demo, click import, customize. Launching has never been this fast.</p>
+    </div>
+    <div class="demo-filters">
+      <button class="filter-btn active" data-filter="all">All Demos</button>
+      <button class="filter-btn" data-filter="business">Business</button>
+      <button class="filter-btn" data-filter="creative">Creative</button>
+      <button class="filter-btn" data-filter="ecommerce">E-Commerce</button>
+      <button class="filter-btn" data-filter="health">Health</button>
+      <button class="filter-btn" data-filter="saas">SaaS</button>
+    </div>
+    <div class="demos-grid" id="demosGrid">
+      <!-- Demo cards inserted by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- WIDGETS -->
+<section class="widgets-section" id="widgets">
+  <div class="container">
+    <div class="widgets-header">
+      <div class="tag" style="margin-bottom:16px">66+ Widgets</div>
+      <h2 class="section-title">Every widget you'll ever need</h2>
+      <p class="section-sub" style="margin-top:16px">From simple content blocks to interactive calculators and AI-powered tools — all natively in Elementor.</p>
+    </div>
+    <div class="widget-cats">
+      <button class="filter-btn active" data-wcat="all">All</button>
+      <button class="filter-btn" data-wcat="layout">Layout</button>
+      <button class="filter-btn" data-wcat="content">Content</button>
+      <button class="filter-btn" data-wcat="business">Business</button>
+      <button class="filter-btn" data-wcat="interactive">Interactive</button>
+      <button class="filter-btn" data-wcat="ecommerce">E-Commerce</button>
+      <button class="filter-btn" data-wcat="premium">Premium ✨</button>
+    </div>
+    <div class="widgets-grid" id="widgetsGrid"></div>
+  </div>
+</section>
+
+<!-- SKINS -->
+<section class="skins-section" id="skins">
+  <div class="container">
+    <div class="skins-header">
+      <div class="tag" style="margin-bottom:16px">20 Professional Skins</div>
+      <h2 class="section-title">Change your look <span class="gradient-text">in one click</span></h2>
+      <p class="section-sub" style="margin-top:16px">Each skin is a complete design system — colors, fonts, and component styles — not just a color swap.</p>
+    </div>
+    <div class="skin-showcase" id="skinShowcase"></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section" id="features">
+  <div class="container">
+    <div style="text-align:center">
+      <div class="tag" style="margin-bottom:16px">Why ThemeFlex</div>
+      <h2 class="section-title">Built different.<br/><span class="gradient-text">Built better.</span></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <div class="feature-title">16-Token Color System</div>
+        <div class="feature-desc">Inspired by Elementra's architecture — 16 semantic color tokens per skin ensure pixel-perfect consistency everywhere, automatically.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Elementor Kit Auto-Sync</div>
+        <div class="feature-desc">Change a skin color in the Customizer — it syncs instantly to Elementor's Global Colors and Global Fonts. Zero double-maintenance.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌙</div>
+        <div class="feature-title">Dark Mode Built-In</div>
+        <div class="feature-desc">Not a plugin, not a hack. Dark mode is native to every component, every widget, every skin. Your visitors get a flawless experience.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📦</div>
+        <div class="feature-title">One-Click Demo Import</div>
+        <div class="feature-desc">15+ complete demos with real pages, Elementor templates, and the right skin pre-applied. From zero to live in minutes.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛒</div>
+        <div class="feature-title">WooCommerce Ready</div>
+        <div class="feature-desc">2,300+ lines of skin-aware WooCommerce CSS. Shop, Product, Cart, Checkout, My Account — all perfectly styled out of the box.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <div class="feature-title">AI-Powered (Phase 2)</div>
+        <div class="feature-desc">AI Content Assistant inside widgets, automatic image alt-text, and smart content suggestions — the first theme with real AI integration.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <div class="feature-title">Performance Obsessed</div>
+        <div class="feature-desc">Vanilla JS, IntersectionObserver, lazy loading, no jQuery, CSS-first animations. 90+ PageSpeed score out of the box.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">♿</div>
+        <div class="feature-title">WCAG 2.1 AA Compliant</div>
+        <div class="feature-desc">ARIA labels, keyboard navigation, focus management, sufficient color contrast. Accessibility is not optional — it's built in.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔌</div>
+        <div class="feature-title">Companion Plugin</div>
+        <div class="feature-desc">ThemeFlex Addons auto-discovers all widgets, handles demo import, provides shortcodes, and grows with new features every update.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="comparison-section">
+  <div class="container">
+    <div style="text-align:center">
+      <div class="tag" style="margin-bottom:16px">How We Compare</div>
+      <h2 class="section-title">ThemeFlex vs. the competition</h2>
+    </div>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th class="highlight">ThemeFlex</th>
+          <th>Elementra</th>
+          <th>Avada</th>
+          <th>Divi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Elementor Widgets</td><td class="highlight val">66+</td><td>71</td><td>90+</td><td>—</td></tr>
+        <tr><td>Professional Skins</td><td class="highlight val">20</td><td>1 + Plugin</td><td>10</td><td>0</td></tr>
+        <tr><td>One-Click Demos</td><td class="highlight val">15+</td><td>1+</td><td>100+</td><td>800+</td></tr>
+        <tr><td>Native Dark Mode</td><td class="highlight"><span class="check">✓</span></td><td><span class="cross">○</span></td><td><span class="cross">○</span></td><td><span class="cross">○</span></td></tr>
+        <tr><td>16-Token Color System</td><td class="highlight"><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td></tr>
+        <tr><td>Elementor Kit Auto-Sync</td><td class="highlight"><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="cross">✗</span></td><td>N/A</td></tr>
+        <tr><td>AI Features</td><td class="highlight"><span class="check">✓ (v2)</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td></tr>
+        <tr><td>WooCommerce CSS</td><td class="highlight val">2,300+ lines</td><td>Partial</td><td>Full</td><td>Full</td></tr>
+        <tr><td>Price on ThemeForest</td><td class="highlight val">$59</td><td>$69</td><td>$69</td><td>N/A</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-orb"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="tag" style="margin-bottom:20px">Ready to Build?</div>
+    <h2 class="section-title">The only theme you'll<br/><span class="gradient-text">ever need.</span></h2>
+    <p class="section-sub" style="margin:20px auto 40px">Join 50,000+ developers who chose ThemeFlex for every project.</p>
+    <div class="cta-actions">
+      <a href="https://themeforest.net" class="btn btn-primary" target="_blank" style="padding:16px 36px;font-size:16px">
+        Buy on ThemeForest — $59
+      </a>
+      <a href="#demos" class="btn btn-ghost" style="padding:16px 36px;font-size:16px">
+        Browse All Demos
+      </a>
+    </div>
+    <p class="cta-note">✓ Regular License included &nbsp;·&nbsp; ✓ 6 months support &nbsp;·&nbsp; ✓ Lifetime updates</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">© 2026 ThemeFlex by WhatsDigital. Built with ❤️ for Elementor.</div>
+    <div class="footer-links">
+      <a href="#">Documentation</a>
+      <a href="#">Support</a>
+      <a href="#">Changelog</a>
+      <a href="https://themeforest.net" target="_blank">ThemeForest</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+const demos = [
+  { name:'Default Business', cat:'business', emoji:'🏢', colors:['#FF5E2E','#1F242E','#00D4FF'], tags:['Services','Team','Blog'] },
+  { name:'Creative Agency', cat:'creative', emoji:'🎨', colors:['#10B981','#ec4899','#f0fdf4'], tags:['Portfolio','About','Contact'] },
+  { name:'Digital Agency', cat:'creative', emoji:'⚡', colors:['#0066FF','#0A1628','#fff'], tags:['Work','Team','Services'] },
+  { name:'SaaS Product', cat:'saas', emoji:'🚀', colors:['#7c3aed','#06b6d4','#0f0f23'], tags:['Pricing','Features','Blog'] },
+  { name:'WooCommerce Shop', cat:'ecommerce', emoji:'🛒', colors:['#FF5E2E','#1F242E','#00D4FF'], tags:['Shop','Cart','Account'] },
+  { name:'Medical Practice', cat:'health', emoji:'🏥', colors:['#0D9488','#1E3A5F','#f0fdfa'], tags:['Doctors','Services','Contact'] },
+  { name:'Restaurant', cat:'business', emoji:'🍽️', colors:['#722F37','#1a0800','#fff9f5'], tags:['Menu','Team','Reservations'] },
+  { name:'Photography', cat:'creative', emoji:'📷', colors:['#1c1c1e','#fff','#c9a84c'], tags:['Portfolio','About','Contact'] },
+  { name:'Fitness Club', cat:'business', emoji:'💪', colors:['#FF6B00','#111','#ffd700'], tags:['Classes','Trainers','Pricing'] },
+  { name:'Online Courses', cat:'saas', emoji:'📚', colors:['#3b82f6','#fbbf24','#fff'], tags:['Courses','Instructors','Pricing'] },
+  { name:'Nonprofit', cat:'business', emoji:'💚', colors:['#16a34a','#fff','#fef9c3'], tags:['Mission','Team','Donate'] },
+  { name:'Real Estate', cat:'business', emoji:'🏡', colors:['#c9a84c','#1c1c1e','#faf9f5'], tags:['Listings','Team','Contact'] },
+];
+
+const widgets = [
+  // Layout
+  { name:'Hero Section', cat:'layout', icon:'🏠' },
+  { name:'Nav Menu', cat:'layout', icon:'☰' },
+  { name:'Site Logo', cat:'layout', icon:'◉' },
+  { name:'Slider', cat:'layout', icon:'⬛' },
+  { name:'Content Slider', cat:'layout', icon:'🖼️' },
+  // Content
+  { name:'Fancy Heading', cat:'content', icon:'✍️' },
+  { name:'Typewriter Text', cat:'content', icon:'⌨️', new:true },
+  { name:'Blog Carousel', cat:'content', icon:'📰' },
+  { name:'Post Grid', cat:'content', icon:'📋' },
+  { name:'Image Gallery', cat:'content', icon:'🖼️' },
+  { name:'Image Comparison', cat:'content', icon:'⇔', new:true },
+  { name:'Video Popup', cat:'content', icon:'▶️' },
+  { name:'Table', cat:'content', icon:'📊' },
+  { name:'Timeline', cat:'content', icon:'📅' },
+  { name:'Before / After', cat:'content', icon:'↔️' },
+  { name:'Lottie Animation', cat:'content', icon:'🎬' },
+  { name:'Marquee', cat:'content', icon:'📢' },
+  // Business
+  { name:'CTA Box', cat:'business', icon:'🎯' },
+  { name:'Services', cat:'business', icon:'⚙️' },
+  { name:'Team Member', cat:'business', icon:'👤' },
+  { name:'Testimonial', cat:'business', icon:'💬' },
+  { name:'Testimonial Carousel', cat:'business', icon:'💬', new:true },
+  { name:'Pricing Table', cat:'business', icon:'💰' },
+  { name:'Pricing Toggle', cat:'business', icon:'🔄', new:true },
+  { name:'Counter Stats', cat:'business', icon:'📈' },
+  { name:'Counter Box', cat:'business', icon:'🔢', new:true },
+  { name:'Progress Bar', cat:'business', icon:'▓' },
+  { name:'Radial Progress', cat:'business', icon:'⭕' },
+  { name:'Chart', cat:'business', icon:'📊' },
+  { name:'Star Rating', cat:'business', icon:'⭐' },
+  { name:'Process Steps', cat:'business', icon:'1️⃣' },
+  { name:'Icon List', cat:'business', icon:'✅' },
+  { name:'Icon Box', cat:'business', icon:'📦' },
+  { name:'Google Maps', cat:'business', icon:'🗺️' },
+  { name:'Social Icons', cat:'business', icon:'🔗' },
+  { name:'Share Buttons', cat:'business', icon:'📤' },
+  // Interactive
+  { name:'Accordion Tabs', cat:'interactive', icon:'📂' },
+  { name:'Advanced Tabs', cat:'interactive', icon:'🗂️', new:true },
+  { name:'Modal Popup', cat:'interactive', icon:'🪟', new:true },
+  { name:'Flip Box', cat:'interactive', icon:'🔁' },
+  { name:'Hotspot Image', cat:'interactive', icon:'📍' },
+  { name:'Countdown', cat:'interactive', icon:'⏱️' },
+  { name:'Contact Form', cat:'interactive', icon:'✉️' },
+  { name:'SF Form', cat:'interactive', icon:'📝' },
+  { name:'Alert Box', cat:'interactive', icon:'⚠️', new:true },
+  { name:'Dual Button', cat:'interactive', icon:'🔘' },
+  // E-Commerce
+  { name:'Product Grid', cat:'ecommerce', icon:'🛍️' },
+  { name:'Product Categories', cat:'ecommerce', icon:'🏷️' },
+  { name:'Category Grid', cat:'ecommerce', icon:'📂' },
+  { name:'Portfolio Grid', cat:'ecommerce', icon:'🖼️' },
+  { name:'Price List', cat:'ecommerce', icon:'🧾' },
+  // Premium (coming)
+  { name:'Pricing Calculator', cat:'premium', icon:'🧮', new:true },
+  { name:'Social Proof Bar', cat:'premium', icon:'👥', new:true },
+  { name:'Particle Background', cat:'premium', icon:'✨', new:true },
+  { name:'Horizontal Scroll', cat:'premium', icon:'↔️', new:true },
+  { name:'Isotope Filter', cat:'premium', icon:'🔍', new:true },
+  { name:'Lead Quiz', cat:'premium', icon:'🎯', new:true },
+  { name:'Exit Intent', cat:'premium', icon:'🚪', new:true },
+  { name:'Announcement Bar', cat:'premium', icon:'📣', new:true },
+  { name:'AI Content Assistant', cat:'premium', icon:'🤖', new:true },
+];
+
+const skins = [
+  { name:'Default', p:'#FF5E2E', s:'#1F242E', a:'#00D4FF', bg:'#ffffff' },
+  { name:'Corporate', p:'#1B4FD8', s:'#0d1b2a', a:'#DAA520', bg:'#ffffff' },
+  { name:'Creative', p:'#10B981', s:'#064e3b', a:'#ec4899', bg:'#ffffff' },
+  { name:'Agency', p:'#0066FF', s:'#0A1628', a:'#ffffff', bg:'#f0f4ff' },
+  { name:'Freelancer', p:'#D97706', s:'#2d1b0e', a:'#f59e0b', bg:'#fdf8f6' },
+  { name:'Lawyer', p:'#B8860B', s:'#1a1a2e', a:'#8B6305', bg:'#faf9f5' },
+  { name:'Medical', p:'#0D9488', s:'#1E3A5F', a:'#14B8A6', bg:'#f0fdfa' },
+  { name:'Restaurant', p:'#722F37', s:'#1a0800', a:'#D4A017', bg:'#fff9f5' },
+  { name:'SaaS', p:'#7c3aed', s:'#0f0f23', a:'#06b6d4', bg:'#faf5ff' },
+  { name:'Real Estate', p:'#c9a84c', s:'#1c1c1e', a:'#4a7c59', bg:'#faf9f5' },
+  { name:'Minimal', p:'#000000', s:'#111', a:'#FF5E2E', bg:'#ffffff' },
+  { name:'Dark', p:'#00D4FF', s:'#09090b', a:'#7c3aed', bg:'#09090b' },
+  { name:'Luxury', p:'#c9a84c', s:'#0a0a0a', a:'#fff', bg:'#0a0a0a' },
+  { name:'Beauty', p:'#f9a8d4', s:'#2d1b1f', a:'#c9a84c', bg:'#fff5f8' },
+  { name:'Fitness', p:'#FF6B00', s:'#111', a:'#ffd700', bg:'#ffffff' },
+];
+
+// ─── RENDER DEMOS ────────────────────────────────────────────────────────────
+function renderDemos(filter='all'){
+  const grid = document.getElementById('demosGrid');
+  const filtered = filter==='all' ? demos : demos.filter(d=>d.cat===filter);
+  grid.innerHTML = filtered.map(d=>`
+    <div class="demo-card" data-cat="${d.cat}">
+      <div class="demo-card-img">
+        <div class="demo-card-img-bg" style="background:linear-gradient(135deg,${d.colors[1]}22,${d.colors[0]}33)">
+          <span style="font-size:64px">${d.emoji}</span>
+        </div>
+        <div class="demo-card-overlay">
+          <a href="#" class="btn btn-primary" style="padding:10px 18px;font-size:13px">Preview</a>
+          <a href="#" class="btn btn-ghost" style="padding:10px 18px;font-size:13px">Import</a>
+        </div>
+      </div>
+      <div class="demo-card-info">
+        <div class="demo-card-name">${d.name}</div>
+        <div class="demo-card-meta">
+          <div class="demo-skin-dots">
+            ${d.colors.map(c=>`<div class="demo-skin-dot" style="background:${c}"></div>`).join('')}
+          </div>
+          <span>${d.tags.join(' · ')}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ─── RENDER WIDGETS ──────────────────────────────────────────────────────────
+function renderWidgets(cat='all'){
+  const grid = document.getElementById('widgetsGrid');
+  const filtered = cat==='all' ? widgets : widgets.filter(w=>w.cat===cat);
+  grid.innerHTML = filtered.map(w=>`
+    <div class="widget-card" data-cat="${w.cat}">
+      <div class="widget-icon">${w.icon}</div>
+      <div>
+        <div class="widget-name">${w.name}</div>
+        ${w.new ? '<span class="widget-new">New</span>' : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+// ─── RENDER SKINS ────────────────────────────────────────────────────────────
+function renderSkins(){
+  const container = document.getElementById('skinShowcase');
+  container.innerHTML = skins.map((s,i)=>`
+    <div class="skin-card ${i===0?'active':''}" onclick="selectSkin(this)" data-primary="${s.p}">
+      <div class="skin-preview">
+        <div class="skin-preview-bar" style="background:${s.bg}">
+          <div class="skin-preview-nav" style="background:${s.p}"></div>
+          <div class="skin-preview-h" style="background:${s.s}"></div>
+          <div class="skin-preview-p" style="background:${s.s}"></div>
+          <div class="skin-preview-p2" style="background:${s.s}"></div>
+          <div class="skin-preview-btn" style="background:${s.p}"></div>
+        </div>
+      </div>
+      <div class="skin-info">
+        <div class="skin-info-name">${s.name}</div>
+        <div class="skin-color-row">
+          <div class="skin-color-dot" style="background:${s.p}"></div>
+          <div class="skin-color-dot" style="background:${s.s}"></div>
+          <div class="skin-color-dot" style="background:${s.a}"></div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function selectSkin(el){
+  document.querySelectorAll('.skin-card').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  // Live-swap primary color on the page
+  document.documentElement.style.setProperty('--p', el.dataset.primary);
+}
+
+// ─── FILTER BUTTONS ──────────────────────────────────────────────────────────
+document.addEventListener('click', e=>{
+  const fb = e.target.closest('[data-filter]');
+  if(fb){
+    fb.closest('.demo-filters').querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    fb.classList.add('active');
+    renderDemos(fb.dataset.filter);
+  }
+  const wb = e.target.closest('[data-wcat]');
+  if(wb){
+    wb.closest('.widget-cats').querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    wb.classList.add('active');
+    renderWidgets(wb.dataset.wcat);
+  }
+});
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+renderDemos();
+renderWidgets();
+renderSkins();
+
+// Scroll-in animations
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.style.opacity='1';
+      e.target.style.transform='translateY(0)';
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.feature-card,.demo-card,.widget-card').forEach(el=>{
+  el.style.opacity='0';
+  el.style.transform='translateY(20px)';
+  el.style.transition='opacity .5s ease, transform .5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>

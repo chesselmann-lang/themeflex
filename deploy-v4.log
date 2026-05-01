@@ -1,0 +1,50 @@
+=== ThemeFlex v4.0.0 WP Deploy 2026-05-01T22:30:43.632Z ===
+ZIP: FOUND (3.6 MB)
+
+[1] Getting login page...
+[2] Logging in...
+  Login with Them*** status: 302 loc: /wp-admin/
+Logged in OK. Cookies: wordpress_test_cookie=WP%20Cookie%20check; wordpress_sec_99d...
+
+[3] Fetching nonce...
+  Nonce page status: 200
+  Nonce: 2ca792f320
+
+[4] Building multipart upload...
+  Body size: 3.6 MB
+[5] Uploading to WP Admin...
+  Upload status: 200
+  Response saved to deploy-response.html (91438 chars)
+
+SUCCESS: ThemeFlex v4.0.0 installed on themeflex.de!
+
+Done: 2026-05-01T22:30:46.662Z
+
+=== ThemeFlex v4.0.0 OVERWRITE 2026-05-01T22:32:15.651Z ===
+[1] Getting login page...
+[2] Logging in...
+  Login with Them*** status: 302 loc: /wp-admin/
+  Logged in OK
+[3] Confirming overwrite (3.2.0 → 4.0.0)...
+  Overwrite status: 403
+  Response saved to overwrite-response.html (2507 chars)
+
+WARNING: Unexpected response — check overwrite-response.html
+Done: 2026-05-01T22:32:16.121Z
+
+=== ThemeFlex v4.0.0 DEPLOY+REPLACE 2026-05-01T22:33:11.496Z ===
+[1] Getting login page...
+[2] Logging in...
+  Login Them*** status: 302
+[3] Fetching upload nonce...
+  Nonce: 765c7045d9
+[4] Building multipart upload...
+  ZIP size: 3.6 MB
+[5] Uploading...
+  Upload status: 200
+[6] Found replace link — following: /wp-admin/update.php?action=upload-theme&package=120&overwrite=update-theme&_wpn
+  Replace status: 200
+  Response saved to replace-response.html (91349 chars)
+
+SUCCESS: ThemeFlex v4.0.0 REPLACED and is LIVE on themeflex.de!
+Done: 2026-05-01T22:33:15.755Z

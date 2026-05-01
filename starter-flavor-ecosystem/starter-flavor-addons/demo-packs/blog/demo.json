@@ -1,0 +1,34 @@
+{
+  "slug": "blog",
+  "name": "Blog & Magazine",
+  "category": "Blog",
+  "description": "Typography-first blog and magazine theme with featured posts and categories.",
+  "preview_url": "https://demo.starterflavor.com/blog",
+  "homepage_slug": "home",
+  "blog_slug": "blog",
+  "required_plugins": [],
+  "color": "#2C3E50",
+  "version": "1.0.0",
+  "is_new": false,
+  "is_pro": false,
+  "nav_menus": {
+    "primary": "Main Menu",
+    "footer": "Footer Menu"
+  },
+  "pages": [
+    "Home",
+    "About",
+    "Services",
+    "Blog",
+    "Contact"
+  ],
+  "widgets": true,
+  "elementor_templates": true,
+  "author": "Starter Flavor",
+  "tags": [
+    "blog",
+    "elementor",
+    "responsive",
+    "starter-flavor"
+  ]
+}

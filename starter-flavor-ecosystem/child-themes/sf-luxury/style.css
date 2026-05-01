@@ -1,0 +1,120 @@
+/*
+Theme Name:   Starter Flavor – Luxury
+Template:     starter-flavor
+Description:  An elegant, premium child theme with gold accents, serif typography, and refined spacing. Ideal for luxury brands, hotels, fashion houses, and high-end services.
+Version:      1.0.0
+Author:       Starter Flavor
+Author URI:   https://starterflavor.com
+Text Domain:  sf-luxury
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+  --sf-color-primary:    #C9A96E;
+  --sf-color-secondary:  #8A7355;
+  --sf-color-accent:     #C9A96E;
+  --sf-color-background: #FAFAF8;
+  --sf-color-surface:    #FFFFFF;
+  --sf-color-border:     #E8E0D5;
+  --sf-color-text:       #1A1A1A;
+  --sf-color-muted:      #8A8A8A;
+  --sf-color-gold:       #C9A96E;
+
+  --sf-font-body:    'Montserrat', sans-serif;
+  --sf-font-heading: 'Cormorant Garamond', serif;
+
+  --sf-border-radius:    2px;
+  --sf-shadow-sm:        none;
+  --sf-shadow-md:        0 4px 24px rgba(0,0,0,.06);
+  --sf-shadow-lg:        0 16px 48px rgba(0,0,0,.1);
+}
+
+body { font-weight: 300; letter-spacing: .03em; font-size: 16px; }
+
+/* Serif headings */
+h1, h2, h3, h4 {
+  font-family: var(--sf-font-heading);
+  font-weight: 300;
+  letter-spacing: .02em;
+  font-style: italic;
+}
+h1 { font-style: normal; font-weight: 600; }
+
+/* Gold dividers */
+.sf-section-header::after,
+.sf-hero::after {
+  content: '';
+  display: block;
+  width: 60px; height: 1px;
+  background: var(--sf-color-gold);
+  margin: 24px auto;
+}
+
+/* Hero */
+.sf-hero-title {
+  font-size: clamp(44px, 6vw, 90px);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: .04em;
+  line-height: 1.1;
+}
+
+/* Buttons – ultra-minimal with gold underline */
+.sf-btn {
+  border-radius: 0;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 14px 32px;
+}
+.sf-btn-primary {
+  background: transparent;
+  color: var(--sf-color-text);
+  border: 1px solid var(--sf-color-gold);
+}
+.sf-btn-primary:hover {
+  background: var(--sf-color-gold);
+  color: #fff;
+  box-shadow: none;
+}
+
+/* Cards */
+.sf-card {
+  box-shadow: none;
+  border: 1px solid var(--sf-color-border);
+  border-radius: 0;
+}
+.sf-card:hover {
+  box-shadow: var(--sf-shadow-md);
+  transform: none;
+  border-color: var(--sf-color-gold);
+}
+
+/* Nav */
+.sf-navbar { background: rgba(250,250,248,.95); border-bottom: 1px solid var(--sf-color-border); }
+.sf-nav-menu a {
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Gold accent elements */
+.sf-section-title::after {
+  content: '';
+  display: block;
+  width: 40px; height: 2px;
+  background: linear-gradient(90deg, var(--sf-color-gold), transparent);
+  margin-top: 16px;
+}
+
+/* Footer */
+.sf-footer {
+  background: #1A1A1A;
+  color: #999;
+  border-top: none;
+}
+.sf-footer * { color: inherit; }
+.sf-footer h4 { color: var(--sf-color-gold); }

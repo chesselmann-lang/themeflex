@@ -1,0 +1,80 @@
+/*
+Theme Name:   Starter Flavor – Bold Dark
+Template:     starter-flavor
+Description:  A dark, high-contrast, editorial child theme. Maximum impact with a bold typography system and neon accents.
+Version:      1.0.0
+Author:       Starter Flavor
+Author URI:   https://starterflavor.com
+Text Domain:  sf-bold-dark
+*/
+
+:root {
+  --sf-color-primary:    #EEFF41;
+  --sf-color-secondary:  #40C4FF;
+  --sf-color-accent:     #EEFF41;
+  --sf-color-background: #0A0A0A;
+  --sf-color-surface:    #161616;
+  --sf-color-border:     #2A2A2A;
+  --sf-color-text:       #F0F0F0;
+  --sf-color-muted:      #888888;
+
+  --sf-font-body:    'DM Sans', sans-serif;
+  --sf-font-heading: 'Syne', sans-serif;
+
+  --sf-border-radius:    8px;
+  --sf-shadow-sm:        0 2px 8px rgba(0,0,0,.6);
+  --sf-shadow-md:        0 8px 24px rgba(0,0,0,.7);
+  --sf-shadow-lg:        0 24px 64px rgba(0,0,0,.8);
+}
+
+html { color-scheme: dark; }
+
+/* Bold headings */
+h1, h2, h3 {
+  font-family: var(--sf-font-heading);
+  font-weight: 800;
+  letter-spacing: -.04em;
+  text-transform: uppercase;
+}
+
+/* Neon accent */
+.sf-btn-primary {
+  background: var(--sf-color-accent);
+  color: #000;
+  font-weight: 800;
+  border-radius: 0;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.sf-btn-primary:hover { box-shadow: 0 0 24px rgba(238,255,65,.5); }
+
+/* Hero – full bleed dark */
+.sf-hero {
+  background: #000;
+  color: #fff;
+  min-height: 100vh;
+}
+.sf-hero-title {
+  font-size: clamp(48px, 8vw, 120px);
+  line-height: .9;
+  text-transform: uppercase;
+}
+
+/* Cards – dark bordered */
+.sf-card {
+  background: var(--sf-color-surface);
+  border: 1px solid var(--sf-color-border);
+  border-radius: 0;
+}
+.sf-card:hover {
+  border-color: var(--sf-color-accent);
+  box-shadow: 0 0 0 1px var(--sf-color-accent);
+}
+
+/* Nav */
+.sf-navbar { background: #000; border-bottom: 1px solid #222; }
+.sf-nav-menu a { text-transform: uppercase; font-size: 13px; letter-spacing: .1em; font-weight: 700; }
+.sf-nav-cta .sf-btn-primary { border-radius: 0; padding: 10px 20px; }
+
+/* Footer */
+.sf-footer { background: #000; border-top: 1px solid var(--sf-color-border); }

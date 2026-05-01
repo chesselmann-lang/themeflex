@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>ThemeFlex Docs — Complete Documentation</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@700;800&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#0f0f1a;color:#b8bcc4;line-height:1.7}
+a{color:#FF5E2E;text-decoration:none}a:hover{text-decoration:underline}
+:root{--p:#FF5E2E;--bg:#0f0f1a;--bg2:#1a1f29;--bg3:#242b38;--border:rgba(255,255,255,.08);--title:#fff;--text:#b8bcc4;--meta:#64748b}
+.docs-wrap{display:flex;min-height:100vh}
+/* Sidebar */
+.docs-sidebar{width:280px;flex-shrink:0;background:var(--bg2);border-right:1px solid var(--border);position:sticky;top:0;height:100vh;overflow-y:auto;padding:24px 0}
+.docs-logo{padding:0 24px 24px;border-bottom:1px solid var(--border);margin-bottom:16px}
+.docs-logo-name{font-family:'Inter Tight',sans-serif;font-size:18px;font-weight:800;color:var(--title);display:flex;align-items:center;gap:8px}
+.docs-logo-dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#FF5E2E,#ED4C1C)}
+.docs-version{font-size:11px;color:var(--meta);margin-top:4px}
+.docs-nav-group{margin-bottom:4px}
+.docs-nav-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--meta);padding:12px 24px 6px;display:block}
+.docs-nav-item{display:flex;align-items:center;gap:8px;padding:8px 24px;color:var(--text);font-size:13px;font-weight:500;transition:all .15s;cursor:pointer;border-left:2px solid transparent}
+.docs-nav-item:hover{color:var(--title);background:rgba(255,255,255,.04)}
+.docs-nav-item.active{color:var(--p);border-left-color:var(--p);background:rgba(255,94,46,.06)}
+/* Content */
+.docs-content{flex:1;padding:48px 64px;max-width:900px}
+.docs-section{display:none}.docs-section.active{display:block}
+.docs-hero{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--border)}
+.docs-hero h1{font-family:'Inter Tight',sans-serif;font-size:2.5rem;font-weight:800;color:var(--title);margin-bottom:12px;letter-spacing:-.5px}
+.docs-hero p{font-size:17px;color:var(--text);max-width:560px;line-height:1.8}
+h2{font-family:'Inter Tight',sans-serif;font-size:1.5rem;font-weight:800;color:var(--title);margin:40px 0 16px;letter-spacing:-.2px}
+h3{font-size:1.1rem;font-weight:700;color:var(--title);margin:28px 0 10px}
+p{margin-bottom:14px;font-size:14px;line-height:1.8}
+ul,ol{padding-left:20px;margin-bottom:14px;font-size:14px}
+li{margin-bottom:6px;line-height:1.7}
+.docs-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:20px}
+.docs-card h3{margin-top:0;color:var(--p)}
+.docs-step{display:flex;gap:16px;margin-bottom:20px;padding:20px;background:var(--bg2);border:1px solid var(--border);border-radius:12px}
+.docs-step-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#FF5E2E,#ED4C1C);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+code{background:var(--bg3);color:#FF8C33;padding:2px 8px;border-radius:4px;font-size:13px;font-family:'JetBrains Mono',monospace}
+pre{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:20px;overflow-x:auto;margin:16px 0;font-size:13px;line-height:1.7}
+pre code{background:none;padding:0;color:#e2e8f0}
+.docs-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700}
+.badge-new{background:rgba(255,94,46,.15);color:var(--p)}
+.badge-pro{background:rgba(124,58,237,.15);color:#8b5cf6}
+.widget-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin:16px 0}
+.widget-item{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-size:13px;color:var(--text)}
+.widget-item span{color:var(--title);font-weight:600;display:block;margin-bottom:2px}
+.skin-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin:16px 0}
+.skin-item{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;display:flex;align-items:center;gap:10px;font-size:13px}
+.skin-dot{width:20px;height:20px;border-radius:50%;flex-shrink:0}
+/* TOC on mobile */
+@media(max-width:768px){.docs-sidebar{display:none}.docs-content{padding:24px}}
+</style>
+</head>
+<body>
+<div class="docs-wrap">
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+        <div class="docs-logo">
+            <div class="docs-logo-name"><div class="docs-logo-dot"></div>ThemeFlex</div>
+            <div class="docs-version">Documentation v1.1.0</div>
+        </div>
+        <nav>
+            <span class="docs-nav-label">Getting Started</span>
+            <div class="docs-nav-item active" onclick="showSection('getting-started')">🚀 Installation</div>
+            <div class="docs-nav-item" onclick="showSection('demo-import')">📦 Demo Import</div>
+            <div class="docs-nav-item" onclick="showSection('quick-start')">⚡ Quick Start</div>
+
+            <span class="docs-nav-label">Theme Features</span>
+            <div class="docs-nav-item" onclick="showSection('skins')">🎨 Skins System</div>
+            <div class="docs-nav-item" onclick="showSection('dark-mode')">🌙 Dark Mode</div>
+            <div class="docs-nav-item" onclick="showSection('customizer')">🛠 Customizer</div>
+            <div class="docs-nav-item" onclick="showSection('mega-menu')">☰ Mega Menu</div>
+
+            <span class="docs-nav-label">Elementor Widgets</span>
+            <div class="docs-nav-item" onclick="showSection('widgets-overview')">📐 All 80 Widgets</div>
+            <div class="docs-nav-item" onclick="showSection('ai-widget')">🤖 AI Content Widget</div>
+            <div class="docs-nav-item" onclick="showSection('pricing-calc')">🧮 Pricing Calculator</div>
+            <div class="docs-nav-item" onclick="showSection('portfolio')">🖼 Portfolio CPT</div>
+
+            <span class="docs-nav-label">Integrations</span>
+            <div class="docs-nav-item" onclick="showSection('woocommerce')">🛒 WooCommerce</div>
+            <div class="docs-nav-item" onclick="showSection('elementor-kit')">⚙ Elementor Kit Sync</div>
+            <div class="docs-nav-item" onclick="showSection('performance')">⚡ Performance</div>
+
+            <span class="docs-nav-label">Developer</span>
+            <div class="docs-nav-item" onclick="showSection('hooks-filters')">🔧 Hooks & Filters</div>
+            <div class="docs-nav-item" onclick="showSection('white-label')">🏷 White Label</div>
+            <div class="docs-nav-item" onclick="showSection('faq')">❓ FAQ</div>
+            <div class="docs-nav-item" onclick="showSection('changelog')">📋 Changelog</div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="docs-content">
+
+        <!-- Getting Started -->
+        <section class="docs-section active" id="getting-started">
+            <div class="docs-hero">
+                <h1>ThemeFlex Documentation</h1>
+                <p>Welcome to the official documentation for ThemeFlex — the most complete WordPress theme ecosystem with 80+ Elementor widgets, 20 professional skins, and 15 one-click demos.</p>
+            </div>
+            <h2>System Requirements</h2>
+            <ul>
+                <li><strong>WordPress:</strong> 6.0 or higher</li>
+                <li><strong>PHP:</strong> 8.0 or higher</li>
+                <li><strong>Elementor:</strong> 3.0+ (free version — Pro not required)</li>
+                <li><strong>ThemeFlex Addons:</strong> Companion plugin (included in download)</li>
+                <li><strong>MySQL:</strong> 5.7+ or MariaDB 10.3+</li>
+            </ul>
+            <h2>Installation Steps</h2>
+            <div class="docs-step"><div class="docs-step-num">1</div><div><h3>Upload the Theme</h3><p>Go to <strong>WordPress Admin → Appearance → Themes → Add New → Upload Theme</strong>. Select <code>themeflex.zip</code> from your download and click Install Now, then Activate.</p></div></div>
+            <div class="docs-step"><div class="docs-step-num">2</div><div><h3>Install Required Plugins</h3><p>After activation, a notice appears at the top of wp-admin. Click <strong>Install Elementor</strong> and <strong>Upload ThemeFlex Addons</strong>. Both are required for full functionality.</p></div></div>
+            <div class="docs-step"><div class="docs-step-num">3</div><div><h3>Import a Demo (Optional)</h3><p>Go to <strong>Appearance → Theme Setup → Demo Importer</strong>. Choose your industry demo and click Import. Takes 1–2 minutes on a fresh installation.</p></div></div>
+            <div class="docs-step"><div class="docs-step-num">4</div><div><h3>Choose Your Skin</h3><p>Go to <strong>Appearance → Customize → Skin Settings</strong>. Choose from 20 included skins. Each skin is a complete design system with colors, fonts, and component styles.</p></div></div>
+            <div class="docs-step"><div class="docs-step-num">5</div><div><h3>Start Building</h3><p>Edit any page with Elementor. All 80+ ThemeFlex widgets appear under the <strong>"ThemeFlex"</strong> category in the Elementor widget panel.</p></div></div>
+        </section>
+
+        <!-- Widgets Overview -->
+        <section class="docs-section" id="widgets-overview">
+            <div class="docs-hero">
+                <h1>80+ Elementor Widgets</h1>
+                <p>Every widget is skin-aware, dark-mode ready, accessible, and performance-optimized. All work with the free version of Elementor.</p>
+            </div>
+            <h2>Layout</h2>
+            <div class="widget-list">
+                <div class="widget-item"><span>Hero Section</span>Full-screen hero with video, gradient, or image</div>
+                <div class="widget-item"><span>Split Content</span>50/50 image + text layout</div>
+                <div class="widget-item"><span>Horizontal Scroll</span><span class="docs-badge badge-new">New</span> Pinned horizontal scroll sections</div>
+                <div class="widget-item"><span>Product Mockup</span><span class="docs-badge badge-new">New</span> Device frames for screenshots</div>
+                <div class="widget-item"><span>Slider</span>Full-width content slider</div>
+            </div>
+            <h2>Business & Conversion</h2>
+            <div class="widget-list">
+                <div class="widget-item"><span>Pricing Calculator</span><span class="docs-badge badge-new">New</span> Live slider-based price configurator</div>
+                <div class="widget-item"><span>Lead Quiz</span><span class="docs-badge badge-new">New</span> Multi-step quiz with email capture</div>
+                <div class="widget-item"><span>Social Proof</span><span class="docs-badge badge-new">New</span> Booking.com-style activity notifications</div>
+                <div class="widget-item"><span>Pricing Toggle</span>Monthly/yearly pricing switcher</div>
+                <div class="widget-item"><span>Pricing Table</span>Full pricing plan layout</div>
+                <div class="widget-item"><span>Exit Intent</span>Popup triggered on mouse leave</div>
+                <div class="widget-item"><span>Announcement Bar</span>Fixed top/bottom promo bar</div>
+                <div class="widget-item"><span>Cookie Consent</span>GDPR-compliant cookie banner</div>
+            </div>
+            <h2>Interactive & Visual</h2>
+            <div class="widget-list">
+                <div class="widget-item"><span>Particle Background</span><span class="docs-badge badge-new">New</span> Canvas particle animations</div>
+                <div class="widget-item"><span>3D Tilt Card</span><span class="docs-badge badge-new">New</span> CSS perspective hover effect</div>
+                <div class="widget-item"><span>Text Reveal</span><span class="docs-badge badge-new">New</span> Scroll-triggered word animation</div>
+                <div class="widget-item"><span>Morphing Text</span>SVG blur morph between words</div>
+                <div class="widget-item"><span>Typewriter</span>Animated text rotator</div>
+                <div class="widget-item"><span>Scroll Animation</span>IntersectionObserver entrance effects</div>
+                <div class="widget-item"><span>Image Comparison</span>Drag-handle before/after</div>
+                <div class="widget-item"><span>Isotope Portfolio</span>AJAX masonry filter grid</div>
+            </div>
+            <h2>AI-Powered <span class="docs-badge badge-pro">Premium</span></h2>
+            <div class="widget-list">
+                <div class="widget-item"><span>AI Content Assistant</span>OpenAI GPT-4o integration in widgets</div>
+            </div>
+        </section>
+
+        <!-- Skins -->
+        <section class="docs-section" id="skins">
+            <div class="docs-hero">
+                <h1>Skin System</h1>
+                <p>Each skin is a complete design system — 16 semantic color tokens, custom fonts, gradients, and component overrides. Switching skins changes everything consistently.</p>
+            </div>
+            <h2>Available Skins (20)</h2>
+            <div class="skin-list">
+                <div class="skin-item"><div class="skin-dot" style="background:#FF5E2E"></div>Default</div>
+                <div class="skin-item"><div class="skin-dot" style="background:#1B4FD8"></div>Corporate</div>
+                <div class="skin-item"><div class="skin-dot" style="background:#10B981"></div>Creative</div>
+                <div class="skin-item"><div class="skin-dot" style="background:#0066FF"></div>Agency</div>
+                <div class="skin-item"><div class="skin-dot" style="background:#7c3aed"></div>SaaS</div>
+                <div class="skin-item"><div class="skin-dot" style="background:#c9a84c"></div>Real Estate</div>
+                <div class="skin-item"><div class="skin-dot" style="background:#0D9488"></div>Medical</div>
+                <div class="skin-item"><div class="skin-dot" style="background:#722F37"></div>Restaurant</div>
+                <div class="skin-item"><div class="skin-dot" style="background:#D97706"></div>Freelancer</div>
+                <div class="skin-item"><div class="skin-dot" style="background:#B8860B"></div>Lawyer</div>
+                <div class="skin-item"><div class="skin-dot" style="background:#000"></div>Minimal</div>
+                <div class="skin-item"><div class="skin-dot" style="background:#00D4FF"></div>Dark</div>
+                <div class="skin-item"><div class="skin-dot" style="background:#C9A84C"></div>Luxury</div>
+                <div class="skin-item"><div class="skin-dot" style="background:#e88fa0"></div>Beauty</div>
+                <div class="skin-item"><div class="skin-dot" style="background:#FF6B00"></div>Fitness</div>
+                <div class="skin-item"><div class="skin-dot" style="background:#2563EB"></div>Education</div>
+                <div class="skin-item"><div class="skin-dot" style="background:#16a34a"></div>Nonprofit</div>
+                <div class="skin-item"><div class="skin-dot" style="background:#c9a84c"></div>Photography</div>
+                <div class="skin-item"><div class="skin-dot" style="background:#F59E0B"></div>Construction</div>
+                <div class="skin-item"><div class="skin-dot" style="background:#1e3a5f"></div>Finance</div>
+            </div>
+            <h2>The 16-Token Color System</h2>
+            <p>Every skin defines 16 semantic CSS custom properties. These cascade through every widget automatically:</p>
+            <pre><code>/* Main scheme */
+--sf-bg           Background color
+--sf-bg-2         Alternate/card background
+--sf-border       Border color
+--sf-title        Heading text color
+--sf-text         Body text color
+--sf-meta         Muted/secondary text
+--sf-link         Link color (= primary)
+--sf-hover        Hover state color
+
+/* Alt scheme (dark sections, footer) */
+--sf-alt-bg       Dark section background
+--sf-alt-bg-2     Dark card background
+--sf-alt-border   Dark section border
+--sf-alt-title    Dark section headings
+--sf-alt-text     Dark section text
+--sf-alt-meta     Dark section muted text
+--sf-alt-link     Dark section link
+--sf-alt-hover    Dark section hover</code></pre>
+        </section>
+
+        <!-- AI Widget -->
+        <section class="docs-section" id="ai-widget">
+            <div class="docs-hero">
+                <h1>AI Content Assistant</h1>
+                <p>The first WordPress theme with OpenAI integration built directly into Elementor widgets. Generate headlines, copy, meta descriptions and more — without leaving the page editor.</p>
+            </div>
+            <h2>Setup</h2>
+            <div class="docs-step"><div class="docs-step-num">1</div><div><h3>Get an OpenAI API Key</h3><p>Visit <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com/api-keys</a>, create an account, and generate a new API key.</p></div></div>
+            <div class="docs-step"><div class="docs-step-num">2</div><div><h3>Add API Key to WordPress</h3><p>Go to <strong>Settings → ThemeFlex → AI Settings</strong> (or use WP-CLI: <code>wp option update sf_openai_api_key "sk-..."</code>)</p></div></div>
+            <div class="docs-step"><div class="docs-step-num">3</div><div><h3>Use the Widget</h3><p>Add the <strong>"AI Content Assistant"</strong> widget in Elementor. Choose Quick Prompts or type your own. Click Generate.</p></div></div>
+            <h2>Available Models</h2>
+            <ul>
+                <li><strong>GPT-4o Mini</strong> — Fast and cost-effective. Best for short content (headlines, taglines, CTAs)</li>
+                <li><strong>GPT-4o</strong> — Most capable. Best for longer content requiring nuance</li>
+                <li><strong>GPT-3.5 Turbo</strong> — Legacy. Cheapest but lower quality</li>
+            </ul>
+            <h2>Custom System Prompts</h2>
+            <p>Each widget instance has its own system prompt. Customize it to match your brand voice:</p>
+            <pre><code>// Example: E-commerce brand
+"You are a conversion-focused copywriter for an outdoor gear brand. 
+Write compelling, action-oriented copy. Use short sentences. 
+Highlight durability, adventure, and value."</code></pre>
+        </section>
+
+        <!-- White Label -->
+        <section class="docs-section" id="white-label">
+            <div class="docs-hero">
+                <h1>White Label</h1>
+                <p>Rebrand ThemeFlex Addons for client sites. Replace plugin name, author, support URL, and hide the plugin from the plugins list entirely.</p>
+            </div>
+            <h2>Enabling White Label</h2>
+            <p>Go to <strong>Settings → White Label</strong> in wp-admin. Enable white labeling and fill in your agency details.</p>
+            <h2>Options</h2>
+            <div class="docs-card"><h3>Plugin Name</h3><p>Replace "ThemeFlex Addons" with your agency name, e.g. "Acme Agency Toolkit"</p></div>
+            <div class="docs-card"><h3>Author Name & URL</h3><p>Replace "WhatsDigital" with your agency name and website in the plugins list</p></div>
+            <div class="docs-card"><h3>Support URL</h3><p>Point "Plugin URI" and "Author URI" links to your own support page</p></div>
+            <div class="docs-card"><h3>Hide from Plugin List</h3><p>Make the plugin completely invisible to clients in the WordPress plugins list. They won't know what's powering their site.</p></div>
+            <div class="docs-card"><h3>Custom Admin CSS</h3><p>Inject custom CSS into wp-admin for branding (logo replacement, color changes, etc.)</p></div>
+            <h2>Via Code (wp-config.php)</h2>
+            <pre><code>// Alternatively, set via option in wp-config.php
+add_filter('pre_option_sfa_white_label', function() {
+    return [
+        'enabled'     => true,
+        'plugin_name' => 'My Agency Tools',
+        'author_name' => 'My Agency',
+        'author_url'  => 'https://myagency.com',
+        'hide_from_plugins' => true,
+    ];
+});</code></pre>
+        </section>
+
+        <!-- FAQ -->
+        <section class="docs-section" id="faq">
+            <div class="docs-hero"><h1>Frequently Asked Questions</h1></div>
+            <div class="docs-card"><h3>Do I need Elementor Pro?</h3><p>No. All 80+ ThemeFlex widgets work with the free version of Elementor. Elementor Pro adds its own widgets on top — those are optional extras.</p></div>
+            <div class="docs-card"><h3>Can I use the theme on multiple sites?</h3><p>A Regular License (ThemeForest) covers one end product used by one client. An Extended License is needed for multiple sites or SaaS applications. Check the Envato license terms for details.</p></div>
+            <div class="docs-card"><h3>How do I update the theme?</h3><p>Download the latest version from ThemeForest → Downloads. Upload via Appearance → Themes → Add New → Upload. Your customizations in the Customizer and page content are preserved.</p></div>
+            <div class="docs-card"><h3>Is the AI Content Assistant free to use?</h3><p>The widget is included with the theme — you only pay OpenAI's API usage fees (typically $0.001–0.02 per request with GPT-4o Mini). Very affordable for typical usage.</p></div>
+            <div class="docs-card"><h3>What happens if I deactivate ThemeFlex Addons?</h3><p>The custom widgets won't render in the frontend, but your content is safe. Reactivating the plugin restores all functionality. Always keep the plugin active on live sites.</p></div>
+            <div class="docs-card"><h3>Can I create my own custom skin?</h3><p>Yes! Create a folder in <code>wp-content/themes/themeflex/skins/my-skin/</code> with <code>skin.json</code> and <code>skin.css</code>. See the existing skins for the required format.</p></div>
+        </section>
+
+        <!-- Changelog -->
+        <section class="docs-section" id="changelog">
+            <div class="docs-hero"><h1>Changelog</h1></div>
+            <div class="docs-card">
+                <h3>v1.1.0 — April 2026</h3>
+                <ul>
+                    <li>Added 14 new Elementor widgets (total: 80+)</li>
+                    <li>Added 10 new professional skins (total: 20)</li>
+                    <li>Added 9 new one-click demos (total: 15)</li>
+                    <li>Added AI Content Assistant with OpenAI integration</li>
+                    <li>Added Interactive Pricing Calculator widget</li>
+                    <li>Added Social Proof Notification widget</li>
+                    <li>Added Particle Background widget</li>
+                    <li>Added Horizontal Scroll Section widget</li>
+                    <li>Added Isotope Portfolio Filter widget</li>
+                    <li>Added Lead Quiz widget</li>
+                    <li>Added Feature Showcase widget</li>
+                    <li>Added Device Mockup widget</li>
+                    <li>Added Cookie Consent Builder widget</li>
+                    <li>Added FAQ with Live Search widget</li>
+                    <li>Added White-Label option in companion plugin</li>
+                    <li>Added 16-Token Semantic Color System</li>
+                    <li>Added Elementor Kit Auto-Sync</li>
+                    <li>Added Admin Getting-Started Page</li>
+                    <li>Added Mega Menu Builder</li>
+                    <li>Added Portfolio CPT with AJAX filter</li>
+                    <li>Added Preloader Screen</li>
+                    <li>Improved WooCommerce CSS (2,300+ lines)</li>
+                    <li>Improved Dark Mode (all components)</li>
+                    <li>Performance optimizations (preload, defer, prefetch)</li>
+                </ul>
+            </div>
+            <div class="docs-card">
+                <h3>v1.0.0 — Initial Release</h3>
+                <ul>
+                    <li>51 Elementor widgets</li>
+                    <li>10 professional skins</li>
+                    <li>6 one-click demos</li>
+                    <li>WooCommerce integration</li>
+                    <li>Dark mode support</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Other sections (placeholders) -->
+        <?php foreach(['demo-import','quick-start','dark-mode','customizer','mega-menu','pricing-calc','portfolio','woocommerce','elementor-kit','performance','hooks-filters'] as $sec): ?>
+        <section class="docs-section" id="<?php echo $sec; ?>">
+            <div class="docs-hero"><h1><?php echo ucwords(str_replace('-',' ',$sec)); ?></h1><p>Full documentation coming soon. In the meantime, check the inline help in the Customizer and Elementor widget panels.</p></div>
+        </section>
+        <?php endforeach; ?>
+
+    </main>
+</div>
+
+<script>
+function showSection(id){
+    document.querySelectorAll('.docs-section').forEach(function(s){s.classList.remove('active');});
+    document.querySelectorAll('.docs-nav-item').forEach(function(n){n.classList.remove('active');});
+    var sec=document.getElementById(id);
+    if(sec)sec.classList.add('active');
+    event.currentTarget.classList.add('active');
+    window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>

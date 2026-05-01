@@ -1,0 +1,12 @@
+{
+  "sf_primary_color": "#673AB7",
+  "sf_secondary_color": "#ffffff",
+  "sf_body_font": "Inter",
+  "sf_heading_font": "Inter",
+  "sf_hero_title": "App Landing Page",
+  "sf_hero_subtitle": "Conversion-optimized app launch page with feature showcase and download buttons.",
+  "sf_hero_cta1_text": "Get Started",
+  "sf_hero_cta1_url": "#contact",
+  "sf_hero_bg_color": "#673AB7",
+  "sf_footer_copyright": "\u00a9 2025 App Landing Page. All rights reserved."
+}

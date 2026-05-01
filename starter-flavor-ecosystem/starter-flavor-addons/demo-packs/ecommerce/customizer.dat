@@ -1,0 +1,12 @@
+{
+  "sf_primary_color": "#E74C3C",
+  "sf_secondary_color": "#ffffff",
+  "sf_body_font": "Inter",
+  "sf_heading_font": "Inter",
+  "sf_hero_title": "E-Commerce Store",
+  "sf_hero_subtitle": "Full WooCommerce store with product grids, cart, and checkout styling.",
+  "sf_hero_cta1_text": "Get Started",
+  "sf_hero_cta1_url": "#contact",
+  "sf_hero_bg_color": "#E74C3C",
+  "sf_footer_copyright": "\u00a9 2025 E-Commerce Store. All rights reserved."
+}

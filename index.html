@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ThemeFlex — Project Hub</title>
+<style>
+  :root {
+    --sf-primary: #6C63FF;
+    --sf-accent: #FF6584;
+    --sf-dark: #0F0F1A;
+    --sf-mid: #1A1A2E;
+    --sf-text: #E8E8F0;
+    --sf-muted: #8888AA;
+    --sf-border: rgba(108,99,255,0.2);
+    --sf-card: rgba(255,255,255,0.04);
+    --sf-glow: 0 0 40px rgba(108,99,255,0.3);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--sf-dark);
+    color: var(--sf-text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 20%, rgba(108,99,255,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(255,101,132,0.1) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  /* Header */
+  header {
+    padding: 60px 0 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--sf-border);
+    margin-bottom: 60px;
+  }
+  .badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--sf-primary), var(--sf-accent));
+    padding: 4px 16px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1;
+    background: linear-gradient(135deg, #fff 0%, var(--sf-primary) 60%, var(--sf-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+  }
+  .subtitle {
+    font-size: 18px;
+    color: var(--sf-muted);
+    max-width: 500px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+  .header-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-num {
+    display: block;
+    font-size: 32px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--sf-primary), var(--sf-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--sf-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 60px; }
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--sf-primary);
+    margin-bottom: 20px;
+    padding-left: 12px;
+    border-left: 3px solid var(--sf-primary);
+  }
+
+  /* Cards Grid */
+  .cards { display: grid; gap: 16px; }
+  .cards-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .cards-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .cards-4 { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+
+  .card {
+    background: var(--sf-card);
+    border: 1px solid var(--sf-border);
+    border-radius: 16px;
+    padding: 28px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: block;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(108,99,255,0.08) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .card:hover {
+    border-color: var(--sf-primary);
+    transform: translateY(-4px);
+    box-shadow: var(--sf-glow);
+  }
+  .card:hover::before { opacity: 1; }
+
+  .card-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .card-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  .card-desc {
+    font-size: 14px;
+    color: var(--sf-muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .card-link {
+    font-size: 13px;
+    color: var(--sf-primary);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .card-link::after { content: '→'; transition: transform 0.2s; }
+  .card:hover .card-link::after { transform: translateX(4px); }
+  .card-tag {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: rgba(108,99,255,0.2);
+    color: var(--sf-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .card-tag.new { background: rgba(255,101,132,0.2); color: var(--sf-accent); }
+  .card-tag.pro { background: rgba(255,200,0,0.2); color: #FFD700; }
+
+  /* Download cards */
+  .dl-card {
+    background: var(--sf-card);
+    border: 1px solid var(--sf-border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+  }
+  .dl-card:hover {
+    border-color: var(--sf-primary);
+    background: rgba(108,99,255,0.08);
+    transform: translateX(4px);
+  }
+  .dl-icon { font-size: 28px; flex-shrink: 0; }
+  .dl-info { flex: 1; }
+  .dl-name { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .dl-meta { font-size: 13px; color: var(--sf-muted); }
+  .dl-btn {
+    background: linear-gradient(135deg, var(--sf-primary), #9C95FF);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  /* Status bar */
+  .status-bar {
+    background: rgba(16, 200, 120, 0.08);
+    border: 1px solid rgba(16, 200, 120, 0.2);
+    border-radius: 12px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 60px;
+    font-size: 14px;
+  }
+  .status-dot {
+    width: 8px; height: 8px;
+    background: #10C878;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #10C878;
+    animation: pulse 2s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .status-text { color: #10C878; font-weight: 600; }
+  .status-sub { color: var(--sf-muted); margin-left: auto; font-size: 12px; }
+
+  /* Feature list */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .feature-item {
+    background: var(--sf-card);
+    border: 1px solid var(--sf-border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .feature-item .fi { color: var(--sf-primary); font-size: 16px; }
+
+  footer {
+    border-top: 1px solid var(--sf-border);
+    padding: 40px 0;
+    text-align: center;
+    color: var(--sf-muted);
+    font-size: 14px;
+    margin-top: 80px;
+  }
+  footer a { color: var(--sf-primary); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <header>
+    <div class="badge">⚡ v2.0.0 — Production Ready</div>
+    <h1>ThemeFlex</h1>
+    <p class="subtitle">Premium WordPress Theme Ecosystem — 80+ Widgets, 27 Demos, Supabase Lizenz-Management</p>
+    <div class="header-stats">
+      <div class="stat">
+        <span class="stat-num">80+</span>
+        <span class="stat-label">Elementor Widgets</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">27</span>
+        <span class="stat-label">Demo Sites</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">20</span>
+        <span class="stat-label">Skins</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">16</span>
+        <span class="stat-label">Design Tokens</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">WCAG AA</span>
+        <span class="stat-label">Accessibility</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Live Status -->
+  <div class="status-bar">
+    <div class="status-dot"></div>
+    <span class="status-text">Alle Systeme online</span>
+    <span>— Showcase, Docs, Product Page, Demo verfügbar</span>
+    <span class="status-sub">whatsdigital.de</span>
+  </div>
+
+  <!-- Live Pages -->
+  <div class="section">
+    <div class="section-title">Live Preview Pages</div>
+    <div class="cards cards-2">
+      <a href="/themeflex-showcase" class="card" target="_blank">
+        <span class="card-tag new">Flagship</span>
+        <span class="card-icon">🎨</span>
+        <div class="card-title">Theme Showcase</div>
+        <p class="card-desc">Die vollständige Präsentation des ThemeFlex Themes mit allen Features, Widgets und Demos.</p>
+        <span class="card-link">Showcase öffnen</span>
+      </a>
+      <a href="/themeflex-product" class="card" target="_blank">
+        <span class="card-tag">Sales</span>
+        <span class="card-icon">💼</span>
+        <div class="card-title">Product Page</div>
+        <p class="card-desc">ThemeForest-ready Product Page mit Pricing, Feature-Vergleich und Kaufoptionen.</p>
+        <span class="card-link">Product Page öffnen</span>
+      </a>
+      <a href="/themeflex-docs" class="card" target="_blank">
+        <span class="card-tag">Docs</span>
+        <span class="card-icon">📖</span>
+        <div class="card-title">Dokumentation</div>
+        <p class="card-desc">Vollständige technische Dokumentation — Installation, API, Widgets, Hooks und mehr.</p>
+        <span class="card-link">Docs öffnen</span>
+      </a>
+      <a href="/demos" class="card" target="_blank">
+        <span class="card-tag new">27 Demos</span>
+        <span class="card-icon">🖼️</span>
+        <div class="card-title">Demo Browser</div>
+        <p class="card-desc">Alle 27 Demo-Designs: Agency, Corporate, Creative, Portfolio, Restaurant, SaaS und mehr.</p>
+        <span class="card-link">Demos durchstöbern</span>
+      </a>
+      <a href="/themeflex-demo" class="card" target="_blank">
+        <span class="card-tag">Interaktiv</span>
+        <span class="card-icon">🔍</span>
+        <div class="card-title">Widget Demo</div>
+        <p class="card-desc">Interaktive Vorschau aller 80+ Elementor Widgets — direkt im Browser testen.</p>
+        <span class="card-link">Widget Demo öffnen</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Downloads -->
+  <div class="section">
+    <div class="section-title">Download Packages</div>
+    <div class="cards">
+      <a href="/downloads/themeflex-v2.0.0.zip" class="dl-card">
+        <span class="dl-icon">🎨</span>
+        <div class="dl-info">
+          <div class="dl-name">themeflex-v2.0.0.zip</div>
+          <div class="dl-meta">WordPress Theme · 80+ Widgets · 27 Demos · Supabase Lizenz · GPL v2 · ~1.8 MB</div>
+        </div>
+        <span class="dl-btn">Download</span>
+      </a>
+      <a href="/downloads/themeflex-addons-v1.zip" class="dl-card">
+        <span class="dl-icon">🔌</span>
+        <div class="dl-info">
+          <div class="dl-name">themeflex-addons-v1.zip</div>
+          <div class="dl-meta">Companion Plugin · Widget Loader · AJAX-Handler · White Label</div>
+        </div>
+        <span class="dl-btn">Download</span>
+      </a>
+      <a href="/downloads/themeflex-deploy-kit.zip" class="dl-card">
+        <span class="dl-icon">🚀</span>
+        <div class="dl-info">
+          <div class="dl-name">themeflex-deploy-kit.zip</div>
+          <div class="dl-meta">WP-CLI Deploy Script · Mittwald Anleitung · One-Click-Setup</div>
+        </div>
+        <span class="dl-btn">Download</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Feature Matrix -->
+  <div class="section">
+    <div class="section-title">Was ist implementiert</div>
+    <div class="feature-grid">
+      <div class="feature-item"><span class="fi">✅</span> 80 Elementor Widgets</div>
+      <div class="feature-item"><span class="fi">✅</span> 20 Skins / Style-Sets</div>
+      <div class="feature-item"><span class="fi">✅</span> 27 Demo-Imports</div>
+      <div class="feature-item"><span class="fi">✅</span> 16-Token CSS System</div>
+      <div class="feature-item"><span class="fi">✅</span> Hook & Filter API</div>
+      <div class="feature-item"><span class="fi">✅</span> Module Loader</div>
+      <div class="feature-item"><span class="fi">✅</span> Design Tokens 2.0</div>
+      <div class="feature-item"><span class="fi">✅</span> Demo Engine 2.0</div>
+      <div class="feature-item"><span class="fi">✅</span> Template Library</div>
+      <div class="feature-item"><span class="fi">✅</span> Dynamic Content</div>
+      <div class="feature-item"><span class="fi">✅</span> Skin Manager</div>
+      <div class="feature-item"><span class="fi">✅</span> SEO + Schema.org</div>
+      <div class="feature-item"><span class="fi">✅</span> WooCommerce Pro</div>
+      <div class="feature-item"><span class="fi">✅</span> WCAG 2.1 AA</div>
+      <div class="feature-item"><span class="fi">✅</span> 21 Shortcodes</div>
+      <div class="feature-item"><span class="fi">✅</span> Widget Asset Loader</div>
+      <div class="feature-item"><span class="fi">✅</span> Performance Engine</div>
+      <div class="feature-item"><span class="fi">✅</span> Portfolio CPT</div>
+      <div class="feature-item"><span class="fi">✅</span> Mega Menu Builder</div>
+      <div class="feature-item"><span class="fi">✅</span> Interaction Engine</div>
+      <div class="feature-item"><span class="fi">✅</span> White Label Option</div>
+      <div class="feature-item"><span class="fi">✅</span> Elementor Kit Sync</div>
+      <div class="feature-item"><span class="fi">✅</span> RTL Support</div>
+      <div class="feature-item"><span class="fi">✅</span> Gutenberg Support</div>
+      <div class="feature-item"><span class="fi">✅</span> WooCommerce CSS</div>
+      <div class="feature-item"><span class="fi">✅</span> Quick View Modal</div>
+      <div class="feature-item"><span class="fi">✅</span> Wishlist System</div>
+      <div class="feature-item"><span class="fi">✅</span> Sticky ATC Button</div>
+      <div class="feature-item"><span class="fi">✅</span> Open Graph / OG</div>
+      <div class="feature-item"><span class="fi">✅</span> JSON-LD Markup</div>
+      <div class="feature-item"><span class="fi">✅</span> Customizer API</div>
+      <div class="feature-item"><span class="fi">✅</span> Theme Settings</div>
+      <div class="feature-item"><span class="fi">✅</span> Companion Plugin</div>
+      <div class="feature-item"><span class="fi">✅</span> Supabase Lizenz-Manager</div>
+      <div class="feature-item"><span class="fi">✅</span> Domain-Aktivierung</div>
+      <div class="feature-item"><span class="fi">✅</span> ThemeForest Ready</div>
+    </div>
+  </div>
+
+  <!-- Elementor Widgets -->
+  <div class="section">
+    <div class="section-title">80 Elementor Widgets — Kategorien</div>
+    <div class="cards cards-3">
+      <div class="card">
+        <span class="card-icon">📐</span>
+        <div class="card-title">Layout & Structure</div>
+        <p class="card-desc">Advanced Container, Section Divider, Grid Layout, Masonry Grid, Sticky Section (8 Widgets)</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">✍️</span>
+        <div class="card-title">Typography & Content</div>
+        <p class="card-desc">Animated Heading, Text Rotator, Typewriter, Reading Progress, Content Reveal (10 Widgets)</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🖼️</span>
+        <div class="card-title">Media</div>
+        <p class="card-desc">Image Gallery, Before/After Slider, Video Lightbox, Image Hotspot, Advanced Image (8 Widgets)</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📊</span>
+        <div class="card-title">Data & Stats</div>
+        <p class="card-desc">Counter, Progress Bar, Skill Bars, Pie Chart, Data Table, Pricing Table (10 Widgets)</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🛒</span>
+        <div class="card-title">WooCommerce</div>
+        <p class="card-desc">Product Grid, Product Carousel, Cart, Mini Cart, Product Filter, Wishlist (8 Widgets)</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📝</span>
+        <div class="card-title">Forms & CTA</div>
+        <p class="card-desc">Contact Form, Newsletter, Call to Action, Button Group, Popup Trigger (6 Widgets)</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🗂️</span>
+        <div class="card-title">Navigation & UX</div>
+        <p class="card-desc">Tabs, Accordion, Toggle, Breadcrumb, Back to Top, Scroll Indicator (8 Widgets)</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📣</span>
+        <div class="card-title">Social & Trust</div>
+        <p class="card-desc">Social Icons, Testimonials, Team Members, Client Logos, Review Stars (8 Widgets)</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎯</span>
+        <div class="card-title">Blog & Posts</div>
+        <p class="card-desc">Blog Carousel, Post Grid, Post Timeline, Author Box, Related Posts (8 Widgets)</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">⚡</span>
+        <div class="card-title">Interactive</div>
+        <p class="card-desc">Countdown Timer, Flip Box, Hover Card, Content Slider, Parallax (6 Widgets)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Next Steps -->
+  <div class="section">
+    <div class="section-title">Roadmap → themeflex.de live</div>
+    <div class="cards cards-2">
+      <div class="card">
+        <span class="card-tag pro">Step 1</span>
+        <span class="card-icon">🌐</span>
+        <div class="card-title">WordPress auf Mittwald</div>
+        <p class="card-desc">themeflex.de in Mittwald anlegen, WordPress installieren, <code>themeflex-v2.0.0.zip</code> hochladen und aktivieren. Deploy-Kit nutzen: <code>bash deploy-themeflex.sh</code></p>
+        <span class="card-link">Deploy-Kit herunterladen</span>
+      </div>
+      <div class="card">
+        <span class="card-tag pro">Step 2</span>
+        <span class="card-icon">🔑</span>
+        <div class="card-title">Supabase konfigurieren</div>
+        <p class="card-desc">Supabase-Projekt anlegen, URL + Anon-Key in <code>wp-config.php</code> eintragen: <code>THEMEFLEX_SUPABASE_URL</code> und <code>THEMEFLEX_SUPABASE_ANON_KEY</code>.</p>
+        <span class="card-link">Supabase Dashboard</span>
+      </div>
+      <div class="card">
+        <span class="card-tag pro">Step 3</span>
+        <span class="card-icon">📸</span>
+        <div class="card-title">Screenshots für ThemeForest</div>
+        <p class="card-desc">Live-Demos einrichten, Browser-Screenshots machen. Benötigt: <strong>preview.jpg</strong> 590×300 px und <strong>thumbnail.jpg</strong> 590×590 px.</p>
+        <span class="card-link">ThemeForest Guidelines</span>
+      </div>
+      <div class="card">
+        <span class="card-tag pro">Step 4</span>
+        <span class="card-icon">🚀</span>
+        <div class="card-title">ThemeForest Einreichung</div>
+        <p class="card-desc">ZIP hochladen auf <strong>market.envato.com</strong> → WordPress → Elementor. Preis: $59. Tags: elementor, multipurpose, agency, portfolio.</p>
+        <span class="card-link">Envato Upload →</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>ThemeFlex Theme Ecosystem · Entwickelt von <a href="#">whatsdigital.de</a> · © 2026 · Alle Rechte vorbehalten</p>
+</footer>
+
+</body>
+</html>

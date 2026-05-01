@@ -1,0 +1,34 @@
+{
+  "slug": "medical",
+  "name": "Medical & Health",
+  "category": "Healthcare",
+  "description": "Trustworthy medical theme for clinics, hospitals, and health practitioners.",
+  "preview_url": "https://demo.starterflavor.com/medical",
+  "homepage_slug": "home",
+  "blog_slug": "blog",
+  "required_plugins": [],
+  "color": "#27AE60",
+  "version": "1.0.0",
+  "is_new": false,
+  "is_pro": false,
+  "nav_menus": {
+    "primary": "Main Menu",
+    "footer": "Footer Menu"
+  },
+  "pages": [
+    "Home",
+    "About",
+    "Services",
+    "Blog",
+    "Contact"
+  ],
+  "widgets": true,
+  "elementor_templates": true,
+  "author": "Starter Flavor",
+  "tags": [
+    "healthcare",
+    "elementor",
+    "responsive",
+    "starter-flavor"
+  ]
+}
